@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Farm · contact us</title>
+    <!-- farm favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
+    <meta name="description" content="Local Farm – get in touch with us.">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'farm-peat': '#36634B',
+                        'farm-sprout': '#7AA65A',
+                        'farm-cream': '#FEF7E4',
+                        'farm-clay': '#C96E4B',
+                        'farm-stone': '#D9C5B3',
+                        'farm-charcoal': '#2E3F2F',
+                        'farm-moss': '#5F8B6B',
+                        'dark-bg': '#1F2A1E',
+                        'dark-card': '#2C3A2A',
+                        'dark-surface': '#364433',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Playfair Display', 'serif'],
+                        'alt': ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- same custom styles (copied from reference) -->
+    <style>
+        body {
+            background-color: #FEF7E4;
+            color: #2E3F2F;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar { display: none; }
+        .dark body { background-color: #1F2A1E; color: #e2e6da; }
+        h1,h2,h3,h4 { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; }
+        .farm-nav-link { position: relative; padding: 0.5rem 0; font-weight: 500; color: #2E3F2F; transition: color 0.2s; font-family: 'Montserrat', sans-serif; border-bottom: 2px solid transparent; }
+        .dark .farm-nav-link { color: #f0f3e8; }
+        .farm-nav-link:hover { color: #36634B; border-bottom-color: #7AA65A; }
+        .dark .farm-nav-link:hover { color: #A7D489; }
+        .farm-dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 220px; background: #FFFFFF; border-radius: 24px; padding: 0.75rem 0; box-shadow: 0 30px 40px -15px rgba(54, 99, 75, 0.25); opacity: 0; visibility: hidden; transform: translateY(12px); transition: all 0.3s ease; border: 1px solid rgba(122, 166, 90, 0.2); z-index: 50; }
+        .dark .farm-dropdown-menu { background: #2C3A2A; border-color: #5F8B6B; }
+        .dropdown:hover .farm-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .farm-dropdown-item { display: flex; align-items: center; padding: 0.7rem 1.8rem; color: #2E3F2F; transition: 0.2s; font-family: 'Montserrat', sans-serif; }
+        .dark .farm-dropdown-item { color: #e2e6da; }
+        .farm-dropdown-item:hover { background: rgba(122, 166, 90, 0.1); color: #36634B; padding-left: 2.2rem; }
+        .farm-dropdown-item i { margin-right: 0.75rem; width: 20px; color: #7AA65A; }
+        .btn-primary { background: #36634B; color: white; padding: 0.9rem 2.5rem; border-radius: 50px; font-weight: 600; font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 20px -8px rgba(54, 99, 75, 0.4); transition: all 0.2s; border: 1px solid transparent; }
+        .btn-primary:hover { background: #2A503C; transform: translateY(-4px); box-shadow: 0 18px 25px -8px #36634B; }
+        .dark .btn-primary { background: #7AA65A; color: #1F2A1E; }
+        .btn-primary:hover { background: #8FB87A; }
+        .btn-outline-farm { background: transparent; border: 2px solid #36634B; color: #36634B; padding: 0.85rem 2.3rem; border-radius: 50px; font-weight: 600; font-family: 'Montserrat', sans-serif; transition: 0.2s; }
+        .btn-outline-farm:hover { background: #36634B; color: white; border-color: #36634B; }
+        .dark .btn-outline-farm { border-color: #A7D489; color: #D9F0C5; }
+        .dark .btn-outline-farm:hover { background: #5F8B6B; color: #1F2A1E; }
+        .farm-card { background: white; border-radius: 16px; padding: 1.8rem; box-shadow: 0 15px 30px -12px rgba(54, 99, 75, 0.12); transition: all 0.25s; border: 1px solid rgba(122, 166, 90, 0.2); }
+        .dark .farm-card { background: #2C3A2A; border-color: #4A6B4A; }
+        .farm-card:hover { transform: scale(1.02) translateY(-5px); box-shadow: 0 25px 35px -14px #36634B33; }
+        .badge-farm { background: rgba(122, 166, 90, 0.2); color: #36634B; padding: 0.4rem 1.4rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; display: inline-block; }
+        .dark .badge-farm { background: rgba(122, 166, 90, 0.25); color: #c1f09a; }
+        .farm-toggle { width: 40px; height: 40px; border-radius: 10px; background: #e6dccb; display: flex; align-items: center; justify-content: center; color: #36634B; transition: 0.2s; cursor: pointer; border: none; }
+        .dark .farm-toggle { background: #3d5c3a; color: #c8f0a0; }
+        .farm-toggle:hover { background: #7AA65A; color: white; }
+        .auth-farm-login { background: transparent; border: 2px solid #7AA65A; color: #2E3F2F; border-radius: 50px; padding: 0.5rem 1.8rem; transition: 0.2s; font-weight: 500; }
+        .auth-farm-signup { background: #36634B; color: white; border-radius: 50px; padding: 0.5rem 1.8rem; transition: 0.2s; font-weight: 500; }
+        .dark .auth-farm-login { border-color: #A7D489; color: #E8FAD8; background: rgba(122, 166, 90, 0.18); }
+        .dark .auth-farm-login:hover { background: #3A5E3A; color: white; }
+        .dark .auth-farm-signup { background: #7AA65A; color: #0e1a0e; }
+        .dark .auth-farm-signup:hover { background: #8FB87A; }
+        .social-farm { width: 44px; height: 44px; background: #e6dccb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #36634B; transition: 0.2s; }
+        .social-farm:hover { background: #7AA65A; color: white; transform: translateY(-3px); }
+        .dark .social-farm { background: #3F5740; color: #E2F0D6; }
+        .dark .social-farm:hover { background: #5F8B6B; color: #0F1A0F; }
+        .dark .text-farm-charcoal { color: #E6EDE0; }
+        .dark .text-farm-charcoal\/80 { color: #D0DCC8; }
+        .dark i, .dark .fas, .dark .fab { color: inherit; }
+        .auth-dropdown-menu { position: absolute; top: calc(100% + 12px); right: 0; min-width: 180px; background: #FFFFFF; border-radius: 16px; padding: 0.5rem 0; box-shadow: 0 20px 40px -10px rgba(54, 99, 75, 0.22); border: 1px solid rgba(122, 166, 90, 0.2); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.25s ease; z-index: 100; }
+        .dark .auth-dropdown-menu { background: #2C3A2A; border-color: #5F8B6B; }
+        .auth-dropdown-trigger:hover .auth-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        [dir="rtl"] .auth-dropdown-menu { right: auto; left: 0; }
+        [dir="rtl"] .farm-dropdown-menu { left: auto; right: 0; }
+        [dir="rtl"] .farm-dropdown-item i { margin-left: 0.75rem; margin-right: 0; }
+        .premium-line-farm { width: 100px; height: 3px; background: linear-gradient(90deg, #7AA65A, #C96E4B); margin: 20px 0; border-radius: 2px; }
+        @media (max-width: 1279px) { .desktop-toggle-group { display: none !important; } }
+
+        /* mobile menu */
+        .mob-section-title { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid #D9C5B3; font-family: 'Montserrat', sans-serif; font-weight: 600; color: #2E3F2F; cursor: pointer; }
+        .dark .mob-section-title { color: #eef3e7; border-bottom-color: #4F6A4A; }
+        .mob-accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: rgba(122, 166, 90, 0.06); }
+        .dark .mob-accordion-body { background: rgba(122, 166, 90, 0.08); }
+        .mob-accordion-body a { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 2.5rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #2E3F2F; border-bottom: 1px solid rgba(217,197,179,0.4); }
+        .dark .mob-accordion-body a { color: #d6e8cc; border-bottom-color: rgba(79,106,74,0.35); }
+        .mob-accordion-body a:hover { background: rgba(122, 166, 90, 0.12); color: #36634B; }
+        .mob-accordion-body a i { color: #7AA65A; width: 18px; }
+        .farm-mobile-menu { background: #FEF7E4; border-radius: 0 0 24px 24px; max-height: 0; overflow: hidden; transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: none; }
+        .farm-mobile-menu.open { max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px -10px rgba(54, 99, 75, 0.18); }
+        .dark .farm-mobile-menu { background: #1e2e1d; }
+        .farm-mob-item { display: flex; align-items: center; padding: 0.95rem 2rem; border-bottom: 1px solid #D9C5B3; font-family: 'Montserrat', sans-serif; font-weight: 500; color: #2E3F2F; transition: background 0.15s; }
+        .dark .farm-mob-item { color: #ddecd3; border-bottom-color: #3d5a3a; }
+        
+        /* Contact form styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D9C5B3;
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .dark .form-input {
+            background: #2C3A2A;
+            border-color: #4A6B4A;
+            color: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #7AA65A;
+            box-shadow: 0 0 0 3px rgba(122, 166, 90, 0.2);
+        }
+        .dark .form-input:focus {
+            border-color: #7AA65A;
+            box-shadow: 0 0 0 3px rgba(122, 166, 90, 0.3);
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(122, 166, 90, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #36634B;
+            transition: all 0.3s ease;
+        }
+        .dark .contact-icon {
+            background: rgba(122, 166, 90, 0.2);
+            color: #7AA65A;
+        }
+        .contact-item:hover .contact-icon {
+            background: #7AA65A;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* active nav links */
+        .farm-nav-link.active {
+            color: #36634B;
+            border-bottom-color: #7AA65A;
+        }
+        .dark .farm-nav-link.active {
+            color: #A7D489;
+            border-bottom-color: #A7D489;
+        }
+
+        /* active mobile links */
+        .farm-mob-item.active {
+            background: rgba(122, 166, 90, 0.15);
+            color: #36634B;
+            border-left: 4px solid #7AA65A;
+        }
+        .dark .farm-mob-item.active {
+            background: rgba(122, 166, 90, 0.2);
+            color: #A7D489;
+            border-left-color: #A7D489;
+        }
+        .farm-dropdown-item.active {
+            background: rgba(122, 166, 90, 0.1);
+            color: #36634B;
+        }
+        .dark .farm-dropdown-item.active {
+            color: #A7D489;
+        }
+    </style>
+</head>
+<body class="bg-farm-cream dark:bg-dark-bg">
+
+    <!-- ========== HEADER (exact copy from reference) ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-gray-900/85 backdrop-blur-sm border-b border-farm-stone/30 dark:border-farm-peat/30">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300">
+                        <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                        <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
+                    </div>
+                </a>
+
+                <!-- Desktop navigation (xl) -->
+                <div class="hidden xl:flex items-center">
+                    <div class="flex items-center gap-8">
+                        <div class="dropdown relative">
+                            <button class="farm-nav-link flex items-center gap-1">Home <i class="fas fa-chevron-down text-xs"></i></button>
+                            <div class="farm-dropdown-menu">
+                                <a href="index.html" class="farm-dropdown-item"><i class="fas fa-home"></i> Home 1</a>
+                                <a href="home2.html" class="farm-dropdown-item"><i class="fas fa-home"></i> Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html" class="farm-nav-link">About</a>
+                        <a href="harvest.html" class="farm-nav-link">Harvest</a>
+                        <a href="gallery.html" class="farm-nav-link">Gallery</a>
+                        <a href="service.html" class="farm-nav-link">Services</a>
+                        <a href="contact.html" class="farm-nav-link">Contact</a>
+                        <div class="dropdown relative">
+                            <button class="farm-nav-link flex items-center gap-1">Dashboards<i class="fas fa-chevron-down text-xs"></i></button>
+                            <div class="farm-dropdown-menu">
+                                <a href="admin.html" class="farm-dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                                <a href="client.html" class="farm-dropdown-item"><i class="fas fa-users"></i> Client</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- auth dropdown desktop -->
+                    <div class="relative auth-dropdown-trigger ml-8">
+                        <button class="farm-toggle" title="Account" aria-label="Account"><i class="fas fa-user"></i></button>
+                        <div class="auth-dropdown-menu">
+                            <a href="login.html" class="farm-dropdown-item"><i class="fas fa-right-to-bracket"></i> Log in</a>
+                            <a href="signup.html" class="farm-dropdown-item"><i class="fas fa-user-plus"></i> Sign up</a>
+                        </div>
+                    </div>
+
+                    <!-- theme/rtl toggles -->
+                    <div class="flex gap-2 ml-5 desktop-toggle-group">
+                        <button id="theme-toggle" class="farm-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                        <button id="rtl-toggle" class="farm-toggle"><span class="text-sm">⇄</span></button>
+                    </div>
+                </div>
+
+                <!-- mobile menu button -->
+                <button id="mobile-toggle" class="xl:hidden w-11 h-11 rounded-full bg-farm-stone/30 dark:bg-farm-peat/70 flex items-center justify-center transition hover:bg-farm-sprout/30">
+                    <i class="fas fa-bars text-farm-peat dark:text-farm-cream text-xl"></i>
+                </button>
+            </div>
+
+            <!-- mobile menu (identical structure) -->
+            <div id="mobile-menu" class="farm-mobile-menu xl:hidden">
+                <div class="mob-section-title" onclick="toggleMobAccordion('mob-home')">
+                    <span><i class="fas fa-home mr-2 text-farm-sprout"></i>Home</span><i class="fas fa-chevron-down text-xs transition-transform" id="mob-home-chevron"></i>
+                </div>
+                <div id="mob-home" class="mob-accordion-body">
+                    <a href="index.html"><i class="fas fa-home"></i> Home 1</a><a href="home2.html"><i class="fas fa-home"></i> Home 2</a>
+                </div>
+                <a href="about.html" class="farm-mob-item"><i class="fas fa-circle-info mr-2 text-farm-sprout"></i>About</a>
+                <a href="harvest.html" class="farm-mob-item"><i class="fas fa-basket-shopping mr-2 text-farm-sprout"></i>Harvest</a>
+                <a href="gallery.html" class="farm-mob-item"><i class="fas fa-images mr-2 text-farm-sprout"></i>Gallery</a>
+                <a href="service.html" class="farm-mob-item"><i class="fas fa-hand-holding-heart mr-2 text-farm-sprout"></i>Services</a>
+                <a href="contact.html" class="farm-mob-item"><i class="fas fa-envelope mr-2 text-farm-sprout"></i>Contact</a>
+                <div class="mob-section-title" onclick="toggleMobAccordion('mob-dash')">
+                    <span><i class="fas fa-gauge-high mr-2 text-farm-sprout"></i>Dashboards</span><i class="fas fa-chevron-down text-xs transition-transform" id="mob-dash-chevron"></i>
+                </div>
+                <div id="mob-dash" class="mob-accordion-body">
+                    <a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a><a href="client.html"><i class="fas fa-users"></i> Client</a>
+                </div>
+                <div class="flex gap-3 px-5 py-5">
+                    <a href="login.html" class="auth-farm-login flex-1 text-center">Log in</a><a href="signup.html" class="auth-farm-signup flex-1 text-center">Sign up</a>
+                </div>
+                <div class="flex justify-center gap-4 py-4 px-5 border-t border-farm-stone/30 dark:border-farm-peat/40">
+                    <button id="theme-toggle-mobile" class="farm-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
+                    <button id="rtl-toggle-mobile" class="farm-toggle"><span>⇄</span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN – CONTACT PAGE ========== -->
+    <main class="pt-0 pb-16">
+
+       <!-- HERO SECTION WITH BACKGROUND IMAGE - INCREASED HEIGHT -->
+<section class="relative h-[80vh] min-h-[700px] flex items-center justify-center overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+        <img src="/assest/url1.jpg" 
+             class="w-full h-full object-cover" 
+             alt="Farm landscape">
+        <div class="absolute inset-0 bg-farm-peat/50 dark:bg-dark-bg/70"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-6 relative z-10 text-center text-white">
+        <div class="flex justify-center mb-6">
+            <i class="fas fa-envelope text-6xl text-white/80 drop-shadow-lg"></i>
+        </div>
+        
+        <span class="inline-block bg-farm-sprout/80 text-white px-8 py-3 rounded-full text-base font-alt font-semibold mb-6">📬 GET IN TOUCH</span>
+        
+        <h1 class="text-6xl md:text-8xl font-display font-bold mb-6 drop-shadow-lg">Contact Us</h1>
+        
+        <div class="w-32 h-1.5 bg-white mx-auto mb-8 rounded-full"></div>
+        
+        <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            We'd love to hear from you. Reach out with questions, feedback, or to schedule a visit.
+        </p>
+    </div>
+</section>
+        <!-- CONTACT INFO & FORM SECTION -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    
+                    <!-- LEFT: CONTACT INFORMATION -->
+                    <div>
+                        <span class="badge-farm text-base px-5 py-2 mb-4 inline-block">📍 VISIT US</span>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 dark:text-white">Farm & <span class="text-farm-peat dark:text-farm-sprout">Farmstand</span></h2>
+                        
+                        <div class="space-y-6 mb-8">
+                            <!-- Address -->
+                            <div class="contact-item flex items-start gap-4 group">
+                                <div class="contact-icon flex-shrink-0">
+                                    <i class="fas fa-map-pin text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg dark:text-white">Farm Address</h3>
+                                    <p class="text-farm-charcoal/80 dark:text-gray-300">3560 Green Valley Road<br>Willamette Valley, OR 97301</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Hours -->
+                            <div class="contact-item flex items-start gap-4 group">
+                                <div class="contact-icon flex-shrink-0">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg dark:text-white">Farmstand Hours</h3>
+                                    <p class="text-farm-charcoal/80 dark:text-gray-300">Wednesday – Saturday: 9am – 5pm<br>Sunday – Tuesday: Closed</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Phone -->
+                            <div class="contact-item flex items-start gap-4 group">
+                                <div class="contact-icon flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg dark:text-white">Call Us</h3>
+                                    <p class="text-farm-charcoal/80 dark:text-gray-300">+1 (541) 386-1234</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="contact-item flex items-start gap-4 group">
+                                <div class="contact-icon flex-shrink-0">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg dark:text-white">Email</h3>
+                                    <p class="text-farm-charcoal/80 dark:text-gray-300">hello@localfarm.coop</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Social -->
+                            <div class="contact-item flex items-start gap-4 group">
+                                <div class="contact-icon flex-shrink-0">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg dark:text-white">Follow Us</h3>
+                                    <div class="flex gap-3 mt-1">
+                                        <a href="#" class="text-farm-peat dark:text-farm-sprout hover:text-farm-clay dark:hover:text-farm-cream transition"><i class="fab fa-instagram text-xl"></i></a>
+                                        <a href="#" class="text-farm-peat dark:text-farm-sprout hover:text-farm-clay dark:hover:text-farm-cream transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                                        <a href="#" class="text-farm-peat dark:text-farm-sprout hover:text-farm-clay dark:hover:text-farm-cream transition"><i class="fab fa-pinterest text-xl"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Map / Directions Card -->
+                        <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-md border border-farm-stone/30 mt-8">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-car-side text-farm-peat dark:text-farm-sprout text-xl"></i>
+                                <h3 class="font-display font-bold text-lg dark:text-white">Getting Here</h3>
+                            </div>
+                            <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm mb-3">From I-5, take exit 256. Follow Green Valley Road for 3 miles. The farm is on your right.</p>
+                            <a href="#" class="text-farm-peat dark:text-farm-sprout font-alt text-sm hover:underline flex items-center gap-1">
+                                <i class="fas fa-map-marked-alt"></i> Open in Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- RIGHT: CONTACT FORM -->
+                    <div class="bg-white dark:bg-dark-card rounded-3xl p-8 shadow-xl border border-farm-stone/30">
+                        <span class="badge-farm text-base px-5 py-2 mb-4 inline-block">✏️ SEND A MESSAGE</span>
+                        <h2 class="text-3xl font-display font-bold mb-6 dark:text-white">We'd love to <span class="text-farm-peat dark:text-farm-sprout">hear from you</span></h2>
+                        
+                        <form class="space-y-5">
+                            <!-- Name -->
+                            <div>
+                                <label class="block text-sm font-alt font-semibold mb-2 dark:text-gray-300">Your Name *</label>
+                                <input type="text" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div>
+                                <label class="block text-sm font-alt font-semibold mb-2 dark:text-gray-300">Email Address *</label>
+                                <input type="email" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                            
+                            <!-- Phone (optional) -->
+                            <div>
+                                <label class="block text-sm font-alt font-semibold mb-2 dark:text-gray-300">Phone Number (optional)</label>
+                                <input type="tel" class="form-input" placeholder="(555) 123-4567">
+                            </div>
+                            
+                            <!-- Subject -->
+                            <div>
+                                <label class="block text-sm font-alt font-semibold mb-2 dark:text-gray-300">Subject</label>
+                                <select class="form-input">
+                                    <option>General Inquiry</option>
+                                    <option>CSA Membership</option>
+                                    <option>U-Pick Information</option>
+                                    <option>Workshop Registration</option>
+                                    <option>Farm Tour Booking</option>
+                                    <option>Wholesale / Business</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Message -->
+                            <div>
+                                <label class="block text-sm font-alt font-semibold mb-2 dark:text-gray-300">Your Message *</label>
+                                <textarea rows="5" class="form-input" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            
+                            <!-- Submit -->
+                            <div class="pt-2">
+                                <button type="submit" class="btn-primary w-full py-4 text-lg">
+                                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                                </button>
+                            </div>
+                            
+                            <p class="text-xs text-center text-farm-charcoal/60 dark:text-gray-500 mt-4">
+                                We typically respond within 24 hours on weekdays.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP SECTION -->
+        <section class="py-12 bg-white dark:bg-dark-card border-y border-farm-stone/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-8">
+                    <span class="badge-farm text-base px-5 py-2">🗺️ FIND US</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 dark:text-white">Visit the <span class="text-farm-peat dark:text-farm-sprout">Farm</span></h2>
+                </div>
+                
+                <div class="aspect-video max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-farm-stone/30">
+                    <!-- Embedded Google Map (iframe placeholder) -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288628.7794829629!2d-123.302609!3d45.356828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5495006a1b7f5b7b%3A0x7b3b5c5a5b5c5b5c!2sWillamette%20Valley%2C%20OR!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; min-height: 450px;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            class="w-full h-full">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ PREVIEW SECTION -->
+        <section class="py-20 bg-farm-cream dark:bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="badge-farm text-base px-5 py-2">❓ QUICK ANSWERS</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 dark:text-white">Frequently Asked <span class="text-farm-peat dark:text-farm-sprout">Questions</span></h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- FAQ 1 -->
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
+                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you allow dogs?
+                        </h3>
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Well-behaved dogs on leashes are welcome at the farmstand and U-pick areas. Please clean up after your pet.</p>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
+                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you accept credit cards?
+                        </h3>
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Yes! We accept all major credit cards, as well as cash and contactless payments.</p>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
+                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-question-circle text-farm-sprout"></i> Can I visit outside of hours?
+                        </h3>
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">The farmstand is only open during posted hours. However, the farm itself is private property – please call to schedule a tour.</p>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
+                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you offer wholesale?
+                        </h3>
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Yes, we supply local restaurants and grocery stores. Please email wholesale@localfarm.coop for more information.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <a href="faq.html" class="text-farm-peat dark:text-farm-sprout font-alt hover:underline flex items-center justify-center gap-2">
+                        View all FAQs <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER (exact copy from reference) ========== -->
+    <footer class="py-16 bg-farm-cream dark:bg-dark-card border-t border-farm-stone/30">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="text-center md:text-left">
+                    <a href="index.html" class="flex items-center justify-center md:justify-start gap-3 mb-5">
+                        <div class="w-10 h-10 bg-farm-peat rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center"><i class="fas fa-carrot text-white"></i></div>
+                        <span class="text-2xl font-display font-bold text-farm-charcoal dark:text-white">Local<span class="text-farm-peat dark:text-farm-sprout">Farm</span></span>
+                    </a>
+                    <p class="text-farm-charcoal/80 dark:text-gray-300 mb-6">Recurring harvest shares since 2012. Certified organic & community-owned.</p>
+                    <div class="flex justify-center md:justify-start gap-3">
+                        <a href="#" class="social-farm"><i class="fab fa-instagram"></i></a><a href="#" class="social-farm"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-farm"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                 <!-- col2: quick -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Home
+                             </a></li>
+                        <li><a href="about.html"
+                                class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">About
+                            </a></li>
+                        <li><a href="harvest.html"
+                                class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Harvest
+                            </a></li>
+                        <li><a href="contact.html"
+                                class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Contact
+                            </a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">FAQ / delivery</a></li>
+                        <li><a href="#" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Manage subscription</a></li>
+                        <li><a href="#" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Contact grower</a></li>
+                        <li><a href="#" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Farmstand</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-map-pin text-farm-sprout dark:text-farm-sprout"></i> 3560 Green Rd, OR</li>
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-phone-alt text-farm-sprout dark:text-farm-sprout"></i> +1 (541) 386‑1234</li>
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-envelope text-farm-sprout dark:text-farm-sprout"></i> hello@localfarm.coop</li>
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-clock text-farm-sprout dark:text-farm-sprout"></i> Wed–Sat 9AM–5PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-farm-sprout/20 mt-12 pt-8 text-center">
+                <p class="text-farm-charcoal/80 dark:text-gray-400">© 2026 Local Farm Co-op · community supported agriculture · all rights reserved</p>
+                <p class="text-sm mt-2 opacity-70 dark:text-gray-400">fresh, local, recurring · since 2012</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+            
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                const dark = document.documentElement.classList.contains('dark');
+                
+                [themeToggle, mobileThemeToggle].forEach(btn => {
+                    if (!btn) return;
+                    const moon = btn.querySelector('.fa-moon');
+                    const sun = btn.querySelector('.fa-sun');
+                    if (moon && sun) {
+                        moon.classList.toggle('hidden', dark);
+                        sun.classList.toggle('hidden', !dark);
+                    }
+                });
+                
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+            
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                [themeToggle, mobileThemeToggle].forEach(btn => {
+                    if (!btn) return;
+                    const moon = btn?.querySelector('.fa-moon');
+                    const sun = btn?.querySelector('.fa-sun');
+                    if (moon && sun) {
+                        moon.classList.add('hidden');
+                        sun.classList.remove('hidden');
+                    }
+                });
+            }
+            
+            // RTL toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const mobileRtlToggle = document.getElementById('rtl-toggle-mobile');
+            
+            function toggleRTL() {
+                const rtl = document.documentElement.dir === 'rtl';
+                document.documentElement.dir = rtl ? 'ltr' : 'rtl';
+                document.documentElement.lang = rtl ? 'en' : 'ar';
+                localStorage.setItem('dir', rtl ? 'ltr' : 'rtl');
+            }
+            
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+            
+            if (localStorage.getItem('dir') === 'rtl') { 
+                document.documentElement.dir = 'rtl'; 
+                document.documentElement.lang = 'ar'; 
+            }
+            
+            // Mobile hamburger
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileToggle?.querySelector('i');
+            
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                mobileMenu.style.maxHeight = Math.min(mobileMenu.scrollHeight, window.innerHeight * 0.85) + 'px';
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                mobileMenu.style.maxHeight = '0px';
+                if (menuIcon) {
+                    menuIcon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-times');
+                }
+                document.body.style.overflow = '';
+            }
+            
+            mobileToggle?.addEventListener('click', () => {
+                mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+            });
+            
+            mobileMenu?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1280) closeMenu();
+            });
+
+            // ── Active Link Highlighting ──────────────────────────────────
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item, .mob-accordion-body a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath) {
+                    link.classList.add('active');
+                    // If it's in a mobile accordion, open it
+                    const accordion = link.closest('.mob-accordion-body');
+                    if (accordion) {
+                        const id = accordion.id;
+                        setTimeout(() => toggleMobAccordion(id), 100);
+                    }
+                }
+            });
+        });
+
+        function toggleMobAccordion(id) {
+            const body = document.getElementById(id);
+            const chevron = document.getElementById(id + '-chevron');
+            if (!body) return;
+            const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+            body.style.maxHeight = isOpen ? '0px' : body.scrollHeight + 'px';
+            if (chevron) chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && mobileMenu.classList.contains('open')) {
+                setTimeout(() => {
+                    mobileMenu.style.maxHeight = Math.min(mobileMenu.scrollHeight, window.innerHeight * 0.85) + 'px';
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>

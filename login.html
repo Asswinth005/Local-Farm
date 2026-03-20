@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
+    <title>Local Farm · Sign In</title>
+    <!-- farm favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
+    
+    <!-- Tailwind + farm theme config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'farm-peat': '#36634B',
+                        'farm-sprout': '#7AA65A',
+                        'farm-cream': '#FEF7E4',
+                        'farm-clay': '#C96E4B',
+                        'farm-stone': '#D9C5B3',
+                        'farm-charcoal': '#2E3F2F',
+                        'farm-moss': '#5F8B6B',
+                        'dark-bg': '#1F2A1E',
+                        'dark-card': '#2C3A2A',
+                        'dark-surface': '#364433',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Playfair Display', 'serif'],
+                        'alt': ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.2s ease-out',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ----- NO SCROLL — fit exactly one screen ----- */
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #FEF7E4;
+            color: #2E3F2F;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .dark body {
+            background-color: #1F2A1E;
+            color: #e2e6da;
+        }
+        
+        /* toggle buttons — positioned top-right */
+        .theme-toggle-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .toggle-btn {
+            width: 42px; 
+            height: 42px; 
+            border-radius: 12px;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            background: #e6dccb; 
+            color: #36634B;
+            transition: all 0.2s ease; 
+            border: none; 
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .dark .toggle-btn { 
+            background: #3d5c3a; 
+            color: #c8f0a0; 
+        }
+        .toggle-btn:hover { 
+            background: #7AA65A; 
+            color: white; 
+        }
+        .dark .toggle-btn:hover { 
+            background: #7AA65A; 
+            color: #1F2A1E; 
+        }
+        .toggle-btn.active { 
+            background: #36634B; 
+            color: white; 
+        }
+        .dark .toggle-btn.active { 
+            background: #7AA65A; 
+            color: #1F2A1E; 
+        }
+
+        /* LOGIN CARD — farm theme */
+        .login-card {
+            background: white;
+            border-radius: 36px;
+            padding: 2.2rem 2rem 2rem;
+            box-shadow: 0 20px 45px rgba(54,99,75,0.12);
+            border: 1px solid rgba(122,166,90,0.2);
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+        .dark .login-card {
+            background: #2C3A2A;
+            border-color: #4A6B4A;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        /* input — farm style */
+        .login-input {
+            width: 100%;
+            padding: 0.85rem 1.2rem 0.85rem 3rem;
+            border-radius: 50px;
+            border: 1px solid #D9C5B3;
+            background: white;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            color: #2E3F2F;
+        }
+        .dark .login-input {
+            background: #1F2A1E;
+            border-color: #4A6B4A;
+            color: #f0f0f0;
+        }
+        .login-input:focus {
+            outline: none;
+            border-color: #7AA65A;
+            box-shadow: 0 0 0 3px rgba(122,166,90,0.2);
+        }
+        .dark .login-input:focus {
+            border-color: #7AA65A;
+            box-shadow: 0 0 0 3px rgba(122,166,90,0.25);
+        }
+
+        /* farm button */
+        .farm-btn {
+            background: #36634B;
+            color: white; 
+            font-weight: 600; 
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px; 
+            transition: all 0.3s ease;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center;
+            width: 100%; 
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .dark .farm-btn {
+            background: #7AA65A;
+            color: #1F2A1E;
+        }
+        .farm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(54,99,75,0.35);
+        }
+        .dark .farm-btn:hover {
+            box-shadow: 0 8px 20px rgba(122,166,90,0.35);
+        }
+
+        /* social login buttons */
+        .social-btn-row {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 0.8rem 0.5rem;
+            border-radius: 50px;
+            border: 1px solid #D9C5B3;
+            background: white;
+            color: #2E3F2F;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            gap: 0.5rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .dark .social-btn {
+            background: #1F2A1E;
+            border-color: #4A6B4A;
+            color: #e5e5e5;
+        }
+        .social-btn:hover {
+            background: #FEF7E4;
+            border-color: #7AA65A;
+            transform: translateY(-2px);
+        }
+        .dark .social-btn:hover {
+            background: #2C3A2A;
+            border-color: #7AA65A;
+        }
+        .social-btn i {
+            font-size: 1.1rem;
+            color: #36634B;
+        }
+        .dark .social-btn i {
+            color: #7AA65A;
+        }
+
+        /* logo spin */
+        .logo-icon {
+            transition: transform 0.3s ease;
+        }
+        a:hover .logo-icon {
+            transform: rotate(12deg);
+        }
+        
+        /* RTL adjustments */
+        [dir="rtl"] .login-input { padding: 0.85rem 3rem 0.85rem 1.2rem; }
+        [dir="rtl"] .input-icon { left: auto; right: 1.1rem; }
+        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+        [dir="rtl"] .theme-toggle-wrapper {
+            right: auto;
+            left: 20px;
+        }
+        
+        /* hidden utility */
+        .hidden { display: none; }
+        
+        /* container */
+        .container-tight {
+            max-width: 480px;
+            width: 100%;
+            padding: 0 1.2rem;
+        }
+
+        /* center logo container */
+        .logo-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* welcome title styles */
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2E3F2F;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .dark .welcome-title {
+            color: white;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.9rem;
+            color: rgba(46, 63, 47, 0.7);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .dark .welcome-subtitle {
+            color: #9CA3AF;
+        }
+
+        /* mobile friendly */
+        @media (max-width: 380px) {
+            .social-btn-row {
+                flex-direction: column;
+            }
+            .login-card {
+                padding: 1.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-toggle-wrapper {
+                top: 12px;
+                right: 12px;
+            }
+            [dir="rtl"] .theme-toggle-wrapper {
+                left: 12px;
+            }
+        }
+
+        /* active nav links */
+        .farm-nav-link.active {
+            color: #36634B;
+            border-bottom-color: #7AA65A;
+        }
+        .dark .farm-nav-link.active {
+            color: #A7D489;
+            border-bottom-color: #A7D489;
+        }
+
+        /* active mobile links */
+        .farm-mob-item.active {
+            background: rgba(122, 166, 90, 0.15);
+            color: #36634B;
+            border-left: 4px solid #7AA65A;
+        }
+        .dark .farm-mob-item.active {
+            background: rgba(122, 166, 90, 0.2);
+            color: #A7D489;
+            border-left-color: #A7D489;
+        }
+        .farm-dropdown-item.active {
+            background: rgba(122, 166, 90, 0.1);
+            color: #36634B;
+        }
+        .dark .farm-dropdown-item.active {
+            color: #A7D489;
+        }
+    </style>
+</head>
+<body class="bg-farm-cream dark:bg-dark-bg">
+
+    <!-- ===== THEME TOGGLES - TOP-RIGHT ===== -->
+    <div class="theme-toggle-wrapper">
+        <button id="theme-toggle" class="toggle-btn" title="Dark / Light">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun hidden"></i>
+        </button>
+        <button id="rtl-toggle" class="toggle-btn" title="RTL / LTR">
+            ⇄
+        </button>
+    </div>
+
+    <!-- ===== LOGIN CARD ===== -->
+    <div class="container-tight">
+        
+        <!-- LOGIN CARD -->
+        <div class="login-card animate-fade-in">
+            
+            <!-- ===== LOGO - CENTERED ===== -->
+            <div class="logo-center">
+                <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                    <div class="logo-icon w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
+                        <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                        <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
+                    </div>
+                </a>
+                
+                <h1 class="welcome-title">Welcome Back</h1>
+                <p class="welcome-subtitle">Sign in to your farm account</p>
+            </div>
+
+            <!-- ===== LOGIN FORM ===== -->
+            <form class="space-y-5" action="index.html" method="GET">
+                
+                <!-- email field -->
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
+                        <i class="fas fa-envelope w-5 text-sm"></i>
+                    </span>
+                    <input type="email" name="email" placeholder="Email address" required
+                           class="login-input text-sm md:text-base">
+                </div>
+
+                <!-- password field -->
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
+                        <i class="fas fa-lock w-5 text-sm"></i>
+                    </span>
+                    <input type="password" name="password" placeholder="Password" required
+                           class="login-input text-sm md:text-base">
+                </div>
+
+                <!-- remember + forgot -->
+                <div class="flex items-center justify-between text-xs md:text-sm">
+                    <label class="flex items-center space-x-2 rtl:space-x-reverse cursor-pointer text-farm-charcoal dark:text-gray-300">
+                        <input type="checkbox" class="rounded border-farm-stone dark:border-gray-600 text-farm-peat focus:ring-farm-sprout/30 dark:bg-gray-700" checked>
+                        <span class="ml-1 rtl:mr-1">Remember me</span>
+                    </label>
+                    <a href="#" class="text-farm-peat dark:text-farm-sprout hover:text-farm-moss font-medium transition hover:underline">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- LOGIN BUTTON -->
+                <button type="submit" class="farm-btn mt-3">
+                    <i class="fas fa-arrow-right-to-bracket mr-2 rtl:ml-2 rtl:mr-0"></i>
+                    Sign in
+                </button>
+                
+                <!-- divider -->
+                <div class="relative my-4">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-farm-stone dark:border-gray-700"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs">
+                        <span class="bg-white dark:bg-dark-card px-4 py-0.5 text-farm-charcoal/50 dark:text-gray-400 rounded-full">
+                            or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <!-- SIGN UP LINK -->
+                <div class="text-center">
+                    <a href="signup.html" class="inline-flex items-center text-farm-peat dark:text-farm-sprout font-semibold hover:text-farm-moss transition group text-sm md:text-base">
+                        <i class="fas fa-user-plus mr-2 rtl:ml-2 rtl:mr-0"></i>
+                        Create your farm account
+                        <i class="fas fa-arrow-right ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"></i>
+                    </a>
+                </div>
+            </form>
+            
+            <!-- ===== SOCIAL LOGIN BUTTONS ===== -->
+           <div class="mt-6">
+    <div class="grid grid-cols-2 gap-3">
+        <button class="social-btn group w-full flex items-center justify-center gap-2 py-3 px-2 text-sm" onclick="window.location.href='index.html';">
+            <i class="fab fa-google text-base"></i>
+            <span>Google</span>
+        </button>
+        
+        <button class="social-btn group w-full flex items-center justify-center gap-2 py-3 px-2 text-sm" onclick="window.location.href='index.html';">
+            <i class="fab fa-apple text-base"></i>
+            <span>Apple</span>
+        </button>
+    </div>
+</div>
+
+        <!-- trust badges -->
+        <div class="flex justify-center gap-4 mt-3 text-[0.65rem] md:text-xs text-farm-charcoal/50 dark:text-gray-500">
+            <span class="flex items-center"><i class="fas fa-shield-alt text-farm-peat mr-1"></i> secure</span>
+            <span class="flex items-center"><i class="fas fa-leaf text-farm-peat mr-1"></i> organic</span>
+            <span class="flex items-center"><i class="fas fa-truck text-farm-peat mr-1"></i> local delivery</span>
+        </div>
+    </div>
+
+ 
+    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT ===== -->
+    <script>
+        (function() {
+            // ---------- THEME ----------
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIconMoon = themeToggle?.querySelector('.fa-moon');
+            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+
+            function setTheme(isDark) {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    if (themeIconMoon) themeIconMoon.classList.add('hidden');
+                    if (themeIconSun) themeIconSun.classList.remove('hidden');
+                    themeToggle?.classList.add('active');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+                    if (themeIconSun) themeIconSun.classList.add('hidden');
+                    themeToggle?.classList.remove('active');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+            const savedTheme = localStorage.getItem('theme');
+            savedTheme === 'dark' ? setTheme(true) : setTheme(false);
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setTheme(!document.documentElement.classList.contains('dark'));
+                });
+            }
+
+            // ---------- RTL ----------
+            const rtlBtn = document.getElementById('rtl-toggle');
+            function setRTL(isRTL) {
+                if (isRTL) {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    rtlBtn?.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                } else {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    rtlBtn?.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                }
+            }
+            const savedDir = localStorage.getItem('dir');
+            savedDir === 'rtl' ? setRTL(true) : setRTL(false);
+
+            if (rtlBtn) {
+                rtlBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setRTL(document.documentElement.dir !== 'rtl');
+                });
+            }
+
+            // forgot password demo
+            document.querySelectorAll('a[href="#"]').forEach(link => {
+                if (link.textContent.includes('Forgot') || link.innerHTML.includes('Forgot')) {
+                    link.addEventListener('click', (e) => { 
+                        e.preventDefault(); 
+                        alert('🔐 Password reset link would be sent to your email'); 
+                    });
+                }
+            });
+
+            // ── Active Link Highlighting ──────────────────────────────────
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item, .mob-accordion-body a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

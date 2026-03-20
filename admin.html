@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Farm · Admin Dashboard</title>
+    <!-- farm favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
+    
+    <!-- Tailwind + farm theme config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'farm-peat': '#36634B',
+                        'farm-sprout': '#7AA65A',
+                        'farm-cream': '#FEF7E4',
+                        'farm-clay': '#C96E4B',
+                        'farm-stone': '#D9C5B3',
+                        'farm-charcoal': '#2E3F2F',
+                        'farm-moss': '#5F8B6B',
+                        'dark-bg': '#1F2A1E',
+                        'dark-card': '#2C3A2A',
+                        'dark-surface': '#364433',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Playfair Display', 'serif'],
+                        'alt': ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* Full screen layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        body {
+            background-color: #FEF7E4;
+            color: #2E3F2F;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .dark body {
+            background-color: #1F2A1E;
+            color: #e2e6da;
+        }
+        
+        /* Main container - full height with scrolling content */
+        .dashboard-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            width: 100%;
+        }
+        
+        /* Improved contrast for dark mode */
+        .dark .text-farm-peat {
+            color: #7AA65A !important;
+        }
+        
+        .dark .bg-farm-peat {
+            background-color: #7AA65A !important;
+        }
+        
+        .dark .border-farm-peat {
+            border-color: #7AA65A !important;
+        }
+        
+        .dark .hover\:text-farm-peat:hover {
+            color: #7AA65A !important;
+        }
+        
+        .dark .sidebar-item:hover {
+            background: rgba(122,166,90,0.15) !important;
+            color: #7AA65A !important;
+        }
+        
+        .dark .sidebar-item.active {
+            background: #7AA65A !important;
+            color: #1F2A1E !important;
+        }
+        
+        .dark .stat-card:hover {
+            border-color: #7AA65A !important;
+        }
+        
+        .dark .admin-btn {
+            background: #7AA65A !important;
+            color: #1F2A1E !important;
+        }
+        
+        .dark .admin-btn:hover {
+            background: #5F8B6B !important;
+        }
+        
+        .dark .logout-btn {
+            background: rgba(122,166,90,0.15) !important;
+            color: #7AA65A !important;
+        }
+        
+        .dark .logout-btn:hover {
+            background: #7AA65A !important;
+            color: #1F2A1E !important;
+        }
+        
+        /* Hide scrollbar */
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+        .dashboard-container::-webkit-scrollbar { display: none; }
+        .dashboard-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Toggle button */
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e6dccb;
+            color: #36634B;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .dark .toggle-btn {
+            background: #3d5c3a;
+            color: #c8f0a0;
+        }
+        .toggle-btn:hover {
+            background: #7AA65A;
+            color: white;
+        }
+        .dark .toggle-btn:hover {
+            background: #7AA65A;
+            color: #1F2A1E;
+        }
+        .toggle-btn.active {
+            background: #36634B;
+            color: white;
+        }
+        .dark .toggle-btn.active {
+            background: #7AA65A;
+            color: #1F2A1E;
+        }
+        
+        /* Header */
+        .header {
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Dashboard card - full width */
+        .dashboard-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(122,166,90,0.15);
+            transition: all 0.3s ease;
+            height: 100%;
+            width: 100%;
+        }
+        .dark .dashboard-card {
+            background: #2C3A2A;
+            border-color: #4A6B4A;
+        }
+        .dashboard-card:hover {
+            box-shadow: 0 15px 30px rgba(54,99,75,0.08);
+            border-color: #36634B;
+        }
+        .dark .dashboard-card:hover {
+            border-color: #7AA65A;
+        }
+        
+        /* Stat card */
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(122,166,90,0.15);
+            transition: all 0.3s ease;
+        }
+        .dark .stat-card {
+            background: #2C3A2A;
+            border-color: #4A6B4A;
+        }
+        .stat-card:hover {
+            border-color: #36634B;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(54,99,75,0.1);
+        }
+        .dark .stat-card:hover {
+            border-color: #7AA65A;
+        }
+        
+        /* Sidebar item */
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 1.1rem 1.5rem;
+            border-radius: 18px;
+            color: #2E3F2F;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            font-size: 1.05rem;
+        }
+        .dark .sidebar-item {
+            color: #e2e6da;
+        }
+        .sidebar-item:hover {
+            background: rgba(122,166,90,0.1);
+            color: #36634B;
+            transform: translateX(5px);
+        }
+        .sidebar-item.active {
+            background: #36634B;
+            color: white;
+            box-shadow: 0 8px 15px rgba(54,99,75,0.2);
+        }
+        
+        /* Logout button */
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(122,166,90,0.1);
+            color: #36634B;
+            border-radius: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        .logout-btn:hover {
+            background: #36634B;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        /* Table styles */
+        .table-header {
+            background: rgba(122,166,90,0.08);
+            padding: 1rem;
+            font-weight: 600;
+            color: #2E3F2F;
+        }
+        .dark .table-header {
+            background: rgba(122,166,90,0.15);
+            color: #e2e6da;
+        }
+        .table-row {
+            border-bottom: 1px solid rgba(122,166,90,0.15);
+            transition: all 0.2s ease;
+        }
+        .table-row:hover {
+            background: rgba(122,166,90,0.03);
+        }
+        .dark .table-row:hover {
+            background: rgba(122,166,90,0.05);
+        }
+        
+        /* Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-active {
+            background: rgba(122, 166, 90, 0.15);
+            color: #36634B;
+        }
+        .status-pending {
+            background: rgba(201, 110, 75, 0.15);
+            color: #C96E4B;
+        }
+        .status-inactive {
+            background: rgba(201, 110, 75, 0.15);
+            color: #C96E4B;
+        }
+        .status-completed {
+            background: rgba(122, 166, 90, 0.15);
+            color: #36634B;
+        }
+        .dark .status-active {
+            background: rgba(122, 166, 90, 0.2);
+            color: #7AA65A;
+        }
+        .dark .status-pending {
+            background: rgba(201, 110, 75, 0.2);
+            color: #C96E4B;
+        }
+        .dark .status-inactive {
+            background: rgba(201, 110, 75, 0.2);
+            color: #C96E4B;
+        }
+        .dark .status-completed {
+            background: rgba(122, 166, 90, 0.2);
+            color: #7AA65A;
+        }
+        
+        /* Form input */
+        .admin-input {
+            width: 100%;
+            padding: 0.9rem 1.25rem;
+            background: #F9FAFB;
+            border: 1.5px solid #D9C5B3;
+            border-radius: 14px;
+            color: #2E3F2F;
+            transition: all 0.3s ease;
+        }
+        .dark .admin-input {
+            background: #1F2A1E;
+            border-color: #4A6B4A;
+            color: #e2e6da;
+        }
+        .admin-input:focus {
+            outline: none;
+            border-color: #7AA65A;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(122,166,90,0.1);
+        }
+        .dark .admin-input:focus {
+            border-color: #7AA65A;
+            background: #2C3A2A;
+        }
+        
+        /* Save button */
+        .admin-btn {
+            background: #36634B;
+            color: white;
+            font-weight: 600;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .admin-btn:hover {
+            background: #2A503C;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(54,99,75,0.3);
+        }
+        
+        /* Toggle switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D9C5B3;
+            transition: .3s;
+            border-radius: 34px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: #36634B;
+        }
+        .dark input:checked + .toggle-slider {
+            background-color: #7AA65A;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        /* Chart container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* RTL support */
+        [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+        [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+        [dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+        [dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
+        [dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
+        [dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1rem; }
+        [dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
+        [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
+        [dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
+        [dir="rtl"] .sidebar-item:hover { transform: translateX(-5px); }
+        [dir="rtl"] .logout-btn:hover { transform: translateX(-5px); }
+        
+        /* Message items hover */
+        .message-item {
+            transition: all 0.2s ease;
+        }
+        .message-item:hover {
+            background: rgba(122,166,90,0.08) !important;
+        }
+        .dark .message-item:hover {
+            background: rgba(122,166,90,0.15) !important;
+        }
+    </style>
+</head>
+<body class="bg-farm-cream dark:bg-dark-bg">
+
+    <!-- ============ HEADER - FULL WIDTH ============ -->
+    <div class="header px-4 sm:px-6 lg:px-8 w-full">
+        <div class="flex justify-between items-center max-w-full mx-auto">
+            <!-- Logo with proper placement - brand name on left -->
+            <a class='flex items-center space-x-3 group' href='index.html'>
+                <div class="w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                    <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout ml-1">Farm</span>
+                </div>
+            </a>
+            
+            <!-- Admin badge moved to center/right -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full">
+                    <i class="fas fa-user-shield text-farm-peat dark:text-farm-sprout"></i>
+                    <span class="text-sm font-semibold text-farm-peat dark:text-farm-sprout">Admin Panel</span>
+                </div>
+                <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun hidden"></i>
+                </button>
+                <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Main Container - Full Screen Scrolling - FULL WIDTH -->
+    <div class="dashboard-container w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            
+            <!-- Welcome Header - Full Width -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 w-full">
+                <div>
+                    <h1 class="text-2xl sm:text-2xl md:text-1xl font-display font-bold dark:text-white">
+                        Farm <span class="text-farm-peat dark:text-farm-sprout">Admin</span>
+                    </h1>
+                    <p class="text-farm-charcoal/80 dark:text-gray-400 mt-1 text-[13px]">
+                        Manage members, harvests, subscriptions, and farm operations
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center gap-3 sm:gap-4 bg-white dark:bg-dark-card px-4 sm:px-5 py-2 sm:py-3 rounded-2xl shadow-sm border border-farm-stone/50 dark:border-gray-700">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-tie text-lg sm:text-xl text-farm-peat dark:text-farm-sprout"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold dark:text-white text-base sm:text-lg">Farm Manager</p>
+                        <p class="text-xs text-farm-charcoal/80 dark:text-gray-400 truncate max-w-[120px] sm:max-w-none">admin@localfarm.coop</p>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Main Dashboard Grid - FULL WIDTH -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4 w-full px-0">
+    
+    <!-- ============ SIDEBAR - 7 SECTIONS - FULL WIDTH ON MOBILE/TABLET ============ -->
+    <div class="lg:col-span-3 w-full">
+        <div class="dashboard-card p-4 w-full">
+            <div class="flex flex-col space-y-1 w-full">
+                
+                <!-- Overview / Statistics -->
+                <div class="sidebar-item active py-3 px-4 w-full" data-section="overview">
+                    <i class="fas fa-chart-pie w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Overview</span>
+                </div>
+                
+                <!-- Member Management -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="members">
+                    <i class="fas fa-users w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Members</span>
+                </div>
+                
+                <!-- Subscriptions Management -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="subscriptions">
+                    <i class="fas fa-box w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Subscriptions</span>
+                </div>
+                
+                <!-- Harvest / Produce -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="harvest">
+                    <i class="fas fa-leaf w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Harvest</span>
+                </div>
+                
+                <!-- Messages / Inquiries -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="messages">
+                    <i class="fas fa-envelope w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Inquiries</span>
+                    <span class="ml-auto bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2 py-1 rounded-full font-bold">8</span>
+                </div>
+                
+                <!-- Farm Settings -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="settings">
+                    <i class="fas fa-cog w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Settings</span>
+                </div>
+                
+                <!-- Reports / Analytics -->
+                <div class="sidebar-item py-3 px-4 w-full" data-section="reports">
+                    <i class="fas fa-chart-line w-6 text-xl"></i>
+                    <span class="ml-3 font-semibold text-base">Reports</span>
+                </div>
+            </div>
+            
+            <!-- Admin Info & Logout -->
+            <div class="mt-6 pt-4 border-t border-farm-stone/50 dark:border-gray-700 w-full">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-user-cog text-xl text-farm-peat dark:text-farm-sprout"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-bold dark:text-white text-base">Farm Manager</p>
+                        <p class="text-sm text-farm-charcoal/80 dark:text-gray-400">Super Admin</p>
+                        <p class="text-xs text-farm-peat dark:text-farm-sprout mt-1 font-semibold">Full Access 🔑</p>
+                    </div>
+                </div>
+                
+                <!-- Logout Button -->
+                <div class="logout-btn w-full py-3 text-base" id="logout-btn">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                <!-- ============ CONTENT AREA - 7 SECTIONS (FULL WIDTH) ============ -->
+                <div class="lg:col-span-9 xl:col-span-9 w-full">
+                    
+                    <!-- ===== 1. OVERVIEW / STATISTICS SECTION ===== -->
+                    <div id="overview-section" class="dashboard-section active w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-chart-pie text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Farm Overview
+                            </h2>
+                            
+                            <!-- Stats Cards -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-6 sm:mb-8">
+                                <!-- Card 1 - Total Members -->
+                                <div class="stat-card p-4 sm:p-5">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-sm text-farm-charcoal/80 dark:text-gray-400 mb-1">Total Members</p>
+                                            <p class="text-2xl sm:text-3xl font-bold text-farm-charcoal dark:text-white">647</p>
+                                            <p class="text-sm text-green-700 dark:text-green-400 mt-2 font-medium">↑ +28 this month</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-users text-farm-peat dark:text-farm-sprout text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Card 2 - Active Subscriptions -->
+                                <div class="stat-card p-4 sm:p-5">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-sm text-farm-charcoal/80 dark:text-gray-400 mb-1">Active Subscriptions</p>
+                                            <p class="text-2xl sm:text-3xl font-bold text-farm-charcoal dark:text-white">423</p>
+                                            <p class="text-sm text-green-700 dark:text-green-400 mt-2 font-medium">↑ +15 this month</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-box text-farm-peat dark:text-farm-sprout text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Card 3 - Weekly Harvest -->
+                                <div class="stat-card p-4 sm:p-5">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-sm text-farm-charcoal/80 dark:text-gray-400 mb-1">This Week's Harvest</p>
+                                            <p class="text-2xl sm:text-3xl font-bold text-farm-charcoal dark:text-white">1,247 lbs</p>
+                                            <p class="text-sm text-green-700 dark:text-green-400 mt-2 font-medium">↑ +12% vs last week</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-leaf text-farm-peat dark:text-farm-sprout text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Card 4 - Monthly Revenue -->
+                                <div class="stat-card p-4 sm:p-5">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-sm text-farm-charcoal/80 dark:text-gray-400 mb-1">Monthly Revenue</p>
+                                            <p class="text-2xl sm:text-3xl font-bold text-farm-charcoal dark:text-white">$18.4K</p>
+                                            <p class="text-sm text-green-700 dark:text-green-400 mt-2 font-medium">↑ +8% vs last month</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-dollar-sign text-farm-peat dark:text-farm-sprout text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Charts Row -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                                <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-3 sm:p-5 rounded-2xl">
+                                    <h3 class="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-farm-charcoal dark:text-white">Weekly Subscriptions</h3>
+                                    <div class="chart-container h-[200px] sm:h-[250px] md:h-[300px]">
+                                        <canvas id="subscriptionsChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-3 sm:p-5 rounded-2xl">
+                                    <h3 class="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-farm-charcoal dark:text-white">Harvest by Category</h3>
+                                    <div class="chart-container h-[200px] sm:h-[250px] md:h-[300px]">
+                                        <canvas id="harvestChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Recent Activity -->
+                            <div class="mt-6 sm:mt-8">
+                                <h3 class="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-farm-charcoal dark:text-white">Recent Activity</h3>
+                                <div class="space-y-2 sm:space-y-3">
+                                    <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-user-plus text-farm-peat dark:text-farm-sprout text-sm sm:text-base"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">New member registered</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Sarah Johnson • 15 min ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-farm-peat dark:text-farm-sprout font-semibold cursor-pointer hover:underline">View</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-box text-farm-peat dark:text-farm-sprout text-sm sm:text-base"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">New subscription</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Medium Share • 1 hour ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-farm-peat dark:text-farm-sprout font-semibold cursor-pointer hover:underline">View</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                                <i class="fas fa-truck text-farm-peat dark:text-farm-sprout text-sm sm:text-base"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">Delivery completed</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Portland zone • 2 hours ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs text-farm-peat dark:text-farm-sprout font-semibold cursor-pointer hover:underline">View</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 2. MEMBER MANAGEMENT SECTION ===== -->
+                    <div id="members-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-users text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Member Management
+                            </h2>
+                            
+                            <!-- Filters & Search -->
+                            <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg shadow-md">All Members</button>
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">Active</button>
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">Paused</button>
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">New</button>
+                                <div class="w-full sm:flex-1 min-w-[200px] mt-2 sm:mt-0">
+                                    <input type="text" placeholder="Search members..." class="admin-input py-1.5 sm:py-2.5 text-sm">
+                                </div>
+                            </div>
+                            
+                            <!-- Members Table -->
+                            <div class="overflow-x-auto -mx-4 sm:mx-0">
+                                <div class="inline-block min-w-full align-middle">
+                                    <div class="border border-farm-stone/20 dark:border-gray-700 rounded-lg">
+                                        <table class="min-w-full divide-y divide-farm-stone/30 dark:divide-gray-700">
+                                            <thead class="table-header">
+                                                <tr>
+                                                    <th class="text-left p-2 sm:p-3 text-xs sm:text-sm">Member</th>
+                                                    <th class="text-left p-2 sm:p-3 text-xs sm:text-sm">Subscription</th>
+                                                    <th class="text-left p-2 sm:p-3 text-xs sm:text-sm">Status</th>
+                                                    <th class="text-left p-2 sm:p-3 text-xs sm:text-sm hidden sm:table-cell">Joined</th>
+                                                    <th class="text-left p-2 sm:p-3 text-xs sm:text-sm">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-row">
+                                                    <td class="p-2 sm:p-3">
+                                                        <div class="flex items-center gap-2 sm:gap-3">
+                                                            <div>
+                                                                <p class="font-semibold text-farm-charcoal dark:text-white text-xs sm:text-sm">Sarah Johnson</p>
+                                                                <p class="text-xs text-farm-charcoal/80 hidden sm:block dark:text-gray-400">sarah.j@example.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">Medium Share</td>
+                                                    <td class="p-2 sm:p-3"><span class="status-badge status-active text-xs px-2 sm:px-3 py-1">Active</span></td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm hidden sm:table-cell text-farm-charcoal/80 dark:text-gray-400">Jan 15, 2024</td>
+                                                    <td class="p-2 sm:p-3">
+                                                        <button class="text-farm-clay dark:text-farm-clay hover:underline text-xs ml-2 font-medium">Edit</button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-row">
+                                                    <td class="p-2 sm:p-3">
+                                                        <div class="flex items-center gap-2 sm:gap-3">
+                                                            <div>
+                                                                <p class="font-semibold text-farm-charcoal dark:text-white text-xs sm:text-sm">Michael Chen</p>
+                                                                <p class="text-xs text-farm-charcoal/80 hidden sm:block dark:text-gray-400">michael@example.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">Large Share</td>
+                                                    <td class="p-2 sm:p-3"><span class="status-badge status-active text-xs px-2 sm:px-3 py-1">Active</span></td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm hidden sm:table-cell text-farm-charcoal/80 dark:text-gray-400">Feb 3, 2024</td>
+                                                    <td class="p-2 sm:p-3">
+                                                        <button class="text-farm-clay dark:text-farm-clay hover:underline text-xs ml-2 font-medium">Edit</button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-row">
+                                                    <td class="p-2 sm:p-3">
+                                                        <div class="flex items-center gap-2 sm:gap-3">
+                                                            <div>
+                                                                <p class="font-semibold text-farm-charcoal dark:text-white text-xs sm:text-sm">Emma Davis</p>
+                                                                <p class="text-xs text-farm-charcoal/80 hidden sm:block dark:text-gray-400">emma@example.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">Small Share</td>
+                                                    <td class="p-2 sm:p-3"><span class="status-badge status-pending text-xs px-2 sm:px-3 py-1">Paused</span></td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm hidden sm:table-cell text-farm-charcoal/80 dark:text-gray-400">Mar 20, 2024</td>
+                                                    <td class="p-2 sm:p-3">
+                                                        <button class="text-green-700 dark:text-green-400 hover:underline text-xs ml-2 font-medium">Resume</button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="table-row">
+                                                    <td class="p-2 sm:p-3">
+                                                        <div class="flex items-center gap-2 sm:gap-3">
+                                                            <div>
+                                                                <p class="font-semibold text-farm-charcoal dark:text-white text-xs sm:text-sm">Robert Wilson</p>
+                                                                <p class="text-xs text-farm-charcoal/80 hidden sm:block dark:text-gray-400">robert@example.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">Medium Share</td>
+                                                    <td class="p-2 sm:p-3"><span class="status-badge status-active text-xs px-2 sm:px-3 py-1">Active</span></td>
+                                                    <td class="p-2 sm:p-3 text-xs sm:text-sm hidden sm:table-cell text-farm-charcoal/80 dark:text-gray-400">Apr 2, 2024</td>
+                                                    <td class="p-2 sm:p-3">
+                                                        <button class="text-farm-clay dark:text-farm-clay hover:underline text-xs ml-2 font-medium">Edit</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+                                <p class="text-xs sm:text-sm text-farm-charcoal/80 dark:text-gray-400">Showing 1-4 of 647 members</p>
+                                <div class="flex gap-1 sm:gap-2">
+                                    <button class="px-2 sm:px-3 py-1 sm:py-2 border rounded-lg hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">1</button>
+                                    <button class="px-2 sm:px-3 py-1 sm:py-2 border rounded-lg hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">2</button>
+                                    <button class="px-2 sm:px-3 py-1 sm:py-2 border rounded-lg hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 text-xs sm:text-sm text-farm-charcoal dark:text-gray-300">3</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 3. SUBSCRIPTIONS MANAGEMENT SECTION ===== -->
+                    <div id="subscriptions-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-box text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Subscription Management
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6">
+                                <!-- Small Share Card -->
+                                <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-4 sm:p-6 rounded-2xl">
+                                    <h3 class="font-bold text-lg mb-3 text-farm-charcoal dark:text-white">Small Share</h3>
+                                    <p class="text-3xl font-bold text-farm-peat dark:text-farm-sprout mb-2">$35<span class="text-sm font-normal text-farm-charcoal/60 dark:text-gray-400">/week</span></p>
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mb-4">124 active subscribers</p>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span>This week's boxes</span>
+                                            <span class="font-semibold">118</span>
+                                        </div>
+                                        <div class="flex justify-between text-sm">
+                                            <span>Paused</span>
+                                            <span class="font-semibold">6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Medium Share Card -->
+                                <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-4 sm:p-6 rounded-2xl">
+                                    <h3 class="font-bold text-lg mb-3 text-farm-charcoal dark:text-white">Medium Share</h3>
+                                    <p class="text-3xl font-bold text-farm-peat dark:text-farm-sprout mb-2">$45<span class="text-sm font-normal text-farm-charcoal/60 dark:text-gray-400">/week</span></p>
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mb-4">198 active subscribers</p>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span>This week's boxes</span>
+                                            <span class="font-semibold">185</span>
+                                        </div>
+                                        <div class="flex justify-between text-sm">
+                                            <span>Paused</span>
+                                            <span class="font-semibold">13</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Large Share Card -->
+                                <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-4 sm:p-6 rounded-2xl">
+                                    <h3 class="font-bold text-lg mb-3 text-farm-charcoal dark:text-white">Large Share</h3>
+                                    <p class="text-3xl font-bold text-farm-peat dark:text-farm-sprout mb-2">$65<span class="text-sm font-normal text-farm-charcoal/60 dark:text-gray-400">/week</span></p>
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mb-4">101 active subscribers</p>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span>This week's boxes</span>
+                                            <span class="font-semibold">95</span>
+                                        </div>
+                                        <div class="flex justify-between text-sm">
+                                            <span>Paused</span>
+                                            <span class="font-semibold">6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Recent Subscriptions -->
+                            <h3 class="font-bold text-lg mb-3 text-farm-charcoal dark:text-white">Recent Subscriptions</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Sarah Johnson</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Medium Share • Started Jun 1, 2026</p>
+                                    </div>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Michael Chen</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Large Share • Started May 28, 2026</p>
+                                    </div>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Emma Davis</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Small Share • Paused until Jul 1</p>
+                                    </div>
+                                    <span class="status-badge status-pending">Paused</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 4. HARVEST / PRODUCE SECTION ===== -->
+                    <div id="harvest-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-leaf text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Harvest Management
+                            </h2>
+                            
+                            <!-- This Week's Harvest -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div class="text-center p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <span class="text-3xl block mb-2">🍓</span>
+                                    <p class="font-semibold text-farm-charcoal dark:text-white">Strawberries</p>
+                                    <p class="text-sm text-farm-peat dark:text-farm-sprout">342 lbs</p>
+                                </div>
+                                <div class="text-center p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <span class="text-3xl block mb-2">🥬</span>
+                                    <p class="font-semibold text-farm-charcoal dark:text-white">Lettuce</p>
+                                    <p class="text-sm text-farm-peat dark:text-farm-sprout">285 lbs</p>
+                                </div>
+                                <div class="text-center p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <span class="text-3xl block mb-2">🫛</span>
+                                    <p class="font-semibold text-farm-charcoal dark:text-white">Snap Peas</p>
+                                    <p class="text-sm text-farm-peat dark:text-farm-sprout">156 lbs</p>
+                                </div>
+                                <div class="text-center p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <span class="text-3xl block mb-2">🥕</span>
+                                    <p class="font-semibold text-farm-charcoal dark:text-white">Carrots</p>
+                                    <p class="text-sm text-farm-peat dark:text-farm-sprout">198 lbs</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Harvest Schedule -->
+                            <h3 class="font-bold text-lg mb-3 text-farm-charcoal dark:text-white">This Week's Harvest Schedule</h3>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Monday</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Strawberries, Lettuce</p>
+                                    </div>
+                                    <span class="text-sm font-semibold text-farm-peat dark:text-farm-sprout">8:00 AM</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Wednesday</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Snap Peas, Carrots, Herbs</p>
+                                    </div>
+                                    <span class="text-sm font-semibold text-farm-peat dark:text-farm-sprout">7:00 AM</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl">
+                                    <div>
+                                        <p class="font-semibold text-farm-charcoal dark:text-white">Friday</p>
+                                        <p class="text-xs text-farm-charcoal/60 dark:text-gray-400">Zucchini, Tomatoes (early)</p>
+                                    </div>
+                                    <span class="text-sm font-semibold text-farm-peat dark:text-farm-sprout">6:30 AM</span>
+                                </div>
+                            </div>
+                            
+                            <button class="admin-btn w-full">Update Harvest Schedule</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 5. MESSAGES / INQUIRIES SECTION ===== -->
+                    <div id="messages-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-lg sm:text-xl md:text-2xl font-display font-bold mb-4 sm:mb-5 text-farm-charcoal dark:text-white flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-envelope text-farm-peat dark:text-farm-sprout text-lg sm:text-xl md:text-2xl"></i>
+                                    <span class="font-medium text-base sm:text-lg md:text-xl">Member Inquiries</span>
+                                </div>
+                                <div class="flex items-center justify-between sm:justify-start w-full sm:w-auto">
+                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-400 sm:hidden">Unread:</span>
+                                    <span class="bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold ml-auto sm:ml-3">8 unread</span>
+                                </div>
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                                <!-- Messages List -->
+                                <div class="md:col-span-2 space-y-3 sm:space-y-4">
+                                    <div class="message-item unread p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-start gap-2 sm:gap-3">
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex justify-between items-center">
+                                                    <h4 class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base truncate">Sarah Johnson</h4>
+                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-400 ml-1">2h</span>
+                                                </div>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400 truncate">Question about delivery</p>
+                                                <p class="text-xs mt-1 line-clamp-2 sm:line-clamp-1 text-farm-charcoal/70 dark:text-gray-500">Can I change my delivery address for next week?</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item unread p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-start gap-2 sm:gap-3">
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex justify-between items-center">
+                                                    <h4 class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base truncate">Michael Chen</h4>
+                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-400 ml-1">5h</span>
+                                                </div>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400 truncate">Membership pause</p>
+                                                <p class="text-xs mt-1 line-clamp-2 sm:line-clamp-1 text-farm-charcoal/70 dark:text-gray-500">I need to pause my subscription for 2 weeks...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                        <div class="flex items-start gap-2 sm:gap-3">
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex justify-between items-center">
+                                                    <h4 class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base truncate">Emma Davis</h4>
+                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-400 ml-1">1d</span>
+                                                </div>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400 truncate">U-Pick availability</p>
+                                                <p class="text-xs mt-1 line-clamp-2 sm:line-clamp-1 text-farm-charcoal/70 dark:text-gray-500">Are strawberries available for U-Pick this weekend?</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Quick Stats -->
+                                <div class="space-y-3 sm:space-y-4">
+                                    <div class="bg-farm-stone/30 dark:bg-gray-800/30 p-4 sm:p-6 rounded-2xl">
+                                        <h3 class="font-bold text-sm sm:text-lg mb-3 sm:mb-4 text-farm-charcoal dark:text-white">Quick Stats</h3>
+                                        <div class="space-y-2 sm:space-y-3">
+                                            <div class="flex justify-between text-xs sm:text-sm">
+                                                <span class="text-farm-charcoal/80 dark:text-gray-400">Unread</span>
+                                                <span class="font-bold text-farm-peat dark:text-farm-sprout">8</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs sm:text-sm">
+                                                <span class="text-farm-charcoal/80 dark:text-gray-400">Total</span>
+                                                <span class="font-bold text-farm-charcoal dark:text-white">47</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs sm:text-sm">
+                                                <span class="text-farm-charcoal/80 dark:text-gray-400">Response Rate</span>
+                                                <span class="font-bold text-green-700 dark:text-green-400">94%</span>
+                                            </div>
+                                        </div>
+                                        <button class="w-full mt-4 py-2 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout rounded-xl font-semibold text-xs sm:text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                            View All
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 6. FARM SETTINGS SECTION ===== -->
+                    <div id="settings-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-cog text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Farm Settings
+                            </h2>
+                            
+                            <div class="space-y-6 sm:space-y-8">
+                                <!-- General Settings -->
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold mb-4 sm:mb-5 text-farm-charcoal dark:text-white">General Settings</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5">
+                                        <div>
+                                            <label class="block text-xs sm:text-sm font-medium mb-1 sm:mb-2 text-farm-charcoal/80 dark:text-gray-300">Farm Name</label>
+                                            <input type="text" class="admin-input py-2 sm:py-3 text-sm" value="Local Farm Co-op">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs sm:text-sm font-medium mb-1 sm:mb-2 text-farm-charcoal/80 dark:text-gray-300">Farm Email</label>
+                                            <input type="email" class="admin-input py-2 sm:py-3 text-sm" value="hello@localfarm.coop">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs sm:text-sm font-medium mb-1 sm:mb-2 text-farm-charcoal/80 dark:text-gray-300">Support Email</label>
+                                            <input type="email" class="admin-input py-2 sm:py-3 text-sm" value="support@localfarm.coop">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs sm:text-sm font-medium mb-1 sm:mb-2 text-farm-charcoal/80 dark:text-gray-300">Farm Phone</label>
+                                            <input type="text" class="admin-input py-2 sm:py-3 text-sm" value="+1 (541) 386-1234">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Delivery Settings -->
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold mb-4 sm:mb-5 text-farm-charcoal dark:text-white">Delivery Settings</h3>
+                                    <div class="space-y-3 sm:space-y-4 bg-farm-stone/30 dark:bg-gray-800/30 p-3 sm:p-5 rounded-2xl">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">Thursday Delivery</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Portland zone</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">Saturday Pickup</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Farmstand pickup</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">Delivery Radius</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Current: 25 miles</p>
+                                            </div>
+                                            <select class="bg-transparent border border-farm-peat/30 dark:border-farm-sprout/30 rounded-lg p-1 sm:p-2 text-sm text-farm-charcoal dark:text-white">
+                                                <option class="dark:bg-dark-card">15 miles</option>
+                                                <option class="dark:bg-dark-card" selected>25 miles</option>
+                                                <option class="dark:bg-dark-card">35 miles</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Payment Settings -->
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold mb-4 sm:mb-5 text-farm-charcoal dark:text-white">Payment Settings</h3>
+                                    <div class="space-y-3 sm:space-y-4 bg-farm-stone/30 dark:bg-gray-800/30 p-3 sm:p-5 rounded-2xl">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">Stripe</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Credit card payments</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">PayPal</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">PayPal payments</p>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-bold text-farm-charcoal dark:text-white text-sm sm:text-base">Currency</p>
+                                                <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Default: USD</p>
+                                            </div>
+                                            <select class="bg-transparent border border-farm-peat/30 dark:border-farm-sprout/30 rounded-lg p-1 sm:p-2 text-sm text-farm-charcoal dark:text-white">
+                                                <option class="dark:bg-dark-card">USD</option>
+                                                <option class="dark:bg-dark-card">CAD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button class="admin-btn px-6 sm:px-8 lg:px-10 py-2 sm:py-3 text-sm sm:text-base">
+                                        <i class="fas fa-save mr-1 sm:mr-2"></i> Save Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 7. REPORTS / ANALYTICS SECTION ===== -->
+                    <div id="reports-section" class="dashboard-section hidden w-full">
+                        <div class="dashboard-card p-4 sm:p-6 lg:p-8 w-full">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold mb-5 sm:mb-7 dark:text-white flex items-center">
+                                <i class="fas fa-chart-line text-farm-peat dark:text-farm-sprout mr-2 sm:mr-3 text-xl sm:text-2xl"></i>
+                                Farm Reports
+                            </h2>
+                            
+                            <!-- Date Range -->
+                            <div class="grid grid-cols-2 sm:flex sm:flex-row gap-1 sm:gap-3 mb-4 sm:mb-6">
+                                <button class="w-full sm:w-auto px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg">7 Days</button>
+                                <button class="w-full sm:w-auto px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20">30 Days</button>
+                                <button class="w-full sm:w-auto px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20">Month</button>
+                                <button class="w-full sm:w-auto px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20">Custom</button>
+                            </div>
+                            
+                            <!-- Summary Cards -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                                <div class="stat-card p-3 sm:p-4">
+                                    <p class="text-xs sm:text-sm text-farm-charcoal/80 dark:text-gray-400">Revenue</p>
+                                    <p class="text-lg sm:text-xl lg:text-2xl font-bold text-farm-charcoal dark:text-white">$24.5K</p>
+                                    <p class="text-xs text-green-700 dark:text-green-400 font-medium">+15.3%</p>
+                                </div>
+                                <div class="stat-card p-3 sm:p-4">
+                                    <p class="text-xs sm:text-sm text-farm-charcoal/80 dark:text-gray-400">New Members</p>
+                                    <p class="text-lg sm:text-xl lg:text-2xl font-bold text-farm-charcoal dark:text-white">28</p>
+                                    <p class="text-xs text-green-700 dark:text-green-400 font-medium">+12.5%</p>
+                                </div>
+                                <div class="stat-card p-3 sm:p-4">
+                                    <p class="text-xs sm:text-sm text-farm-charcoal/80 dark:text-gray-400">Total Harvest</p>
+                                    <p class="text-lg sm:text-xl lg:text-2xl font-bold text-farm-charcoal dark:text-white">1,247 lb</p>
+                                    <p class="text-xs text-green-700 dark:text-green-400 font-medium">+8.2%</p>
+                                </div>
+                                <div class="stat-card p-3 sm:p-4">
+                                    <p class="text-xs sm:text-sm text-farm-charcoal/80 dark:text-gray-400">Retention</p>
+                                    <p class="text-lg sm:text-xl lg:text-2xl font-bold text-farm-charcoal dark:text-white">94%</p>
+                                    <p class="text-xs text-green-700 dark:text-green-400 font-medium">+2%</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Export Buttons -->
+                            <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout rounded-xl font-semibold text-xs sm:text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    <i class="fas fa-file-pdf mr-1 sm:mr-2"></i> PDF
+                                </button>
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout rounded-xl font-semibold text-xs sm:text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    <i class="fas fa-file-excel mr-1 sm:mr-2"></i> CSV
+                                </button>
+                                <button class="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout rounded-xl font-semibold text-xs sm:text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    <i class="fas fa-print mr-1 sm:mr-2"></i> Print
+                                </button>
+                            </div>
+                            
+                            <!-- Reports List -->
+                            <div class="space-y-2 sm:space-y-3">
+                                <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                    <div class="flex items-center gap-2 sm:gap-3">
+                                        <i class="fas fa-chart-bar text-farm-peat dark:text-farm-sprout text-base sm:text-xl"></i>
+                                        <div>
+                                            <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">Monthly Revenue Report</p>
+                                            <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">June 2026</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-farm-peat dark:text-farm-sprout hover:underline text-xs sm:text-sm font-medium">Download</button>
+                                </div>
+                                <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                    <div class="flex items-center gap-2 sm:gap-3">
+                                        <i class="fas fa-users text-farm-peat dark:text-farm-sprout text-base sm:text-xl"></i>
+                                        <div>
+                                            <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">Member Growth Report</p>
+                                            <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">Q2 2026</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-farm-peat dark:text-farm-sprout hover:underline text-xs sm:text-sm font-medium">Download</button>
+                                </div>
+                                <div class="flex items-center justify-between p-3 sm:p-4 bg-farm-stone/30 dark:bg-gray-800/30 rounded-xl hover:bg-farm-stone/50 dark:hover:bg-gray-800/50 transition">
+                                    <div class="flex items-center gap-2 sm:gap-3">
+                                        <i class="fas fa-leaf text-farm-peat dark:text-farm-sprout text-base sm:text-xl"></i>
+                                        <div>
+                                            <p class="font-semibold text-farm-charcoal dark:text-white text-sm sm:text-base">Harvest Summary</p>
+                                            <p class="text-xs text-farm-charcoal/80 dark:text-gray-400">June 2026</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-farm-peat dark:text-farm-sprout hover:underline text-xs sm:text-sm font-medium">Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============ THEME TOGGLE ============
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle?.querySelector('.fa-moon');
+            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                if (isDark) {
+                    if (themeIcon) themeIcon.classList.add('hidden');
+                    if (themeIconSun) themeIconSun.classList.remove('hidden');
+                    if (themeToggle) themeToggle.classList.add('active');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    if (themeIcon) themeIcon.classList.remove('hidden');
+                    if (themeIconSun) themeIconSun.classList.add('hidden');
+                    if (themeToggle) themeToggle.classList.remove('active');
+                    localStorage.setItem('theme', 'light');
+                }
+                
+                // Update chart colors
+                updateChartColors();
+            }
+            
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                if (themeIcon) themeIcon.classList.add('hidden');
+                if (themeIconSun) themeIconSun.classList.remove('hidden');
+                if (themeToggle) themeToggle.classList.add('active');
+            }
+            
+            // ============ RTL TOGGLE ============
+            const rtlToggle = document.getElementById('rtl-toggle');
+            
+            function toggleRTL() {
+                if (document.documentElement.dir === 'rtl') {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    if (rtlToggle) rtlToggle.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                } else {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    if (rtlToggle) rtlToggle.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                }
+            }
+            
+            if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+            
+            if (localStorage.getItem('dir') === 'rtl') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                if (rtlToggle) rtlToggle.classList.add('active');
+            }
+            
+            // ============ DASHBOARD SECTION TOGGLE ============
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const sections = {
+                overview: document.getElementById('overview-section'),
+                members: document.getElementById('members-section'),
+                subscriptions: document.getElementById('subscriptions-section'),
+                harvest: document.getElementById('harvest-section'),
+                messages: document.getElementById('messages-section'),
+                settings: document.getElementById('settings-section'),
+                reports: document.getElementById('reports-section')
+            };
+            
+            function hideAllSections() {
+                Object.values(sections).forEach(section => {
+                    if (section) section.classList.add('hidden');
+                });
+            }
+            
+            function removeActiveClass() {
+                sidebarItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+            
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const section = this.dataset.section;
+                    
+                    removeActiveClass();
+                    this.classList.add('active');
+                    hideAllSections();
+                    
+                    if (section === 'overview' && sections.overview) sections.overview.classList.remove('hidden');
+                    if (section === 'members' && sections.members) sections.members.classList.remove('hidden');
+                    if (section === 'subscriptions' && sections.subscriptions) sections.subscriptions.classList.remove('hidden');
+                    if (section === 'harvest' && sections.harvest) sections.harvest.classList.remove('hidden');
+                    if (section === 'messages' && sections.messages) sections.messages.classList.remove('hidden');
+                    if (section === 'settings' && sections.settings) sections.settings.classList.remove('hidden');
+                    if (section === 'reports' && sections.reports) sections.reports.classList.remove('hidden');
+                });
+            });
+            
+            // ============ LOGOUT BUTTON ============
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    window.location.href = 'login.html';
+                });
+            }
+            
+            // ============ CHARTS ============
+            let subscriptionsChart, harvestChart;
+            
+            function initCharts() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const textColor = isDark ? '#e2e6da' : '#2E3F2F';
+                const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+                
+                // Subscriptions Chart
+                const subscriptionsCtx = document.getElementById('subscriptionsChart')?.getContext('2d');
+                if (subscriptionsCtx) {
+                    if (subscriptionsChart) subscriptionsChart.destroy();
+                    subscriptionsChart = new Chart(subscriptionsCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            datasets: [{
+                                label: 'Subscriptions',
+                                data: [45, 52, 48, 61, 58, 64, 72],
+                                borderColor: '#36634B',
+                                backgroundColor: 'rgba(54,99,75,0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    grid: {
+                                        color: gridColor
+                                    },
+                                    ticks: {
+                                        color: textColor
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        color: textColor
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Harvest Chart
+                const harvestCtx = document.getElementById('harvestChart')?.getContext('2d');
+                if (harvestCtx) {
+                    if (harvestChart) harvestChart.destroy();
+                    harvestChart = new Chart(harvestCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Vegetables', 'Fruits', 'Herbs', 'Flowers'],
+                            datasets: [{
+                                data: [45, 28, 17, 10],
+                                backgroundColor: ['#36634B', '#7AA65A', '#5F8B6B', '#C96E4B'],
+                                borderWidth: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: textColor,
+                                        font: {
+                                            size: 12,
+                                            weight: '500'
+                                        },
+                                        padding: 15
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            function updateChartColors() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const textColor = isDark ? '#e2e6da' : '#2E3F2F';
+                const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+                
+                if (subscriptionsChart) {
+                    subscriptionsChart.options.scales.y.grid.color = gridColor;
+                    subscriptionsChart.options.scales.y.ticks.color = textColor;
+                    subscriptionsChart.options.scales.x.ticks.color = textColor;
+                    subscriptionsChart.update();
+                }
+                
+                if (harvestChart) {
+                    harvestChart.options.plugins.legend.labels.color = textColor;
+                    harvestChart.update();
+                }
+            }
+            
+            // Initialize charts
+            initCharts();
+            
+            // Save buttons
+            document.querySelectorAll('.admin-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Settings saved successfully!');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
