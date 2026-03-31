@@ -117,31 +117,32 @@
             color: #1F2A1E; 
         }
 
-        /* SIGNUP CARD — farm theme */
+        /* SIGNUP CARD — farm theme — REDUCED SIZE for one-page fit */
         .signup-card {
             background: white;
-            border-radius: 36px;
-            padding: 2.2rem 2rem 2rem;
-            box-shadow: 0 20px 45px rgba(54,99,75,0.12);
+            border-radius: 32px;
+            padding: 1.5rem 1.8rem 1.8rem;
+            box-shadow: 0 20px 40px rgba(54,99,75,0.1);
             border: 1px solid rgba(122,166,90,0.2);
             width: 100%;
-            max-width: 460px;
+            max-width: 440px;
             margin: 0 auto;
+            transition: background 0.2s ease;
         }
         .dark .signup-card {
             background: #2C3A2A;
             border-color: #4A6B4A;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
         }
 
-        /* input — farm style */
+        /* input — farm style with eye icon support — slightly compact */
         .signup-input {
             width: 100%;
-            padding: 0.85rem 1.2rem 0.85rem 3rem;
+            padding: 0.7rem 1.2rem 0.7rem 3rem;
             border-radius: 50px;
             border: 1px solid #D9C5B3;
             background: white;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.2s;
             color: #2E3F2F;
         }
@@ -160,19 +161,65 @@
             box-shadow: 0 0 0 3px rgba(122,166,90,0.25);
         }
 
-        /* farm button */
+        /* password wrapper for eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-wrapper .signup-input {
+            padding-right: 3rem;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #36634B;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            background: transparent;
+            border: none;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dark .toggle-password {
+            color: #7AA65A;
+        }
+        .toggle-password:hover {
+            color: #C96E4B;
+        }
+        .dark .toggle-password:hover {
+            color: #f5c9a0;
+        }
+        [dir="rtl"] .toggle-password {
+            right: auto;
+            left: 1rem;
+        }
+        [dir="rtl"] .password-wrapper .signup-input {
+            padding-right: 1.2rem;
+            padding-left: 3rem;
+        }
+        [dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        /* farm button - slightly compact */
         .farm-btn {
             background: #36634B;
             color: white; 
             font-weight: 600; 
-            padding: 0.8rem 1.8rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px; 
             transition: all 0.3s ease;
             display: inline-flex; 
             align-items: center; 
             justify-content: center;
             width: 100%; 
-            font-size: 1rem;
+            font-size: 0.95rem;
             border: none;
             cursor: pointer;
         }
@@ -182,10 +229,57 @@
         }
         .farm-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(54,99,75,0.35);
+            box-shadow: 0 6px 18px rgba(54,99,75,0.3);
         }
         .dark .farm-btn:hover {
-            box-shadow: 0 8px 20px rgba(122,166,90,0.35);
+            box-shadow: 0 6px 18px rgba(122,166,90,0.35);
+        }
+
+        /* social login buttons (improved design, compact) - ALWAYS IN ONE ROW */
+        .social-btn-row {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            width: 100%;
+            margin-top: 0.25rem;
+        }
+        .social-btn {
+            flex: 1;
+            padding: 0.6rem 0.5rem;
+            border-radius: 50px;
+            border: 1px solid #D9C5B3;
+            background: white;
+            color: #2E3F2F;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        .dark .social-btn {
+            background: #1F2A1E;
+            border-color: #4A6B4A;
+            color: #e5e5e5;
+        }
+        .social-btn:hover {
+            background: #FEF7E4;
+            border-color: #7AA65A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .dark .social-btn:hover {
+            background: #2C3A2A;
+            border-color: #7AA65A;
+        }
+        .social-btn i {
+            font-size: 1.1rem;
+            color: #36634B;
+        }
+        .dark .social-btn i {
+            color: #7AA65A;
         }
 
         /* logo spin */
@@ -197,12 +291,16 @@
         }
         
         /* RTL adjustments */
-        [dir="rtl"] .signup-input { padding: 0.85rem 3rem 0.85rem 1.2rem; }
+        [dir="rtl"] .signup-input { padding: 0.7rem 3rem 0.7rem 1.2rem; }
         [dir="rtl"] .input-icon { left: auto; right: 1.1rem; }
         [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
         [dir="rtl"] .theme-toggle-wrapper {
             right: auto;
             left: 20px;
+        }
+        [dir="rtl"] .flex.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+            margin-right: 0.5rem;
+            margin-left: 0;
         }
         
         /* hidden utility */
@@ -215,23 +313,23 @@
             padding: 0 1.2rem;
         }
 
-        /* center logo container */
+        /* center logo container — reduced margins */
         .logo-center {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* welcome title styles */
+        /* welcome title styles — smaller for compact card */
         .welcome-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #2E3F2F;
-            margin-top: 0.8rem;
-            margin-bottom: 0.15rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.1rem;
             text-align: center;
             line-height: 1.2;
         }
@@ -240,10 +338,10 @@
         }
 
         .welcome-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: rgba(46, 63, 47, 0.7);
             text-align: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
         .dark .welcome-subtitle {
             color: #9CA3AF;
@@ -251,7 +349,7 @@
 
         /* terms text style */
         .terms-text {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #6B7280;
         }
         .dark .terms-text {
@@ -260,6 +358,7 @@
         .terms-link {
             color: #36634B;
             font-weight: 500;
+            text-decoration: none;
         }
         .terms-link:hover {
             text-decoration: underline;
@@ -269,17 +368,70 @@
             color: #7AA65A;
         }
 
-        /* mobile friendly: stack on very small screens */
+        /* divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0 0.6rem;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #D9C5B3;
+        }
+        .dark .divider::before,
+        .dark .divider::after {
+            border-bottom-color: #4A6B4A;
+        }
+        .divider span {
+            font-size: 0.7rem;
+            padding: 0 0.7rem;
+            color: #6B7280;
+            font-weight: 500;
+        }
+        .dark .divider span {
+            color: #9CA3AF;
+        }
+
+        /* spacing adjustments for compactness */
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+            margin-top: 0.75rem;
+        }
+        form .space-y-4 {
+            margin-bottom: 0.25rem;
+        }
+
+        /* mobile friendly - keep buttons in one row, no column stacking */
         @media (max-width: 380px) {
             .signup-card {
-                padding: 1.8rem 1.5rem;
+                padding: 1.2rem 1.2rem 1.5rem;
             }
             .welcome-title {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
+            }
+            /* Keep social buttons in a row, adjust padding */
+            .social-btn-row {
+                gap: 0.75rem;
+            }
+            .social-btn {
+                padding: 0.5rem 0.3rem;
+                font-size: 0.8rem;
+                gap: 0.4rem;
+            }
+            .social-btn i {
+                font-size: 1rem;
+            }
+            .signup-input {
+                padding: 0.6rem 1rem 0.6rem 2.8rem;
+                font-size: 0.85rem;
+            }
+            .toggle-password {
+                right: 0.8rem;
             }
         }
 
-        /* for very small screens, adjust toggle position */
         @media (max-width: 480px) {
             .theme-toggle-wrapper {
                 top: 12px;
@@ -290,7 +442,7 @@
             }
         }
 
-        /* active nav links */
+        /* active nav links (global) */
         .farm-nav-link.active {
             color: #36634B;
             border-bottom-color: #7AA65A;
@@ -300,7 +452,6 @@
             border-bottom-color: #A7D489;
         }
 
-        /* active mobile links */
         .farm-mob-item.active {
             background: rgba(122, 166, 90, 0.15);
             color: #36634B;
@@ -336,92 +487,114 @@
     <!-- ===== SIGNUP CARD ===== -->
     <div class="container-tight">
         
-        <!-- SIGNUP CARD -->
+        <!-- SIGNUP CARD — COMPACT SIZE FOR ONE-PAGE FIT -->
         <div class="signup-card animate-fade-in">
             
             <!-- ===== LOGO - CENTERED ===== -->
             <div class="logo-center">
                 <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                    <div class="logo-icon w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
+                     <div class="logo-icon w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
                         <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
-                        <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
+                        <span class="text-xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                        <span class="text-xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
                     </div>
                 </a>
                 
-                <h1 class="welcome-title">Join the Harvest</h1>
+                <h6 class="welcome-title">Join the Harvest</h6>
                 <p class="welcome-subtitle">Create your farm account and become a member</p>
             </div>
 
-            <!-- ===== SIGNUP FORM ===== -->
-            <form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='login.html';">
+            <!-- ===== SIGNUP FORM with EYE ICON on password fields ===== -->
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('🎉 Welcome to Local Farm! Your account has been created. (Demo)'); window.location.href='login.html';">
                 
                 <!-- full name field -->
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
-                        <i class="fas fa-user w-5 text-sm"></i>
+                        <i class="fas fa-user w-4 text-sm"></i>
                     </span>
                     <input type="text" name="name" placeholder="Full name" required
-                           class="signup-input text-sm md:text-base">
+                           class="signup-input text-sm md:text-sm">
                 </div>
 
                 <!-- email field -->
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
-                        <i class="fas fa-envelope w-5 text-sm"></i>
+                        <i class="fas fa-envelope w-4 text-sm"></i>
                     </span>
                     <input type="email" name="email" placeholder="Email address" required
-                           class="signup-input text-sm md:text-base">
+                           class="signup-input text-sm md:text-sm">
                 </div>
 
-                <!-- password field -->
-                <div class="relative">
+                <!-- password field with eye icon -->
+                <div class="password-wrapper">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
-                        <i class="fas fa-lock w-5 text-sm"></i>
+                        <i class="fas fa-lock w-4 text-sm"></i>
                     </span>
-                    <input type="password" name="password" placeholder="Password" required
-                           class="signup-input text-sm md:text-base">
+                    <input type="password" id="signup-password" name="password" placeholder="Password" required
+                           class="signup-input text-sm md:text-sm">
+                    <button type="button" class="toggle-password" data-target="signup-password" aria-label="Show password">
+                        <i class="far fa-eye-slash"></i>
+                    </button>
                 </div>
 
-                <!-- confirm password field -->
-                <div class="relative">
+                <!-- confirm password field with eye icon -->
+                <div class="password-wrapper">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
-                        <i class="fas fa-lock w-5 text-sm"></i>
+                        <i class="fas fa-lock w-4 text-sm"></i>
                     </span>
-                    <input type="password" name="confirm_password" placeholder="Confirm password" required
-                           class="signup-input text-sm md:text-base">
+                    <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm password" required
+                           class="signup-input text-sm md:text-sm">
+                    <button type="button" class="toggle-password" data-target="signup-confirm-password" aria-label="Show password">
+                        <i class="far fa-eye-slash"></i>
+                    </button>
                 </div>
 
                 <!-- terms and conditions checkbox -->
-                <div class="flex items-start space-x-2 rtl:space-x-reverse mt-2">
-                    <input type="checkbox" id="terms" class="mt-1 rounded border-farm-stone dark:border-gray-600 text-farm-peat focus:ring-farm-sprout/30 dark:bg-gray-700" required>
-                    <label for="terms" class="terms-text text-xs md:text-sm text-farm-charcoal/70 dark:text-gray-400">
+                <div class="flex items-start space-x-2 rtl:space-x-reverse mt-1">
+                    <input type="checkbox" id="terms" class="mt-0.5 rounded border-farm-stone dark:border-gray-600 text-farm-peat focus:ring-farm-sprout/30 dark:bg-gray-700" required>
+                    <label for="terms" class="terms-text text-xs text-farm-charcoal/80 dark:text-gray-400">
                         I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
                     </label>
                 </div>
 
                 <!-- SIGN UP BUTTON -->
-                <button type="submit" class="farm-btn mt-2">
+                <button type="submit" class="farm-btn mt-1">
                     <i class="fas fa-user-plus mr-2 rtl:ml-2 rtl:mr-0"></i>
                     Create account
                 </button>
             </form>
             
+            <!-- ===== IMPROVED DESIGN: Divider + Social Options (Google & Apple) - ALWAYS IN ONE ROW ===== -->
+            <div class="divider">
+                <span>or sign up with</span>
+            </div>
+
+            <div class="social-btn-row">
+                <button class="social-btn group" id="googleSignupBtn">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button class="social-btn group" id="appleSignupBtn">
+                    <i class="fab fa-apple"></i>
+                    <span>Apple</span>
+                </button>
+            </div>
+
             <!-- ===== LOGIN LINK ===== -->
             <div class="mt-4 text-center">
-                <span class="text-xs text-farm-charcoal/60 dark:text-gray-400">Already have an account?</span>
+                <span class="text-xs text-farm-charcoal/80 dark:text-gray-400">Already have an account?</span>
                 <a href="login.html" class="text-xs font-semibold text-farm-peat dark:text-farm-sprout hover:text-farm-moss ml-1 rtl:mr-1 hover:underline">
                     Sign in
                 </a>
             </div>
+
+            
         </div>
+    </div>
 
-       
-
-   
-    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT ===== -->
+    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT + EYE ICON FUNCTIONALITY ===== -->
     <script>
         (function() {
             // ---------- THEME ----------
@@ -479,16 +652,80 @@
                 });
             }
 
-            // ---------- DEMO ALERTS (only for demo interactions) ----------
-            document.querySelectorAll('a[href="#"]').forEach(link => {
-                if (link.textContent.includes('Terms') || link.textContent.includes('Privacy')) {
-                    link.addEventListener('click', (e) => { e.preventDefault(); alert('📋 Terms & Privacy demo'); });
-                }
+            // ---------- EYE ICON TOGGLE PASSWORD VISIBILITY (better usability) ----------
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    if (passwordInput) {
+                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordInput.setAttribute('type', type);
+                        // Toggle eye icon
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            if (type === 'text') {
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            } else {
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            }
+                        }
+                    }
+                });
             });
 
-            // ── Active Link Highlighting ──────────────────────────────────
+            // ---------- SOCIAL BUTTONS (Google & Apple) interactive demo ----------
+            const googleBtn = document.getElementById('googleSignupBtn');
+            const appleBtn = document.getElementById('appleSignupBtn');
+            
+            if (googleBtn) {
+                googleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('🌾 Google sign-up demo: In production, this would redirect to Google OAuth.');
+                });
+            }
+            if (appleBtn) {
+                appleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('🍎 Apple sign-up demo: In production, this would initiate Apple ID authentication.');
+                });
+            }
+
+            // ---------- DEMO ALERTS (Terms & Privacy) ----------
+            document.querySelectorAll('.terms-link').forEach(link => {
+                link.addEventListener('click', (e) => { 
+                    e.preventDefault(); 
+                    alert('📋 Terms of Service & Privacy Policy demo - full legal document would be shown.'); 
+                });
+            });
+
+            // ---------- Password match hint on submit (improves UX) ----------
+            const signupForm = document.querySelector('form');
+            if (signupForm) {
+                signupForm.addEventListener('submit', function(e) {
+                    const password = document.getElementById('signup-password')?.value;
+                    const confirm = document.getElementById('signup-confirm-password')?.value;
+                    const termsCheck = document.getElementById('terms');
+                    if (password !== confirm) {
+                        e.preventDefault();
+                        alert('⚠️ Passwords do not match. Please re-enter your password.');
+                        return false;
+                    }
+                    if (!termsCheck.checked) {
+                        e.preventDefault();
+                        alert('📜 Please accept the Terms of Service and Privacy Policy to continue.');
+                        return false;
+                    }
+                    return true;
+                });
+            }
+
+            // ── Active Link Highlighting (for consistency) ──
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item, .mob-accordion-body a').forEach(link => {
+            document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item').forEach(link => {
                 const href = link.getAttribute('href');
                 if (href === currentPath) {
                     link.classList.add('active');

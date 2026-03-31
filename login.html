@@ -160,6 +160,52 @@
             box-shadow: 0 0 0 3px rgba(122,166,90,0.25);
         }
 
+        /* password wrapper for eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-wrapper .login-input {
+            padding-right: 3rem;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #36634B;
+            font-size: 1rem;
+            transition: color 0.2s;
+            background: transparent;
+            border: none;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dark .toggle-password {
+            color: #7AA65A;
+        }
+        .toggle-password:hover {
+            color: #C96E4B;
+        }
+        .dark .toggle-password:hover {
+            color: #f5c9a0;
+        }
+        [dir="rtl"] .toggle-password {
+            right: auto;
+            left: 1rem;
+        }
+        [dir="rtl"] .password-wrapper .login-input {
+            padding-right: 1.2rem;
+            padding-left: 3rem;
+        }
+        [dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
         /* farm button */
         .farm-btn {
             background: #36634B;
@@ -392,13 +438,16 @@
                            class="login-input text-sm md:text-base">
                 </div>
 
-                <!-- password field -->
-                <div class="relative">
+                <!-- password field with eye icon -->
+                <div class="password-wrapper">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-farm-peat dark:text-farm-sprout input-icon">
                         <i class="fas fa-lock w-5 text-sm"></i>
                     </span>
-                    <input type="password" name="password" placeholder="Password" required
+                    <input type="password" id="login-password" name="password" placeholder="Password" required
                            class="login-input text-sm md:text-base">
+                    <button type="button" class="toggle-password" data-target="login-password" aria-label="Show password">
+                        <i class="far fa-eye-slash"></i>
+                    </button>
                 </div>
 
                 <!-- remember + forgot -->
@@ -424,18 +473,18 @@
                         <div class="w-full border-t border-farm-stone dark:border-gray-700"></div>
                     </div>
                     <div class="relative flex justify-center text-xs">
-                        <span class="bg-white dark:bg-dark-card px-4 py-0.5 text-farm-charcoal/50 dark:text-gray-400 rounded-full">
-                            or continue with
+                        <span class="bg-white dark:bg-dark-card px-4 py-0.5 text-farm-charcoal/70 dark:text-gray-400 rounded-full">
+                            or continue with 
                         </span>
                     </div>
                 </div>
 
-                <!-- SIGN UP LINK -->
-                <div class="text-center">
-                    <a href="signup.html" class="inline-flex items-center text-farm-peat dark:text-farm-sprout font-semibold hover:text-farm-moss transition group text-sm md:text-base">
-                        <i class="fas fa-user-plus mr-2 rtl:ml-2 rtl:mr-0"></i>
-                        Create your farm account
-                        <i class="fas fa-arrow-right ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"></i>
+                 <!-- ===== "NOT A MEMBER? SIGN UP" LINK (Enhanced visibility) ===== -->
+                <div class="text-center mt-3 pt-1 border-t border-dashed border-farm-stone/30 dark:border-gray-700/40">
+                    <a href="signup.html" class="inline-flex items-center text-farm-peat dark:text-farm-sprout font-semibold hover:text-farm-moss transition group text-sm md:text-base gap-2">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Not a member? Sign up</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"></i>
                     </a>
                 </div>
             </form>
@@ -456,7 +505,7 @@
 </div>
 
         <!-- trust badges -->
-        <div class="flex justify-center gap-4 mt-3 text-[0.65rem] md:text-xs text-farm-charcoal/50 dark:text-gray-500">
+        <div class="flex justify-center gap-4 mt-3 text-[0.65rem] md:text-xs text-farm-charcoal/70 dark:text-gray-500">
             <span class="flex items-center"><i class="fas fa-shield-alt text-farm-peat mr-1"></i> secure</span>
             <span class="flex items-center"><i class="fas fa-leaf text-farm-peat mr-1"></i> organic</span>
             <span class="flex items-center"><i class="fas fa-truck text-farm-peat mr-1"></i> local delivery</span>
@@ -464,7 +513,7 @@
     </div>
 
  
-    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT ===== -->
+    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT + EYE ICON FUNCTIONALITY ===== -->
     <script>
         (function() {
             // ---------- THEME ----------
@@ -521,6 +570,31 @@
                     setRTL(document.documentElement.dir !== 'rtl');
                 });
             }
+
+            // ---------- EYE ICON TOGGLE PASSWORD VISIBILITY (better usability) ----------
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    if (passwordInput) {
+                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordInput.setAttribute('type', type);
+                        // Toggle eye icon
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            if (type === 'text') {
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            } else {
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            }
+                        }
+                    }
+                });
+            });
 
             // forgot password demo
             document.querySelectorAll('a[href="#"]').forEach(link => {
