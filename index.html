@@ -11,49 +11,7 @@
 
     <meta name="description" content="Local Farm – connect with fresh harvests & seasonal subscriptions.">
     <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        // fresh earthy palette – completely different from slate/blues
-                        'farm-peat': '#36634B',      // deep forest green (primary)
-                        'farm-sprout': '#7AA65A',    // fresh green (accents)
-                        'farm-cream': '#FEF7E4',      // soft butter (background)
-                        'farm-clay': '#C96E4B',       // warm terracotta (highlights)
-                        'farm-stone': '#D9C5B3',       // neutral sand
-                        'farm-charcoal': '#2E3F2F',    // dark green-grey (text)
-                        'farm-moss': '#5F8B6B',        // mid green
-                        // dark mode overrides
-                        'dark-bg': '#1F2A1E',
-                        'dark-card': '#2C3A2A',
-                        'dark-surface': '#364433',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'display': ['Playfair Display', 'serif'], // keep elegance
-                        'alt': ['Montserrat', 'sans-serif'],
-                    },
-                    animation: {
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'float': 'float 4s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        float: {
-                            '0%,100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="output.css">
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
