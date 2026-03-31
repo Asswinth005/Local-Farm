@@ -288,16 +288,50 @@
     
 </section>
 
-        <!-- QUOTE / manifesto banner (different from section 2) -->
-        <section class="py-12 bg-farm-moss/10 dark:bg-farm-peat/20 border-y border-farm-sprout/20">
-            <div class="container mx-auto px-6 text-center">
-                <i class="fas fa-quote-left text-4xl text-farm-peat/30 dark:text-farm-sprout/30 mb-4"></i>
-                <p class="text-2xl md:text-3xl font-display italic max-w-3xl mx-auto text-farm-charcoal dark:text-white">
-                    A farm is a story that writes itself every morning. We just collect the chapters.
-                </p>
-                <p class="mt-4 text-farm-peat dark:text-farm-sprout font-alt text-sm tracking-widest">— LOCAL FARM CO-OP</p>
-            </div>
-        </section>
+       <!-- QUOTE / MANIFESTO BANNER - PROPER SECTION -->
+<section class="relative py-16 md:py-20 bg-gradient-to-br from-farm-moss/15 via-farm-cream/30 to-farm-stone/20 dark:from-farm-peat/30 dark:via-dark-bg/80 dark:to-farm-charcoal/40 border-y-2 border-farm-sprout/30 dark:border-farm-sprout/20 overflow-hidden">
+    
+    <!-- Section Name / Heading -->
+    <div class="text-center mb-10">
+        <span class="inline-block px-4 py-1 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full text-xs font-alt tracking-wider text-farm-peat dark:text-farm-sprout uppercase mb-3">
+            Manifesto
+        </span>
+        <h2 class="font-display text-2xl md:text-3xl text-farm-charcoal dark:text-white font-semibold">
+            Our Philosophy
+        </h2>
+        <div class="w-16 h-0.5 bg-farm-sprout/50 mx-auto mt-3 rounded-full"></div>
+    </div>
+
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-farm-sprout/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-farm-peat/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <!-- Animated quote icon -->
+        <div class="mb-6 transform transition-transform duration-500 hover:scale-110 inline-block">
+            <i class="fas fa-quote-left text-5xl text-farm-peat/40 dark:text-farm-sprout/40"></i>
+        </div>
+        
+        <!-- Main quote text -->
+        <p class="text-2xl md:text-4xl lg:text-5xl font-display italic max-w-4xl mx-auto text-farm-charcoal dark:text-white leading-relaxed">
+            "A farm is a story that writes itself every morning. We just collect the chapters."
+        </p>
+        
+        <!-- Divider line -->
+        <div class="w-24 h-0.5 bg-farm-sprout/50 dark:bg-farm-sprout/40 mx-auto my-6 rounded-full"></div>
+        
+        <!-- Attribution -->
+        <div class="flex items-center justify-center gap-3 text-farm-peat dark:text-farm-sprout font-alt text-sm md:text-base tracking-widest uppercase">
+            <i class="fas fa-seedling text-xs"></i>
+            <span>— LOCAL FARM CO-OP —</span>
+            <i class="fas fa-leaf text-xs"></i>
+        </div>
+        
+       
+    </div>
+</section>
 
         <!-- LATEST JOURNAL ENTRIES (grid of cards, farm style but with meta & images) -->
         <section class="py-20 bg-farm-cream dark:bg-dark-bg">
@@ -457,7 +491,7 @@
                     <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Farmstand</h3>
                     <ul class="space-y-3">
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-map-pin text-farm-sprout dark:text-farm-sprout"></i> 3560 Green Rd, OR</li>
-                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-phone-alt text-farm-sprout dark:text-farm-sprout"></i> +1 (541) 386‑1234</li>
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fa-solid fa-phone text-farm-sprout dark:text-farm-sprout"></i> +1 (541) 386-1234
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-envelope text-farm-sprout dark:text-farm-sprout"></i> hello@localfarm.coop</li>
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-clock text-farm-sprout dark:text-farm-sprout"></i> Wed–Sat 9AM–5PM</li>
                     </ul>

@@ -482,55 +482,140 @@
             </div>
         </section>
 
-        <!-- FAQ PREVIEW SECTION -->
-        <section class="py-20 bg-farm-cream dark:bg-dark-bg">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="badge-farm text-base px-5 py-2">❓ QUICK ANSWERS</span>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 dark:text-white">Frequently Asked <span class="text-farm-peat dark:text-farm-sprout">Questions</span></h2>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <!-- FAQ 1 -->
-                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
-                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you allow dogs?
-                        </h3>
-                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Well-behaved dogs on leashes are welcome at the farmstand and U-pick areas. Please clean up after your pet.</p>
+        <!-- FAQ PREVIEW SECTION - ACCORDION FORMAT -->
+<section class="py-20 bg-farm-cream dark:bg-dark-bg">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="badge-farm text-base px-5 py-2">❓ QUICK ANSWERS</span>
+            <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 dark:text-white">Frequently Asked <span class="text-farm-peat dark:text-farm-sprout">Questions</span></h2>
+            <p class="text-farm-charcoal/60 dark:text-gray-400 mt-3">Click on any question to reveal the answer</p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <!-- FAQ 1 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-farm-stone/30 overflow-hidden transition-all duration-300">
+                <button class="faq-question w-full text-left p-5 md:p-6 flex items-center justify-between gap-4 hover:bg-farm-peat/5 dark:hover:bg-farm-sprout/5 transition-colors cursor-pointer">
+                    <h3 class="font-display font-bold text-base md:text-lg dark:text-white flex items-center gap-3">
+                        <i class="fas fa-question-circle text-farm-sprout flex-shrink-0"></i>
+                        <span>Do you allow dogs?</span>
+                    </h3>
+                    <i class="fas fa-chevron-down text-farm-peat dark:text-farm-sprout transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-5 md:p-6 pt-0 md:pt-0 border-t border-farm-stone/20 dark:border-gray-700/50 mt-2">
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm md:text-base leading-relaxed">
+                            Well-behaved dogs on leashes are welcome at the farmstand and U-pick areas. Please clean up after your pet.
+                        </p>
                     </div>
-                    
-                    <!-- FAQ 2 -->
-                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
-                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you accept credit cards?
-                        </h3>
-                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Yes! We accept all major credit cards, as well as cash and contactless payments.</p>
-                    </div>
-                    
-                    <!-- FAQ 3 -->
-                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
-                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-question-circle text-farm-sprout"></i> Can I visit outside of hours?
-                        </h3>
-                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">The farmstand is only open during posted hours. However, the farm itself is private property – please call to schedule a tour.</p>
-                    </div>
-                    
-                    <!-- FAQ 4 -->
-                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-sm border border-farm-stone/30">
-                        <h3 class="font-display font-bold text-lg mb-2 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-question-circle text-farm-sprout"></i> Do you offer wholesale?
-                        </h3>
-                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm">Yes, we supply local restaurants and grocery stores. Please email wholesale@localfarm.coop for more information.</p>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-10">
-                    <a href="faq.html" class="text-farm-peat dark:text-farm-sprout font-alt hover:underline flex items-center justify-center gap-2">
-                        View all FAQs <i class="fas fa-arrow-right text-sm"></i>
-                    </a>
                 </div>
             </div>
-        </section>
+            
+            <!-- FAQ 2 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-farm-stone/30 overflow-hidden transition-all duration-300">
+                <button class="faq-question w-full text-left p-5 md:p-6 flex items-center justify-between gap-4 hover:bg-farm-peat/5 dark:hover:bg-farm-sprout/5 transition-colors cursor-pointer">
+                    <h3 class="font-display font-bold text-base md:text-lg dark:text-white flex items-center gap-3">
+                        <i class="fas fa-question-circle text-farm-sprout flex-shrink-0"></i>
+                        <span>Do you accept credit cards?</span>
+                    </h3>
+                    <i class="fas fa-chevron-down text-farm-peat dark:text-farm-sprout transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-5 md:p-6 pt-0 md:pt-0 border-t border-farm-stone/20 dark:border-gray-700/50 mt-2">
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm md:text-base leading-relaxed">
+                            Yes! We accept all major credit cards (Visa, Mastercard, American Express, Discover), as well as cash and contactless payments like Apple Pay and Google Pay.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ 3 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-farm-stone/30 overflow-hidden transition-all duration-300">
+                <button class="faq-question w-full text-left p-5 md:p-6 flex items-center justify-between gap-4 hover:bg-farm-peat/5 dark:hover:bg-farm-sprout/5 transition-colors cursor-pointer">
+                    <h3 class="font-display font-bold text-base md:text-lg dark:text-white flex items-center gap-3">
+                        <i class="fas fa-question-circle text-farm-sprout flex-shrink-0"></i>
+                        <span>Can I visit outside of hours?</span>
+                    </h3>
+                    <i class="fas fa-chevron-down text-farm-peat dark:text-farm-sprout transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-5 md:p-6 pt-0 md:pt-0 border-t border-farm-stone/20 dark:border-gray-700/50 mt-2">
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm md:text-base leading-relaxed">
+                            The farmstand is only open during posted hours (Tuesday–Sunday, 9 AM to 6 PM). However, the farm itself is private property – please call ahead at (555) 123-FARM to schedule a guided tour.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ 4 -->
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-sm border border-farm-stone/30 overflow-hidden transition-all duration-300">
+                <button class="faq-question w-full text-left p-5 md:p-6 flex items-center justify-between gap-4 hover:bg-farm-peat/5 dark:hover:bg-farm-sprout/5 transition-colors cursor-pointer">
+                    <h3 class="font-display font-bold text-base md:text-lg dark:text-white flex items-center gap-3">
+                        <i class="fas fa-question-circle text-farm-sprout flex-shrink-0"></i>
+                        <span>Do you offer wholesale?</span>
+                    </h3>
+                    <i class="fas fa-chevron-down text-farm-peat dark:text-farm-sprout transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-5 md:p-6 pt-0 md:pt-0 border-t border-farm-stone/20 dark:border-gray-700/50 mt-2">
+                        <p class="text-farm-charcoal/70 dark:text-gray-400 text-sm md:text-base leading-relaxed">
+                            Yes, we proudly supply local restaurants, cafes, and grocery stores with fresh seasonal produce. Please email <a href="mailto:wholesale@localfarm.coop" class="text-farm-peat dark:text-farm-sprout font-medium hover:underline">wholesale@localfarm.coop</a> for our wholesale catalog and pricing information.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-10">
+            <a href="faq.html" class="inline-flex items-center text-farm-peat dark:text-farm-sprout font-alt hover:underline gap-2 transition-all hover:gap-3">
+                View all FAQs <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Accordion functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            const isOpen = answer.classList.contains('max-h-0');
+            
+            // Close all other open FAQs (optional - for single open at a time)
+            document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                if (otherAnswer !== answer && !otherAnswer.classList.contains('max-h-0')) {
+                    otherAnswer.classList.add('max-h-0', 'opacity-0');
+                    otherAnswer.classList.remove('max-h-[500px]', 'opacity-100');
+                    const otherIcon = otherAnswer.previousElementSibling.querySelector('.fa-chevron-down');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+            
+            // Toggle current FAQ
+            if (isOpen) {
+                answer.classList.remove('max-h-0', 'opacity-0');
+                answer.classList.add('max-h-[500px]', 'opacity-100');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('max-h-0', 'opacity-0');
+                answer.classList.remove('max-h-[500px]', 'opacity-100');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+</script>
+
+<style>
+    /* Smooth transition for accordion */
+    .faq-answer {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    .faq-question .fa-chevron-down {
+        transition: transform 0.3s ease;
+    }
+</style>
     </main>
 
     <!-- ========== FOOTER (exact copy from reference) ========== -->
@@ -577,7 +662,7 @@
                     <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Farmstand</h3>
                     <ul class="space-y-3">
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-map-pin text-farm-sprout dark:text-farm-sprout"></i> 3560 Green Rd, OR</li>
-                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-phone-alt text-farm-sprout dark:text-farm-sprout"></i> +1 (541) 386‑1234</li>
+                        <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fa-solid fa-phone text-farm-sprout dark:text-farm-sprout"></i> +1 (541) 386-1234
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-envelope text-farm-sprout dark:text-farm-sprout"></i> hello@localfarm.coop</li>
                         <li class="flex items-center justify-center md:justify-start gap-3 dark:text-gray-300"><i class="fas fa-clock text-farm-sprout dark:text-farm-sprout"></i> Wed–Sat 9AM–5PM</li>
                     </ul>
