@@ -617,7 +617,7 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo – farm style -->
-                <a href="index.html" class="flex items-center space-x-3 group">
+<a href="index.html" class="flex items-center gap-3 group">
                     <div
                         class="w-11 h-11 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300">
                         <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-xl"></i>
@@ -659,26 +659,26 @@
                     </div>
 
                     <!-- auth dropdown – desktop only -->
-                    <div class="relative auth-dropdown-trigger ml-8">
-                        <button class="farm-toggle" title="Account" aria-label="Account">
-                            <i class="fas fa-user"></i>
-                        </button>
-                        <div class="auth-dropdown-menu">
-                            <a href="login.html" class="farm-dropdown-item">
-                                <i class="fas fa-right-to-bracket"></i> Log in
-                            </a>
-                            <a href="signup.html" class="farm-dropdown-item">
-                                <i class="fas fa-user-plus"></i> Sign up
-                            </a>
-                        </div>
-                    </div>
+<div class="relative auth-dropdown-trigger" style="margin-inline-start: 2rem;">
+    <button class="farm-toggle" title="Account" aria-label="Account">
+        <i class="fas fa-user"></i>
+    </button>
+    <div class="auth-dropdown-menu">
+        <a href="login.html" class="farm-dropdown-item">
+            <i class="fas fa-right-to-bracket"></i> Log in
+        </a>
+        <a href="signup.html" class="farm-dropdown-item">
+            <i class="fas fa-user-plus"></i> Sign up
+        </a>
+    </div>
+</div>
 
-                    <!-- theme/rtl toggles (farm organic) -->
-                    <div class="flex gap-2 ml-2 desktop-toggle-group">
-                        <button id="theme-toggle" class="farm-toggle"><i class="fas fa-moon"></i><i
-                                class="fas fa-sun hidden"></i></button>
-                        <button id="rtl-toggle" class="farm-toggle"><i class="fas fa-language"></i></button>                    </div>
-                </div>
+<!-- theme/rtl toggles (farm organic) -->
+<div class="flex gap-2 desktop-toggle-group" style="margin-inline-start: 0.5rem;">
+    <button id="theme-toggle" class="farm-toggle"><i class="fas fa-moon"></i><i
+            class="fas fa-sun hidden"></i></button>
+    <button id="rtl-toggle" class="farm-toggle"><i class="fas fa-language"></i></button>                   
+</div>
 
                 <!-- mobile menu button (farm style – round) -->
                 <button id="mobile-toggle"
