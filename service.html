@@ -100,6 +100,35 @@
         [dir="rtl"] .auth-dropdown-menu { right: auto; left: 0; }
         [dir="rtl"] .farm-dropdown-menu { left: auto; right: 0; }
         [dir="rtl"] .farm-dropdown-item i { margin-left: 0.75rem; margin-right: 0; }
+        
+        /* RTL header alignment fixes */
+        [dir="rtl"] .hidden.xl\\:flex {
+            flex-direction: row;
+        }
+        [dir="rtl"] .hidden.xl\\:flex .flex.items-center.gap-8 {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        [dir="rtl"] .auth-dropdown-trigger.ml-8 {
+            margin-left: 0;
+            margin-right: 2rem;
+        }
+        [dir="rtl"] .flex.gap-2.ml-2 {
+            margin-left: 0;
+            margin-right: 0.5rem;
+        }
+        [dir="rtl"] .farm-nav-link i.fa-chevron-down {
+            margin-right: 0.25rem;
+            margin-left: 0;
+        }
+        [dir="rtl"] .farm-dropdown-item i {
+            margin-left: 0.75rem;
+            margin-right: 0;
+        }
+        [dir="rtl"] .flex.items-center.gap-8 {
+            flex-direction: row;
+        }
+        
         .premium-line-farm { width: 100px; height: 3px; background: linear-gradient(90deg, #7AA65A, #C96E4B); margin: 20px 0; border-radius: 2px; }
         @media (max-width: 1279px) { .desktop-toggle-group { display: none !important; } }
 
@@ -223,6 +252,25 @@
         .dark .farm-dropdown-item.active {
             color: #A7D489;
         }
+        
+        /* RTL header alignment - additional fixes */
+        [dir="rtl"] .hidden.xl\\:flex .flex.items-center.gap-8 {
+            margin-right: 0;
+            margin-left: auto;
+            padding-right: 0;
+            padding-left: 0;
+        }
+        [dir="rtl"] .flex.items-center.gap-8 {
+            flex-direction: row;
+        }
+        [dir="rtl"] .relative.auth-dropdown-trigger.ml-8 {
+            margin-left: 0;
+            margin-right: 2rem;
+        }
+        [dir="rtl"] .flex.gap-2.ml-2 {
+            margin-left: 0;
+            margin-right: 0.5rem;
+        }
     </style>
 </head>
 <body class="bg-farm-cream dark:bg-dark-bg">
@@ -232,8 +280,8 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-3 group">
-                    <div class="w-11 h-11 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300">
+<a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-11 h-11 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300">
                         <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-xl"></i>
                     </div>
                     <div>
@@ -275,10 +323,11 @@
                         </div>
                     </div>
 
-                    <!-- theme/rtl toggles -->
-                    <div class="flex gap-2 ml-5 desktop-toggle-group">
-                        <button id="theme-toggle" class="farm-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
-                        <button id="rtl-toggle" class="farm-toggle"><span class="text-sm">⇄</span></button>
+                    <!-- theme/rtl toggles (farm organic) -->
+                    <div class="flex gap-2 ml-2 desktop-toggle-group">
+                        <button id="theme-toggle" class="farm-toggle"><i class="fas fa-moon"></i><i
+                                class="fas fa-sun hidden"></i></button>
+                        <button id="rtl-toggle" class="farm-toggle"><i class="fas fa-language"></i></button>                    
                     </div>
                 </div>
 
@@ -312,7 +361,7 @@
                 </div>
                 <div class="flex justify-center gap-4 py-4 px-5 border-t border-farm-stone/30 dark:border-farm-peat/40">
                     <button id="theme-toggle-mobile" class="farm-toggle"><i class="fas fa-moon"></i><i class="fas fa-sun hidden"></i></button>
-                    <button id="rtl-toggle-mobile" class="farm-toggle"><span>⇄</span></button>
+                    <button id="rtl-toggle-mobile" class="farm-toggle"><i class="fas fa-language"></i></button>
                 </div>
             </div>
         </div>
