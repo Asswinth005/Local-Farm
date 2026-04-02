@@ -212,7 +212,8 @@
 
         .dark .badge-farm {
             background: rgba(122, 166, 90, 0.25);
-            color: #c1f09a;   /* bright lime-green, legible on dark bg */
+            color: #c1f09a;
+            /* bright lime-green, legible on dark bg */
         }
 
         /* toggles – box / square shape */
@@ -387,12 +388,12 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             color: #2E3F2F;
-            border-bottom: 1px solid rgba(217,197,179,0.4);
+            border-bottom: 1px solid rgba(217, 197, 179, 0.4);
         }
 
         .dark .mob-accordion-body a {
             color: #d6e8cc;
-            border-bottom-color: rgba(79,106,74,0.35);
+            border-bottom-color: rgba(79, 106, 74, 0.35);
         }
 
         .mob-accordion-body a:hover {
@@ -432,8 +433,14 @@
         }
 
         /* scrollbar inside mobile menu */
-        .farm-mobile-menu::-webkit-scrollbar { width: 4px; }
-        .farm-mobile-menu::-webkit-scrollbar-thumb { background: #7AA65A55; border-radius: 4px; }
+        .farm-mobile-menu::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .farm-mobile-menu::-webkit-scrollbar-thumb {
+            background: #7AA65A55;
+            border-radius: 4px;
+        }
 
         .farm-mob-item {
             display: flex;
@@ -540,6 +547,7 @@
 
         /* tighter padding on tablet so logo + hamburger don't crowd */
         @media (max-width: 768px) {
+
             .farm-mobile-menu .auth-farm-login,
             .farm-mobile-menu .auth-farm-signup {
                 font-size: 0.9rem;
@@ -552,6 +560,7 @@
             color: #36634B;
             border-bottom-color: #7AA65A;
         }
+
         .dark .farm-nav-link.active {
             color: #A7D489;
             border-bottom-color: #A7D489;
@@ -563,15 +572,18 @@
             color: #36634B;
             border-left: 4px solid #7AA65A;
         }
+
         .dark .farm-mob-item.active {
             background: rgba(122, 166, 90, 0.2);
             color: #A7D489;
             border-left-color: #A7D489;
         }
+
         .farm-dropdown-item.active {
             background: rgba(122, 166, 90, 0.1);
             color: #36634B;
         }
+
         .dark .farm-dropdown-item.active {
             color: #A7D489;
         }
@@ -586,7 +598,7 @@
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo – farm style -->
-                    <a href="index.html" class="flex items-center gap-3 group">
+                <a href="index.html" class="flex items-center gap-3 group">
                     <div
                         class="w-11 h-11 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-6 transition-all duration-300">
                         <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-xl"></i>
@@ -621,13 +633,14 @@
                             <button class="farm-nav-link flex items-center gap-1">Dashboards<i
                                     class="fas fa-chevron-down text-xs"></i></button>
                             <div class="farm-dropdown-menu">
-                                <a href="admin.html" class="farm-dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
+                                <a href="admin.html" class="farm-dropdown-item"><i class="fas fa-user-shield"></i>
+                                    Admin</a>
                                 <a href="client.html" class="farm-dropdown-item"><i class="fas fa-users"></i> Client</a>
                             </div>
                         </div>
                     </div>
 
-                 <!-- auth dropdown – desktop only -->
+                    <!-- auth dropdown – desktop only -->
                     <div class="relative auth-dropdown-trigger" style="margin-inline-start: 2rem;">
                         <button class="farm-toggle" title="Account" aria-label="Account">
                             <i class="fas fa-user"></i>
@@ -642,63 +655,69 @@
                         </div>
                     </div>
 
-                   <!-- theme/rtl toggles (farm organic) -->
-<div class="flex gap-2 desktop-toggle-group" style="margin-inline-start: 0.5rem;">
-    <button id="theme-toggle" class="farm-toggle"><span>◐</span><span class="hidden">◑</span></button>
-    <button id="rtl-toggle" class="farm-toggle"><span> ⇄</span></button>                   
-</div>
+                    <!-- theme/rtl toggles (farm organic) -->
+                    <div class="flex gap-2 desktop-toggle-group" style="margin-inline-start: 0.5rem;">
+                        <button id="theme-toggle" class="farm-toggle"><i class="fas fa-sun"></i></button>
+                        <button id="rtl-toggle" class="farm-toggle"><span> ⇄</span></button>
+                    </div>
 
-                <!-- mobile menu button (farm style – round) -->
-                <button id="mobile-toggle"
-                    class="xl:hidden w-11 h-11 rounded-full bg-farm-stone/30 dark:bg-farm-peat/70 flex items-center justify-center transition hover:bg-farm-sprout/30">
-                    <i class="fas fa-bars text-farm-peat dark:text-farm-cream text-xl"></i>
-                </button>
+                    <!-- mobile menu button (farm style – round) -->
+                    <button id="mobile-toggle"
+                        class="xl:hidden w-11 h-11 rounded-full bg-farm-stone/30 dark:bg-farm-peat/70 flex items-center justify-center transition hover:bg-farm-sprout/30">
+                        <i class="fas fa-bars text-farm-peat dark:text-farm-cream text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- mobile menu – mirrors desktop navigation -->
+                <div id="mobile-menu" class="farm-mobile-menu xl:hidden">
+
+                    <!-- Home accordion -->
+                    <div class="mob-section-title" onclick="toggleMobAccordion('mob-home')">
+                        <span><i class="fas fa-home mr-2 text-farm-sprout"></i>Home</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mob-home-chevron"></i>
+                    </div>
+                    <div id="mob-home" class="mob-accordion-body">
+                        <a href="index.html"><i class="fas fa-home"></i> Home 1</a>
+                        <a href="home2.html"><i class="fas fa-home"></i> Home 2</a>
+                    </div>
+
+                    <!-- simple links -->
+                    <a href="about.html" class="farm-mob-item"><i
+                            class="fas fa-circle-info mr-2 text-farm-sprout"></i>About</a>
+                    <a href="harvest.html" class="farm-mob-item"><i
+                            class="fas fa-basket-shopping mr-2 text-farm-sprout"></i>Harvest</a>
+                    <a href="gallery.html" class="farm-mob-item"><i
+                            class="fas fa-images mr-2 text-farm-sprout"></i>Gallery</a>
+                    <a href="service.html" class="farm-mob-item"><i
+                            class="fas fa-repeat mr-2 text-farm-sprout"></i>Services</a>
+                    <a href="contact.html" class="farm-mob-item"><i
+                            class="fas fa-envelope mr-2 text-farm-sprout"></i>Contact</a>
+
+                    <!-- Dashboards accordion -->
+                    <div class="mob-section-title" onclick="toggleMobAccordion('mob-dash')">
+                        <span><i class="fas fa-gauge-high mr-2 text-farm-sprout"></i>Dashboards</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform" id="mob-dash-chevron"></i>
+                    </div>
+                    <div id="mob-dash" class="mob-accordion-body">
+                        <a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a>
+                        <a href="client.html"><i class="fas fa-users"></i> Client</a>
+                    </div>
+
+                    <!-- auth buttons -->
+                    <div class="flex gap-3 px-5 py-5">
+                        <a href="login.html" class="auth-farm-login flex-1 text-center">Log in</a>
+                        <a href="signup.html" class="auth-farm-signup flex-1 text-center">Sign up</a>
+                    </div>
+
+                    <!-- toggles -->
+                    <div
+                        class="flex justify-center gap-4 py-4 px-5 border-t border-farm-stone/30 dark:border-farm-peat/40">
+                        <button id="theme-toggle-mobile" class="farm-toggle" title="Toggle theme"><i
+                                class="fas fa-sun"></i></button>
+                        <button id="rtl-toggle-mobile" class="farm-toggle" title="Toggle RTL"><span>⇄</span></button>
+                    </div>
+                </div>
             </div>
-
-            <!-- mobile menu – mirrors desktop navigation -->
-            <div id="mobile-menu" class="farm-mobile-menu xl:hidden">
-
-                <!-- Home accordion -->
-                <div class="mob-section-title" onclick="toggleMobAccordion('mob-home')">
-                    <span><i class="fas fa-home mr-2 text-farm-sprout"></i>Home</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform" id="mob-home-chevron"></i>
-                </div>
-                <div id="mob-home" class="mob-accordion-body">
-                    <a href="index.html"><i class="fas fa-home"></i> Home 1</a>
-                    <a href="home2.html"><i class="fas fa-home"></i> Home 2</a>
-                </div>
-
-                <!-- simple links -->
-                <a href="about.html" class="farm-mob-item"><i class="fas fa-circle-info mr-2 text-farm-sprout"></i>About</a>
-                <a href="harvest.html" class="farm-mob-item"><i class="fas fa-basket-shopping mr-2 text-farm-sprout"></i>Harvest</a>
-                <a href="gallery.html" class="farm-mob-item"><i class="fas fa-images mr-2 text-farm-sprout"></i>Gallery</a>
-                <a href="service.html" class="farm-mob-item"><i class="fas fa-repeat mr-2 text-farm-sprout"></i>Services</a>
-                <a href="contact.html" class="farm-mob-item"><i class="fas fa-envelope mr-2 text-farm-sprout"></i>Contact</a>
-
-                <!-- Dashboards accordion -->
-                <div class="mob-section-title" onclick="toggleMobAccordion('mob-dash')">
-                    <span><i class="fas fa-gauge-high mr-2 text-farm-sprout"></i>Dashboards</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform" id="mob-dash-chevron"></i>
-                </div>
-                <div id="mob-dash" class="mob-accordion-body">
-                    <a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a>
-                    <a href="client.html"><i class="fas fa-users"></i> Client</a>
-                </div>
-
-                <!-- auth buttons -->
-                <div class="flex gap-3 px-5 py-5">
-                    <a href="login.html" class="auth-farm-login flex-1 text-center">Log in</a>
-                    <a href="signup.html" class="auth-farm-signup flex-1 text-center">Sign up</a>
-                </div>
-
-                <!-- toggles -->
-                <div class="flex justify-center gap-4 py-4 px-5 border-t border-farm-stone/30 dark:border-farm-peat/40">
-                    <button id="theme-toggle-mobile" class="farm-toggle" title="Toggle theme"><i class="fas fa-moon"></i><i
-                            class="fas fa-sun hidden"></i></button>
-                    <button id="rtl-toggle-mobile" class="farm-toggle" title="Toggle RTL"><span>⇄</span></button>
-                </div>
-            </div>
-        </div>
     </nav>
 
     <!-- MAIN – 5 FRESH SECTIONS about farm, community, recurring payments -->
@@ -755,21 +774,24 @@
                     <div class="farm-card text-center">
                         <div
                             class="w-20 h-20 bg-farm-sprout/20 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] flex items-center justify-center mx-auto mb-5 text-3xl text-farm-peat">
-                            <i class="fas fa-seedling"></i></div>
+                            <i class="fas fa-seedling"></i>
+                        </div>
                         <h3 class="text-2xl font-display mb-2 dark:text-white">1. Choose share</h3>
                         <p class="opacity-80 dark:text-gray-300">Veggie, fruit, or mixed – weekly or biweekly.</p>
                     </div>
                     <div class="farm-card text-center">
                         <div
                             class="w-20 h-20 bg-farm-sprout/20 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] flex items-center justify-center mx-auto mb-5 text-3xl text-farm-peat">
-                            <i class="fas fa-repeat"></i></div>
+                            <i class="fas fa-repeat"></i>
+                        </div>
                         <h3 class="text-2xl font-display mb-2 dark:text-white">2. Recurring billing</h3>
                         <p class="opacity-80 dark:text-gray-300">Secure payments each month. Cancel anytime.</p>
                     </div>
                     <div class="farm-card text-center">
                         <div
                             class="w-20 h-20 bg-farm-sprout/20 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] flex items-center justify-center mx-auto mb-5 text-3xl text-farm-peat">
-                            <i class="fas fa-hand-holding-heart"></i></div>
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
                         <h3 class="text-2xl font-display mb-2 dark:text-white">3. Fresh pickup</h3>
                         <p class="opacity-80 dark:text-gray-300">Farm gate or neighborhood drop.</p>
                     </div>
@@ -786,26 +808,22 @@
                     </h2>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <div class="farm-card p-3"><img
-                            src="/assest/ag1.jpg"
+                    <div class="farm-card p-3"><img src="/assest/ag1.jpg"
                             class="rounded-[30px_10px_30px_10px] h-36 w-full object-cover">
                         <h4 class="font-display font-bold mt-3 dark:text-white">Strawberries</h4><span
                             class="text-sm dark:text-gray-300">June only</span>
                     </div>
-                    <div class="farm-card p-3"><img
-                            src="/assest/ag2.jpg"
+                    <div class="farm-card p-3"><img src="/assest/ag2.jpg"
                             class="rounded-[30px_10px_30px_10px] h-36 w-full object-cover">
                         <h4 class="font-display font-bold mt-3 dark:text-white">Zucchini</h4><span
                             class="text-sm dark:text-gray-300">abundant</span>
                     </div>
-                    <div class="farm-card p-3"><img
-                            src="/assest/ag3.jpg"
+                    <div class="farm-card p-3"><img src="/assest/ag3.jpg"
                             class="rounded-[30px_10px_30px_10px] h-36 w-full object-cover">
                         <h4 class="font-display font-bold mt-3 dark:text-white">Peas</h4><span
                             class="text-sm dark:text-gray-300">snap & shell</span>
                     </div>
-                    <div class="farm-card p-3"><img
-                            src="/assest/ag4.jpg"
+                    <div class="farm-card p-3"><img src="/assest/ag4.jpg"
                             class="rounded-[30px_10px_30px_10px] h-36 w-full object-cover">
                         <h4 class="font-display font-bold mt-3 dark:text-white">Herb bunches</h4><span
                             class="text-sm dark:text-gray-300">weekly</span>
@@ -825,7 +843,8 @@
                     <h2 class="text-4xl md:text-5xl font-display font-bold mt-4 mb-4 dark:text-white">
                         Meet our <span class="text-farm-peat dark:text-farm-sprout">growers</span>
                     </h2>
-                    <p class="text-lg dark:text-gray-300">Real families. Real soil. Every share you receive is tended by someone who cares deeply.</p>
+                    <p class="text-lg dark:text-gray-300">Real families. Real soil. Every share you receive is tended by
+                        someone who cares deeply.</p>
                 </div>
 
                 <!-- grower cards -->
@@ -835,13 +854,18 @@
                     <div class="farm-card group text-center p-0 overflow-hidden">
                         <div class="relative">
                             <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=400&auto=format&fit=crop&q=80"
-                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" alt="Grower">
-                            <span class="absolute top-3 left-3 bg-farm-peat/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌿 Vegetables</span>
+                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Grower">
+                            <span
+                                class="absolute top-3 left-3 bg-farm-peat/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌿
+                                Vegetables</span>
                         </div>
                         <div class="p-5">
                             <h4 class="font-display font-bold text-lg dark:text-white">Maya & Rohan S.</h4>
-                            <p class="text-sm text-farm-peat dark:text-farm-sprout font-medium mb-2">Willamette Valley, OR</p>
-                            <p class="text-sm dark:text-gray-300 opacity-80">"We've been growing heirloom tomatoes for 14 seasons — each one tells a story."</p>
+                            <p class="text-sm text-farm-peat dark:text-farm-sprout font-medium mb-2">Willamette Valley,
+                                OR</p>
+                            <p class="text-sm dark:text-gray-300 opacity-80">"We've been growing heirloom tomatoes for
+                                14 seasons — each one tells a story."</p>
                         </div>
                     </div>
 
@@ -849,13 +873,17 @@
                     <div class="farm-card group text-center p-0 overflow-hidden">
                         <div class="relative">
                             <img src="/assest/st.jpg"
-                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" alt="Grower">
-                            <span class="absolute top-3 left-3 bg-farm-clay/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🍓 Fruits</span>
+                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Grower">
+                            <span
+                                class="absolute top-3 left-3 bg-farm-clay/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🍓
+                                Fruits</span>
                         </div>
                         <div class="p-5">
                             <h4 class="font-display font-bold text-lg dark:text-white">The Hirsch Farm</h4>
                             <p class="text-sm text-farm-peat dark:text-farm-sprout font-medium mb-2">Hood River, OR</p>
-                            <p class="text-sm dark:text-gray-300 opacity-80">"Strawberries don't wait — neither do we. Pick-up Fridays, every June."</p>
+                            <p class="text-sm dark:text-gray-300 opacity-80">"Strawberries don't wait — neither do we.
+                                Pick-up Fridays, every June."</p>
                         </div>
                     </div>
 
@@ -863,13 +891,17 @@
                     <div class="farm-card group text-center p-0 overflow-hidden">
                         <div class="relative">
                             <img src="/assest/ag3.jpg"
-                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" alt="Grower">
-                            <span class="absolute top-3 left-3 bg-farm-sprout/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌾 Grains</span>
+                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Grower">
+                            <span
+                                class="absolute top-3 left-3 bg-farm-sprout/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌾
+                                Grains</span>
                         </div>
                         <div class="p-5">
                             <h4 class="font-display font-bold text-lg dark:text-white">Green Ridge Co-op</h4>
                             <p class="text-sm text-farm-peat dark:text-farm-sprout font-medium mb-2">Salem, OR</p>
-                            <p class="text-sm dark:text-gray-300 opacity-80">"Our zucchini is abundant because the land says so — we just listen."</p>
+                            <p class="text-sm dark:text-gray-300 opacity-80">"Our zucchini is abundant because the land
+                                says so — we just listen."</p>
                         </div>
                     </div>
 
@@ -877,33 +909,43 @@
                     <div class="farm-card group text-center p-0 overflow-hidden">
                         <div class="relative">
                             <img src="/assest/ag4.jpg"
-                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" alt="Grower">
-                            <span class="absolute top-3 left-3 bg-farm-moss/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌿 Herbs</span>
+                                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Grower">
+                            <span
+                                class="absolute top-3 left-3 bg-farm-moss/85 text-white text-xs font-semibold px-3 py-1 rounded-full">🌿
+                                Herbs</span>
                         </div>
                         <div class="p-5">
                             <h4 class="font-display font-bold text-lg dark:text-white">Lavender & Leaf</h4>
                             <p class="text-sm text-farm-peat dark:text-farm-sprout font-medium mb-2">Eugene, OR</p>
-                            <p class="text-sm dark:text-gray-300 opacity-80">"Herb bundles fresh-cut weekly. Basil, thyme, rosemary — chef-quality, every time."</p>
+                            <p class="text-sm dark:text-gray-300 opacity-80">"Herb bundles fresh-cut weekly. Basil,
+                                thyme, rosemary — chef-quality, every time."</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- stats strip -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
                         <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">28</div>
                         <div class="text-sm font-medium text-farm-charcoal/70 dark:text-gray-300">Local growers</div>
                     </div>
-                    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
-                        <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">600<span class="text-2xl">+</span></div>
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
+                        <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">600<span
+                                class="text-2xl">+</span></div>
                         <div class="text-sm font-medium text-farm-charcoal/70 dark:text-gray-300">Active members</div>
                     </div>
-                    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
                         <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">14</div>
                         <div class="text-sm font-medium text-farm-charcoal/70 dark:text-gray-300">Years running</div>
                     </div>
-                    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
-                        <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">100<span class="text-2xl">%</span></div>
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl p-6 text-center shadow-md border border-farm-sprout/15 dark:border-farm-peat/30">
+                        <div class="text-4xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-1">100<span
+                                class="text-2xl">%</span></div>
                         <div class="text-sm font-medium text-farm-charcoal/70 dark:text-gray-300">Chemical-free</div>
                     </div>
                 </div>
@@ -916,8 +958,7 @@
         <section
             class="py-20 bg-gradient-to-br from-farm-peat to-farm-moss dark:from-farm-charcoal dark:to-farm-peat text-white">
             <div class="container mx-auto px-6 text-center">
-                <span
-                    class="inline-block bg-white/20 px-5 py-2 rounded-full text-sm font-medium mb-6">✦
+                <span class="inline-block bg-white/20 px-5 py-2 rounded-full text-sm font-medium mb-6">✦
                     become a member ✦</span>
                 <h2 class="text-5xl md:text-6xl font-display font-bold mb-6">Let's grow together</h2>
                 <p class="text-xl max-w-2xl mx-auto mb-10 opacity-95">First share includes a farm tour + seasonal recipe
@@ -943,7 +984,8 @@
                     <a href="index.html" class="flex items-center justify-center md:justify-start gap-3 mb-5">
                         <div
                             class="w-10 h-10 bg-farm-peat rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
-                            <i class="fas fa-carrot text-white"></i></div>
+                            <i class="fas fa-carrot text-white"></i>
+                        </div>
                         <span class="text-2xl font-display font-bold text-farm-charcoal dark:text-white">Local<span
                                 class="text-farm-peat dark:text-farm-sprout">Farm</span></span>
                     </a>
@@ -960,8 +1002,9 @@
                 <div class="text-center md:text-left">
                     <h3 class="text-2xl font-display font-bold text-farm-charcoal dark:text-white mb-5">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Home
-                             </a></li>
+                        <li><a href="index.html"
+                                class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">Home
+                            </a></li>
                         <li><a href="about.html"
                                 class="hover:text-farm-peat dark:text-gray-300 dark:hover:text-farm-sprout">About
                             </a></li>
@@ -1026,9 +1069,11 @@
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 [themeToggle, mobileThemeToggle].forEach(btn => {
                     if (!btn) return;
-                    const moon = btn.querySelector('.fa-moon');
-                    const sun = btn.querySelector('.fa-sun');
-                    if (moon && sun) { moon.classList.toggle('hidden', isDark); sun.classList.toggle('hidden', !isDark); }
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-sun', 'fa-moon');
+                        icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+                    }
                 });
             }
             if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
@@ -1037,9 +1082,11 @@
                 document.documentElement.classList.add('dark');
                 [themeToggle, mobileThemeToggle].forEach(btn => {
                     if (!btn) return;
-                    const moon = btn?.querySelector('.fa-moon');
-                    const sun = btn?.querySelector('.fa-sun');
-                    if (moon && sun) { moon.classList.add('hidden'); sun.classList.remove('hidden'); }
+                    const icon = btn?.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-sun', 'fa-moon');
+                        icon.classList.add('fa-moon');
+                    }
                 });
             }
 
@@ -1057,8 +1104,8 @@
 
             // ── Mobile hamburger ──────────────────────────────────────────
             const mobileToggle = document.getElementById('mobile-toggle');
-            const mobileMenu   = document.getElementById('mobile-menu');
-            const menuIcon     = mobileToggle?.querySelector('i');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileToggle?.querySelector('i');
 
             function openMenu() {
                 mobileMenu.classList.add('open');
@@ -1108,10 +1155,10 @@
 
         // ── Mobile accordion (Home / Dashboards) ─────────────────────────
         function toggleMobAccordion(id) {
-            const body    = document.getElementById(id);
+            const body = document.getElementById(id);
             const chevron = document.getElementById(id + '-chevron');
             if (!body) return;
-            const isOpen  = body.style.maxHeight && body.style.maxHeight !== '0px';
+            const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
             body.style.maxHeight = isOpen ? '0px' : body.scrollHeight + 'px';
             if (chevron) chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             // update the parent menu height so it can contain expanded children

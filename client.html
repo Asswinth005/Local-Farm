@@ -635,8 +635,7 @@
                 </div>
             </a>
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="toggle-btn" title="Dark / Light"><span>◐</span><span
-                        class="hidden">◑</span></button>
+                <button id="theme-toggle" class="toggle-btn" title="Dark / Light"><i class="fas fa-sun"></i></button>
                 <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR"><span> ⇄</span></button>
             </div>
         </div>
@@ -785,11 +784,11 @@
                             <!-- Quick Action Buttons -->
                             <div class="mt-6 flex gap-3">
                                 <button
-                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm transition">
                                     <i class="fas fa-headset mr-2"></i> Support
                                 </button>
                                 <button
-                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm transition">
                                     <i class="fas fa-gift mr-2"></i> Refer
                                 </button>
                             </div>
@@ -1412,23 +1411,20 @@
         document.addEventListener('DOMContentLoaded', function () {
             // ============ THEME TOGGLE ============
             const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = themeToggle?.querySelector('span:first-child');
-            const themeIconSun = themeToggle?.querySelector('span:last-child');
 
             function toggleTheme() {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-                if (isDark) {
-                    if (themeIcon) themeIcon.classList.add('hidden');
-                    if (themeIconSun) themeIconSun.classList.remove('hidden');
-                    if (themeToggle) themeToggle.classList.add('active');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    if (themeIcon) themeIcon.classList.remove('hidden');
-                    if (themeIconSun) themeIconSun.classList.add('hidden');
-                    if (themeToggle) themeToggle.classList.remove('active');
-                    localStorage.setItem('theme', 'light');
+                const icon = themeToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-sun', 'fa-moon');
+                    icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+                }
+                if (themeToggle) {
+                    if (isDark) themeToggle.classList.add('active');
+                    else themeToggle.classList.remove('active');
                 }
             }
 
@@ -1436,8 +1432,11 @@
 
             if (localStorage.getItem('theme') === 'dark') {
                 document.documentElement.classList.add('dark');
-                if (themeIcon) themeIcon.classList.add('hidden');
-                if (themeIconSun) themeIconSun.classList.remove('hidden');
+                const icon = themeToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-sun', 'fa-moon');
+                    icon.classList.add('fa-moon');
+                }
                 if (themeToggle) themeToggle.classList.add('active');
             }
 

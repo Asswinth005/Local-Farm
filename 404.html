@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
     <title>Local Farm · Page Not Found</title>
     <!-- farm favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
+
     <!-- Tailwind + farm theme config -->
     <link rel="stylesheet" href="output.css">
     <script>var tailwind = {};</script>
@@ -44,69 +46,72 @@
             }
         }
     </script>
-    
+
     <!-- Fonts + Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* ----- FULL PAGE LAYOUT ----- */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             background-color: #FEF7E4;
             color: #2E3F2F;
             display: flex;
             flex-direction: column;
         }
-        
+
         .dark body {
             background-color: #1F2A1E;
             color: #e2e6da;
         }
-        
+
         /* Improved contrast for dark mode */
         .dark .text-farm-peat {
             color: #7AA65A !important;
         }
-        
+
         .dark .bg-farm-peat {
             background-color: #7AA65A !important;
         }
-        
+
         .dark .border-farm-peat {
             border-color: #7AA65A !important;
         }
-        
+
         .dark .from-farm-peat {
             --tw-gradient-from: #7AA65A !important;
         }
-        
+
         .dark .hover\:text-farm-peat:hover {
             color: #7AA65A !important;
         }
-        
+
         .dark .farm-btn {
             background: #7AA65A;
             color: #1F2A1E;
         }
-        
+
         .dark .outline-btn {
             border-color: #7AA65A;
             color: #7AA65A;
         }
-        
+
         .dark .outline-btn:hover {
             background: #7AA65A;
             color: #1F2A1E;
         }
-        
+
         /* toggle buttons */
         .toggle-btn {
             width: 42px;
@@ -122,32 +127,32 @@
             cursor: pointer;
             font-size: 1.1rem;
         }
-        
+
         .dark .toggle-btn {
             background: #3d5c3a;
             color: #c8f0a0;
         }
-        
+
         .toggle-btn:hover {
             background: #7AA65A;
             color: white;
         }
-        
+
         .dark .toggle-btn:hover {
             background: #7AA65A;
             color: #1F2A1E;
         }
-        
+
         .toggle-btn.active {
             background: #36634B;
             color: white;
         }
-        
+
         .dark .toggle-btn.active {
             background: #7AA65A;
             color: #1F2A1E;
         }
-        
+
         /* farm btn */
         .farm-btn {
             background: #36634B;
@@ -165,16 +170,16 @@
             text-decoration: none;
             white-space: nowrap;
         }
-        
+
         .farm-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(54,99,75,0.35);
+            box-shadow: 0 12px 28px rgba(54, 99, 75, 0.35);
         }
-        
+
         .dark .farm-btn:hover {
-            box-shadow: 0 12px 28px rgba(122,166,90,0.35);
+            box-shadow: 0 12px 28px rgba(122, 166, 90, 0.35);
         }
-        
+
         /* outline button */
         .outline-btn {
             background: transparent;
@@ -192,35 +197,35 @@
             text-decoration: none;
             white-space: nowrap;
         }
-        
+
         .dark .outline-btn {
             border-color: #7AA65A;
             color: #7AA65A;
         }
-        
+
         .outline-btn:hover {
             background: #36634B;
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(54,99,75,0.25);
+            box-shadow: 0 12px 25px rgba(54, 99, 75, 0.25);
         }
-        
+
         .dark .outline-btn:hover {
             background: #7AA65A;
             color: #1F2A1E;
             border-color: #7AA65A;
-            box-shadow: 0 12px 25px rgba(122,166,90,0.25);
+            box-shadow: 0 12px 25px rgba(122, 166, 90, 0.25);
         }
-        
+
         /* logo spin */
         .logo-icon {
             transition: transform 0.3s ease;
         }
-        
+
         a:hover .logo-icon {
             transform: rotate(12deg);
         }
-        
+
         /* 404 number style */
         .error-number {
             font-size: 8rem;
@@ -230,35 +235,35 @@
             color: #36634B;
             letter-spacing: -0.02em;
         }
-        
+
         .dark .error-number {
             color: #7AA65A;
         }
-        
+
         /* leaf animation */
         .leaf-large {
             animation: float 7s ease-in-out infinite;
             color: #36634B;
         }
-        
+
         .dark .leaf-large {
             color: #7AA65A;
         }
-        
+
         /* RTL adjustments */
         [dir="rtl"] .fa-arrow-right {
             transform: scaleX(-1);
         }
-        
-        [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+
+        [dir="rtl"] .space-x-3> :not([hidden])~ :not([hidden]) {
             --tw-space-x-reverse: 1;
         }
-        
+
         /* hidden utility */
         .hidden {
             display: none;
         }
-        
+
         /* custom container */
         .page-container {
             max-width: 1280px;
@@ -266,53 +271,53 @@
             padding: 0 1.5rem;
             width: 100%;
         }
-        
+
         /* Error badge */
         .dark .bg-farm-peat\/10 {
-            background: rgba(122,166,90,0.15) !important;
+            background: rgba(122, 166, 90, 0.15) !important;
         }
-        
+
         .dark .text-farm-peat\/90 {
             color: #7AA65A !important;
         }
-        
+
         /* Popular services icons */
         .dark .bg-farm-peat\/10,
         .dark .bg-farm-peat\/20 {
-            background: rgba(122,166,90,0.2) !important;
+            background: rgba(122, 166, 90, 0.2) !important;
         }
-        
+
         .dark .group:hover .bg-farm-peat\/10,
         .dark .group:hover .bg-farm-peat\/20 {
-            background: rgba(122,166,90,0.3) !important;
+            background: rgba(122, 166, 90, 0.3) !important;
         }
-        
+
         .dark .text-farm-peat {
             color: #7AA65A !important;
         }
-        
+
         /* Separator line */
         .dark .border-farm-stone\/60 {
-            border-color: rgba(122,166,90,0.15) !important;
+            border-color: rgba(122, 166, 90, 0.15) !important;
         }
-        
+
         .dark .bg-farm-cream {
             background-color: #1F2A1E !important;
         }
-        
+
         .dark .text-farm-charcoal\/90 {
             color: #9CA3AF !important;
         }
-        
+
         /* Footer links */
         .dark footer a {
             color: #9CA3AF;
         }
-        
+
         .dark footer a:hover {
             color: #7AA65A !important;
         }
-        
+
         .dark footer span {
             color: #9CA3AF;
         }
@@ -322,6 +327,7 @@
             color: #36634B;
             border-bottom-color: #7AA65A;
         }
+
         .dark .farm-nav-link.active {
             color: #A7D489;
             border-bottom-color: #A7D489;
@@ -333,15 +339,18 @@
             color: #36634B;
             border-left: 4px solid #7AA65A;
         }
+
         .dark .farm-mob-item.active {
             background: rgba(122, 166, 90, 0.2);
             color: #A7D489;
             border-left-color: #A7D489;
         }
+
         .farm-dropdown-item.active {
             background: rgba(122, 166, 90, 0.1);
             color: #36634B;
         }
+
         .dark .farm-dropdown-item.active {
             color: #A7D489;
         }
@@ -351,25 +360,28 @@
 <body class="bg-farm-cream dark:bg-dark-bg">
 
     <!-- ===== SIMPLE NAVIGATION BAR ===== -->
-    <nav class="flex-shrink-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-farm-stone dark:border-gray-800">
+    <nav
+        class="flex-shrink-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-farm-stone dark:border-gray-800">
         <div class="page-container">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo - redirects to index.html -->
                 <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                    <div class="logo-icon w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
+                    <div
+                        class="logo-icon w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center">
                         <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
-                        <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
+                        <span
+                            class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                        <span
+                            class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout">Farm</span>
                     </div>
                 </a>
-                
+
                 <!-- Theme & RTL toggles -->
                 <div class="flex items-center gap-2">
                     <button id="theme-toggle" class="toggle-btn" title="Dark / Light">
-                        <i class="fas fa-moon"></i>
-                        <i class="fas fa-sun hidden"></i>
+                        <i class="fas fa-sun"></i>
                     </button>
                     <button id="rtl-toggle" class="toggle-btn" title="RTL / LTR">
                         ⇄
@@ -383,36 +395,42 @@
     <main class="flex-1 flex items-center justify-center py-12 md:py-16">
         <div class="page-container">
             <div class="max-w-4xl mx-auto">
-                
+
                 <!-- 404 Visual Section -->
                 <div class="text-center animate-fade-in">
-                    
+
                     <!-- Large 404 with Carrot/Leaf -->
                     <div class="flex items-center justify-center gap-1 md:gap-4 mb-6">
                         <span class="error-number text-7xl md:text-8xl lg:text-9xl">4</span>
                         <div class="relative mx-1 md:mx-2">
-                            <i class="fas fa-carrot text-7xl md:text-8xl lg:text-9xl leaf-large text-farm-peat dark:text-farm-sprout"></i>
+                            <i
+                                class="fas fa-carrot text-7xl md:text-8xl lg:text-9xl leaf-large text-farm-peat dark:text-farm-sprout"></i>
                         </div>
                         <span class="error-number text-7xl md:text-8xl lg:text-9xl">4</span>
                     </div>
-                    
+
                     <!-- Error Badge -->
-                    <div class="inline-flex items-center px-4 py-2 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full mb-6">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full mb-6">
                         <i class="fas fa-leaf text-farm-peat dark:text-farm-sprout mr-2 text-sm"></i>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-farm-peat dark:text-farm-sprout">Error 404 · Lost in the Fields</span>
+                        <span
+                            class="text-xs font-semibold uppercase tracking-wider text-farm-peat dark:text-farm-sprout">Error
+                            404 · Lost in the Fields</span>
                     </div>
-                    
+
                     <!-- Main Heading -->
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-farm-charcoal dark:text-white mb-4">
+                    <h1
+                        class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-farm-charcoal dark:text-white mb-4">
                         Page Not Found
                     </h1>
-                    
+
                     <!-- Description -->
-                    <p class="text-farm-charcoal/90 dark:text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                        Looks like you've wandered off the farm path. The page you're looking for 
+                    <p
+                        class="text-farm-charcoal/90 dark:text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                        Looks like you've wandered off the farm path. The page you're looking for
                         isn't growing here. Let's get you back to the harvest.
                     </p>
-                    
+
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
                         <a href="index.html" class="farm-btn w-full sm:w-auto px-8">
@@ -422,53 +440,64 @@
                         <a href="service.html" class="outline-btn w-full sm:w-auto px-8 group">
                             <i class="fas fa-seedling mr-2 rtl:ml-2 rtl:mr-0"></i>
                             Our Services
-                            <i class="fas fa-arrow-right ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"></i>
+                            <i
+                                class="fas fa-arrow-right ml-2 rtl:mr-2 rtl:ml-0 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition"></i>
                         </a>
                     </div>
-                    
+
                     <!-- Helpful Links Section -->
                     <div class="relative py-8">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-farm-stone/60 dark:border-farm-sprout/20"></div>
                         </div>
                         <div class="relative flex justify-center">
-                            <span class="bg-farm-cream dark:bg-dark-bg px-6 text-sm text-farm-charcoal/90 dark:text-gray-400">
+                            <span
+                                class="bg-farm-cream dark:bg-dark-bg px-6 text-sm text-farm-charcoal/90 dark:text-gray-400">
                                 explore the farm
                             </span>
                         </div>
                     </div>
-                    
+
                     <!-- Popular Pages Grid -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                        <a href="harvest.html" class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
-                            <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                        <a href="harvest.html"
+                            class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-basket-shopping text-farm-peat dark:text-farm-sprout"></i>
                             </div>
                             <span class="text-xs font-medium text-farm-charcoal dark:text-gray-300">Harvest</span>
                         </a>
-                        <a href="service.html" class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
-                            <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                        <a href="service.html"
+                            class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-hand-holding-heart text-farm-peat dark:text-farm-sprout"></i>
                             </div>
                             <span class="text-xs font-medium text-farm-charcoal dark:text-gray-300">Services</span>
                         </a>
-                        <a href="gallery.html" class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
-                            <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                        <a href="gallery.html"
+                            class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-images text-farm-peat dark:text-farm-sprout"></i>
                             </div>
                             <span class="text-xs font-medium text-farm-charcoal dark:text-gray-300">Gallery</span>
                         </a>
-                        <a href="contact.html" class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
-                            <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                        <a href="contact.html"
+                            class="group p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-dark-card/60 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-envelope text-farm-peat dark:text-farm-sprout"></i>
                             </div>
                             <span class="text-xs font-medium text-farm-charcoal dark:text-gray-300">Contact</span>
                         </a>
                     </div>
-                    
+
                     <!-- Back to Home Link (mobile friendly) -->
                     <div class="mt-10 md:hidden">
-                        <a href="index.html" class="text-farm-peat dark:text-farm-sprout hover:text-farm-moss font-medium text-sm inline-flex items-center">
+                        <a href="index.html"
+                            class="text-farm-peat dark:text-farm-sprout hover:text-farm-moss font-medium text-sm inline-flex items-center">
                             <i class="fas fa-arrow-left mr-2 rtl:ml-2 rtl:mr-0"></i>
                             Return to homepage
                         </a>
@@ -479,7 +508,8 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="flex-shrink-0 py-6 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-t border-farm-stone dark:border-gray-800">
+    <footer
+        class="flex-shrink-0 py-6 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-t border-farm-stone dark:border-gray-800">
         <div class="page-container">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center space-x-4 text-xs text-farm-charcoal/90 dark:text-gray-400">
@@ -491,7 +521,8 @@
                 </div>
                 <div class="flex items-center space-x-4 text-xs">
                     <span class="text-farm-charcoal/70 dark:text-gray-500">Need help?</span>
-                    <a href="contact.html" class="text-farm-peat dark:text-farm-sprout hover:text-farm-moss font-medium">Contact us</a>
+                    <a href="contact.html"
+                        class="text-farm-peat dark:text-farm-sprout hover:text-farm-moss font-medium">Contact us</a>
                 </div>
             </div>
         </div>
@@ -499,98 +530,103 @@
 
     <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT ===== -->
     <script>
-        (function() {
-            // ---------- THEME ----------
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIconMoon = themeToggle?.querySelector('.fa-moon');
-            const themeIconSun = themeToggle?.querySelector('.fa-sun');
+            (function () {
+                // ---------- THEME ----------
+                const themeToggle = document.getElementById('theme-toggle');
 
-            function setTheme(isDark) {
-                if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    if (themeIconMoon) themeIconMoon.classList.add('hidden');
-                    if (themeIconSun) themeIconSun.classList.remove('hidden');
-                    themeToggle?.classList.add('active');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    if (themeIconMoon) themeIconMoon.classList.remove('hidden');
-                    if (themeIconSun) themeIconSun.classList.add('hidden');
-                    themeToggle?.classList.remove('active');
-                    localStorage.setItem('theme', 'light');
-                }
-            }
-            
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                setTheme(true);
-            } else if (savedTheme === 'light') {
-                setTheme(false);
-            } else {
-                setTheme(false);
-            }
+                function setTheme(isDark) {
+                    if (isDark) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                    }
 
-            if (themeToggle) {
-                themeToggle.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    setTheme(!document.documentElement.classList.contains('dark'));
-                });
-            }
+                    const icon = themeToggle?.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-sun', 'fa-moon');
+                        icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+                    }
 
-            // ---------- RTL ----------
-            const rtlBtn = document.getElementById('rtl-toggle');
-            
-            function setRTL(isRTL) {
-                if (isRTL) {
-                    document.documentElement.dir = 'rtl';
-                    document.documentElement.lang = 'ar';
-                    rtlBtn?.classList.add('active');
-                    localStorage.setItem('dir', 'rtl');
-                } else {
-                    document.documentElement.dir = 'ltr';
-                    document.documentElement.lang = 'en';
-                    rtlBtn?.classList.remove('active');
-                    localStorage.setItem('dir', 'ltr');
-                }
-            }
-            
-            const savedDir = localStorage.getItem('dir');
-            if (savedDir === 'rtl') {
-                setRTL(true);
-            } else {
-                setRTL(false);
-            }
-
-            if (rtlBtn) {
-                rtlBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    setRTL(document.documentElement.dir !== 'rtl');
-                });
-            }
-
-            // ---------- DEMO ALERTS (only for placeholder links) ----------
-            document.querySelectorAll('a[href="#"]').forEach(link => {
-                link.addEventListener('click', (e) => { 
-                    e.preventDefault(); 
-                    alert('✨ This would show more farm info (demo)'); 
-                });
-            });
-
-            // ── Active Link Highlighting ──────────────────────────────────
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item, .mob-accordion-body a').forEach(link => {
-                const href = link.getAttribute('href');
-                if (href === currentPath) {
-                    link.classList.add('active');
-                    // If it's in a mobile accordion, open it
-                    const accordion = link.closest('.mob-accordion-body');
-                    if (accordion) {
-                        const id = accordion.id;
-                        setTimeout(() => toggleMobAccordion(id), 100);
+                    if (isDark) {
+                        themeToggle?.classList.add('active');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        themeToggle?.classList.remove('active');
+                        localStorage.setItem('theme', 'light');
                     }
                 }
-            });
-        })();
+
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    setTheme(true);
+                } else if (savedTheme === 'light') {
+                    setTheme(false);
+                } else {
+                    setTheme(false);
+                }
+
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        setTheme(!document.documentElement.classList.contains('dark'));
+                    });
+                }
+
+                // ---------- RTL ----------
+                const rtlBtn = document.getElementById('rtl-toggle');
+
+                function setRTL(isRTL) {
+                    if (isRTL) {
+                        document.documentElement.dir = 'rtl';
+                        document.documentElement.lang = 'ar';
+                        rtlBtn?.classList.add('active');
+                        localStorage.setItem('dir', 'rtl');
+                    } else {
+                        document.documentElement.dir = 'ltr';
+                        document.documentElement.lang = 'en';
+                        rtlBtn?.classList.remove('active');
+                        localStorage.setItem('dir', 'ltr');
+                    }
+                }
+
+                const savedDir = localStorage.getItem('dir');
+                if (savedDir === 'rtl') {
+                    setRTL(true);
+                } else {
+                    setRTL(false);
+                }
+
+                if (rtlBtn) {
+                    rtlBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        setRTL(document.documentElement.dir !== 'rtl');
+                    });
+                }
+
+                // ---------- DEMO ALERTS (only for placeholder links) ----------
+                document.querySelectorAll('a[href="#"]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('✨ This would show more farm info (demo)');
+                    });
+                });
+
+                // ── Active Link Highlighting ──────────────────────────────────
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.farm-nav-link, .farm-mob-item, .farm-dropdown-item, .mob-accordion-body a').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPath) {
+                        link.classList.add('active');
+                        // If it's in a mobile accordion, open it
+                        const accordion = link.closest('.mob-accordion-body');
+                        if (accordion) {
+                            const id = accordion.id;
+                            setTimeout(() => toggleMobAccordion(id), 100);
+                        }
+                    }
+                });
+            })();
     </script>
 </body>
+
 </html>
