@@ -4,8 +4,8 @@
   "description": "Local Farm project",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i ./style.css -o ./output.css --watch",
-    "build": "tailwindcss -i ./style.css -o ./output.css"
+    "dev": "npx tailwindcss -i ./style.css -o ./output.css --watch",
+    "build": "npx tailwindcss -i ./style.css -o ./output.css"
   },
   "keywords": [],
   "author": "",
