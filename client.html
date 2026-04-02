@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Farm · My Dashboard</title>
     <!-- farm favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2336634B' d='M346.7 76.6c-9.6-3.7-20.1-3.2-29.3 .7-21.5 9-38.7 29.5-47.4 54.2-9.2-24.7-26.4-45.2-47.9-54.2-9.2-3.9-19.7-4.4-29.3-.7-30 11.6-51 42.7-47.6 76.3 2.7 27 22 49.8 46 58.1-24 8.3-43.3 31.1-46 58.1-3.4 33.6 17.6 64.7 47.6 76.3 9.6 3.7 20.1 3.2 29.3-.7 21.5-9 38.7-29.5 47.4-54.2 9.2 24.7 26.4 45.2 47.9 54.2 9.2 3.9 19.7 4.4 29.3 .7 30-11.6 51-42.7 47.6-76.3-2.7-27-22-49.8-46-58.1 24-8.3 43.3-31.1 46-58.1 3.4-33.6-17.6-64.7-47.6-76.3zM256 269.8c-11.8 0-21.4-9.6-21.4-21.4s9.6-21.4 21.4-21.4 21.4 9.6 21.4 21.4-9.6 21.4-21.4 21.4z'/></svg>">
+
     <!-- Tailwind + farm theme config -->
     <link rel="stylesheet" href="output.css">
     <script>var tailwind = {};</script>
@@ -36,24 +38,27 @@
             }
         }
     </script>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* Full screen layout */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
-        
+
         body {
             background-color: #FEF7E4;
             color: #2E3F2F;
@@ -61,11 +66,12 @@
             display: flex;
             flex-direction: column;
         }
+
         .dark body {
             background-color: #1F2A1E;
             color: #e2e6da;
         }
-        
+
         /* Main container - full height with scrolling content */
         .dashboard-container {
             flex: 1;
@@ -73,63 +79,76 @@
             padding: 1rem;
             width: 100%;
         }
-        
+
         /* Improved contrast for dark mode */
         .dark .text-farm-peat {
             color: #7AA65A !important;
         }
-        
+
         .dark .bg-farm-peat {
             background-color: #7AA65A !important;
         }
-        
+
         .dark .border-farm-peat {
             border-color: #7AA65A !important;
         }
-        
+
         .dark .hover\:text-farm-peat:hover {
             color: #7AA65A !important;
         }
-        
+
         .dark .sidebar-item:hover {
-            background: rgba(122,166,90,0.15) !important;
+            background: rgba(122, 166, 90, 0.15) !important;
             color: #7AA65A !important;
         }
-        
+
         .dark .sidebar-item.active {
             background: #7AA65A !important;
             color: #1F2A1E !important;
         }
-        
+
         .dark .stat-card:hover {
             border-color: #7AA65A !important;
         }
-        
+
         .dark .save-btn {
             background: #7AA65A !important;
             color: #1F2A1E !important;
         }
-        
+
         .dark .save-btn:hover {
             background: #5F8B6B !important;
         }
-        
+
         .dark .logout-btn {
-            background: rgba(122,166,90,0.15) !important;
+            background: rgba(122, 166, 90, 0.15) !important;
             color: #7AA65A !important;
         }
-        
+
         .dark .logout-btn:hover {
             background: #7AA65A !important;
             color: #1F2A1E !important;
         }
-        
+
         /* Hide scrollbar */
-        body::-webkit-scrollbar { display: none; }
-        body { -ms-overflow-style: none; scrollbar-width: none; }
-        .dashboard-container::-webkit-scrollbar { display: none; }
-        .dashboard-container { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .dashboard-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dashboard-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         /* Toggle button */
         .toggle-btn {
             width: 40px;
@@ -144,71 +163,82 @@
             border: none;
             cursor: pointer;
         }
+
         .dark .toggle-btn {
             background: #3d5c3a;
             color: #c8f0a0;
         }
+
         .toggle-btn:hover {
             background: #7AA65A;
             color: white;
         }
+
         .dark .toggle-btn:hover {
             background: #7AA65A;
             color: #1F2A1E;
         }
+
         .toggle-btn.active {
             background: #36634B;
             color: white;
         }
+
         .dark .toggle-btn.active {
             background: #7AA65A;
             color: #1F2A1E;
         }
-        
+
         /* Dashboard card - full width */
         .dashboard-card {
             background: white;
             border-radius: 24px;
             padding: 2rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(122,166,90,0.15);
+            border: 1px solid rgba(122, 166, 90, 0.15);
             transition: all 0.3s ease;
             height: 100%;
             width: 100%;
         }
+
         .dark .dashboard-card {
             background: #2C3A2A;
             border-color: #4A6B4A;
         }
+
         .dashboard-card:hover {
-            box-shadow: 0 15px 30px rgba(54,99,75,0.08);
+            box-shadow: 0 15px 30px rgba(54, 99, 75, 0.08);
             border-color: #36634B;
         }
+
         .dark .dashboard-card:hover {
             border-color: #7AA65A;
         }
-        
+
         /* Stat card */
         .stat-card {
             background: white;
             border-radius: 20px;
             padding: 1.5rem 1.25rem;
-            border: 1px solid rgba(122,166,90,0.15);
+            border: 1px solid rgba(122, 166, 90, 0.15);
             transition: all 0.3s ease;
         }
+
         .dark .stat-card {
             background: #2C3A2A;
             border-color: #4A6B4A;
         }
+
         .stat-card:hover {
             border-color: #36634B;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(54,99,75,0.1);
+            box-shadow: 0 10px 25px rgba(54, 99, 75, 0.1);
         }
+
         .dark .stat-card:hover {
             border-color: #7AA65A;
         }
-        
+
         /* Sidebar item */
         .sidebar-item {
             display: flex;
@@ -222,20 +252,23 @@
             margin-bottom: 0.35rem;
             font-size: 1.05rem;
         }
+
         .dark .sidebar-item {
             color: #e2e6da;
         }
+
         .sidebar-item:hover {
-            background: rgba(122,166,90,0.1);
+            background: rgba(122, 166, 90, 0.1);
             color: #36634B;
             transform: translateX(5px);
         }
+
         .sidebar-item.active {
             background: #36634B;
             color: white;
-            box-shadow: 0 8px 15px rgba(54,99,75,0.2);
+            box-shadow: 0 8px 15px rgba(54, 99, 75, 0.2);
         }
-        
+
         /* Logout button */
         .logout-btn {
             display: flex;
@@ -244,7 +277,7 @@
             width: 100%;
             padding: 1rem 1.5rem;
             border-radius: 18px;
-            background: rgba(122,166,90,0.1);
+            background: rgba(122, 166, 90, 0.1);
             color: #36634B;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -253,25 +286,28 @@
             font-size: 1.1rem;
             margin-top: 0.5rem;
         }
+
         .logout-btn:hover {
             background: #36634B;
             color: white;
             transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(54,99,75,0.2);
+            box-shadow: 0 8px 20px rgba(54, 99, 75, 0.2);
         }
-        
+
         /* Order item */
         .order-item {
-            border-bottom: 1px solid rgba(122,166,90,0.15);
+            border-bottom: 1px solid rgba(122, 166, 90, 0.15);
             padding: 1.25rem 0;
         }
+
         .dark .order-item {
-            border-bottom-color: rgba(122,166,90,0.15);
+            border-bottom-color: rgba(122, 166, 90, 0.15);
         }
+
         .order-item:last-child {
             border-bottom: none;
         }
-        
+
         /* Badge */
         .status-badge {
             display: inline-flex;
@@ -281,60 +317,72 @@
             font-size: 0.8rem;
             font-weight: 600;
         }
+
         .status-active {
             background: rgba(122, 166, 90, 0.15);
             color: #36634B;
         }
+
         .status-paused {
             background: rgba(201, 110, 75, 0.15);
             color: #C96E4B;
         }
+
         .status-pending {
             background: rgba(201, 110, 75, 0.15);
             color: #C96E4B;
         }
+
         .status-delivered {
             background: rgba(122, 166, 90, 0.15);
             color: #36634B;
         }
+
         .dark .status-active {
             background: rgba(122, 166, 90, 0.2);
             color: #7AA65A;
         }
+
         .dark .status-paused {
             background: rgba(201, 110, 75, 0.2);
             color: #C96E4B;
         }
+
         .dark .status-pending {
             background: rgba(201, 110, 75, 0.2);
             color: #C96E4B;
         }
+
         .dark .status-delivered {
             background: rgba(122, 166, 90, 0.2);
             color: #7AA65A;
         }
-        
+
         /* Message item */
         .message-item {
             padding: 1.25rem;
             border-radius: 18px;
             transition: all 0.2s ease;
         }
+
         .message-item:hover {
-            background: rgba(122,166,90,0.05);
+            background: rgba(122, 166, 90, 0.05);
         }
+
         .dark .message-item:hover {
-            background: rgba(122,166,90,0.1);
+            background: rgba(122, 166, 90, 0.1);
         }
+
         .message-item.unread {
-            background: rgba(122,166,90,0.08);
+            background: rgba(122, 166, 90, 0.08);
             border-left: 4px solid #36634B;
         }
+
         .dark .message-item.unread {
-            background: rgba(122,166,90,0.15);
+            background: rgba(122, 166, 90, 0.15);
             border-left-color: #7AA65A;
         }
-        
+
         /* Form input */
         .dashboard-input {
             width: 100%;
@@ -346,28 +394,33 @@
             transition: all 0.3s ease;
             font-size: 0.95rem;
         }
+
         .dark .dashboard-input {
             background: #1F2A1E;
             border-color: #4A6B4A;
             color: #e2e6da;
         }
+
         .dashboard-input:focus {
             outline: none;
             border-color: #7AA65A;
             background: white;
-            box-shadow: 0 0 0 4px rgba(122,166,90,0.1);
+            box-shadow: 0 0 0 4px rgba(122, 166, 90, 0.1);
         }
+
         .dark .dashboard-input:focus {
             background: #2C3A2A;
             border-color: #7AA65A;
         }
+
         .dashboard-input::placeholder {
             color: rgba(46, 63, 47, 0.5);
         }
+
         .dark .dashboard-input::placeholder {
             color: rgba(156, 163, 175, 0.7);
         }
-        
+
         /* Save button */
         .save-btn {
             background: #36634B;
@@ -380,12 +433,13 @@
             cursor: pointer;
             font-size: 0.95rem;
         }
+
         .save-btn:hover {
             background: #2A503C;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(54,99,75,0.3);
+            box-shadow: 0 10px 25px rgba(54, 99, 75, 0.3);
         }
-        
+
         /* Saved item card */
         .saved-item-card {
             display: flex;
@@ -393,23 +447,26 @@
             gap: 1rem;
             padding: 1.25rem;
             border-radius: 18px;
-            border: 1px solid rgba(122,166,90,0.15);
+            border: 1px solid rgba(122, 166, 90, 0.15);
             transition: all 0.3s ease;
             background: white;
         }
+
         .dark .saved-item-card {
             background: #2C3A2A;
             border-color: #4A6B4A;
         }
+
         .saved-item-card:hover {
             border-color: #36634B;
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(54,99,75,0.12);
+            box-shadow: 0 12px 25px rgba(54, 99, 75, 0.12);
         }
+
         .dark .saved-item-card:hover {
             border-color: #7AA65A;
         }
-        
+
         /* Toggle switch */
         .toggle-switch {
             position: relative;
@@ -417,11 +474,13 @@
             width: 52px;
             height: 28px;
         }
+
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .toggle-slider {
             position: absolute;
             cursor: pointer;
@@ -433,6 +492,7 @@
             transition: .3s;
             border-radius: 34px;
         }
+
         .toggle-slider:before {
             position: absolute;
             content: "";
@@ -444,71 +504,118 @@
             transition: .3s;
             border-radius: 50%;
         }
-        input:checked + .toggle-slider {
+
+        input:checked+.toggle-slider {
             background-color: #36634B;
         }
-        .dark input:checked + .toggle-slider {
+
+        .dark input:checked+.toggle-slider {
             background-color: #7AA65A;
         }
-        input:checked + .toggle-slider:before {
+
+        input:checked+.toggle-slider:before {
             transform: translateX(24px);
         }
-        
+
         /* RTL support */
-        [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
-        [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
-        [dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
-        [dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
-        [dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
-        [dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1rem; }
-        [dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
-        [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
-        [dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 1; }
-        [dir="rtl"] .sidebar-item:hover { transform: translateX(-5px); }
-        [dir="rtl"] .logout-btn:hover { transform: translateX(-5px); }
-        
+        [dir="rtl"] .ml-2 {
+            margin-left: 0;
+            margin-right: 0.5rem;
+        }
+
+        [dir="rtl"] .mr-2 {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+
+        [dir="rtl"] .ml-3 {
+            margin-left: 0;
+            margin-right: 0.75rem;
+        }
+
+        [dir="rtl"] .mr-3 {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+
+        [dir="rtl"] .ml-4 {
+            margin-left: 0;
+            margin-right: 1rem;
+        }
+
+        [dir="rtl"] .mr-4 {
+            margin-right: 0;
+            margin-left: 1rem;
+        }
+
+        [dir="rtl"] .space-x-2> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+
+        [dir="rtl"] .space-x-3> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+
+        [dir="rtl"] .space-x-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+
+        [dir="rtl"] .sidebar-item:hover {
+            transform: translateX(-5px);
+        }
+
+        [dir="rtl"] .logout-btn:hover {
+            transform: translateX(-5px);
+        }
+
         /* Mobile fixes */
         @media (max-width: 640px) {
             .dashboard-card {
                 padding: 1.25rem;
             }
+
             .stat-card {
                 padding: 1rem;
             }
+
             .stat-card .text-3xl {
                 font-size: 1.5rem;
             }
+
             .dashboard-input {
                 padding: 0.75rem 1rem;
             }
         }
-        
+
         /* Avatar border */
         .border-3 {
             border-width: 3px;
         }
-        
+
         /* Delivery address card */
         .address-card {
-            background: rgba(122,166,90,0.05);
+            background: rgba(122, 166, 90, 0.05);
             border-radius: 18px;
             padding: 1.5rem;
-            border: 1px solid rgba(122,166,90,0.15);
+            border: 1px solid rgba(122, 166, 90, 0.15);
         }
+
         .dark .address-card {
-            background: rgba(122,166,90,0.1);
+            background: rgba(122, 166, 90, 0.1);
             border-color: #4A6B4A;
         }
-        
+
         /* Pause membership section */
         .pause-option {
             display: none;
         }
+
         .pause-option.show {
             display: block;
         }
     </style>
 </head>
+
 <body class="bg-farm-cream dark:bg-dark-bg">
 
     <!-- Theme & RTL Controls with Logo -->
@@ -516,22 +623,21 @@
         <div class="flex justify-between items-center max-w-full mx-auto">
             <!-- Logo with Local Farm branding -->
             <a class='flex items-center space-x-3 group' href='index.html'>
-                <div class="w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+                <div
+                    class="w-10 h-10 bg-farm-peat dark:bg-farm-sprout rounded-[30%_70%_70%_30%/30%_30%_70%_70%] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
                     <i class="fas fa-carrot text-farm-cream dark:text-dark-bg text-lg"></i>
                 </div>
                 <div>
-                    <span class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
-                    <span class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout ml-1">Farm</span>
+                    <span
+                        class="text-2xl font-display font-bold tracking-tight text-farm-charcoal dark:text-white">Local</span>
+                    <span
+                        class="text-2xl font-display font-bold tracking-tight text-farm-peat dark:text-farm-sprout ml-1">Farm</span>
                 </div>
             </a>
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="toggle-btn" title="Dark / Light">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun hidden"></i>
-                </button>
-                <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
-                    <i class="fas fa-exchange-alt"></i>
-                </button>
+                <button id="theme-toggle" class="toggle-btn" title="Dark / Light"><span>◐</span><span
+                        class="hidden">◑</span></button>
+                <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR"><span> ⇄</span></button>
             </div>
         </div>
     </div>
@@ -539,7 +645,7 @@
     <!-- Dashboard Main Container - Full Width -->
     <div class="dashboard-container">
         <div class="w-full px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Welcome Header -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                 <div>
@@ -550,9 +656,11 @@
                         Manage your subscription, delivery, and farm membership
                     </p>
                 </div>
-                <div class="mt-4 md:mt-0 flex items-center gap-4 bg-white dark:bg-dark-card px-5 py-3 rounded-2xl shadow-sm border border-farm-stone/50 dark:border-gray-700">
+                <div
+                    class="mt-4 md:mt-0 flex items-center gap-4 bg-white dark:bg-dark-card px-5 py-3 rounded-2xl shadow-sm border border-farm-stone/50 dark:border-gray-700">
                     <div class="flex -space-x-2">
-                        <img src="/assest/Guide3.jpg" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white dark:border-dark-card object-cover">
+                        <img src="/assest/Guide3.jpg" alt="Avatar"
+                            class="w-12 h-12 rounded-full border-2 border-white dark:border-dark-card object-cover">
                     </div>
                     <div>
                         <p class="font-semibold dark:text-white text-lg">Sarah Johnson</p>
@@ -564,7 +672,8 @@
             <!-- Stats Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
                 <div class="stat-card flex items-center p-5">
-                    <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
+                    <div
+                        class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
                         <i class="fas fa-box text-farm-peat dark:text-farm-sprout text-xl"></i>
                     </div>
                     <div>
@@ -573,7 +682,8 @@
                     </div>
                 </div>
                 <div class="stat-card flex items-center p-5">
-                    <div class="w-12 h-12 bg-green-500/10 dark:bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
+                    <div
+                        class="w-12 h-12 bg-green-500/10 dark:bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
                         <i class="fas fa-calendar-week text-green-700 dark:text-green-400 text-xl"></i>
                     </div>
                     <div>
@@ -582,7 +692,8 @@
                     </div>
                 </div>
                 <div class="stat-card flex items-center p-5">
-                    <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
+                    <div
+                        class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
                         <i class="fas fa-heart text-farm-peat dark:text-farm-sprout text-xl"></i>
                     </div>
                     <div>
@@ -591,7 +702,8 @@
                     </div>
                 </div>
                 <div class="stat-card flex items-center p-5">
-                    <div class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
+                    <div
+                        class="w-12 h-12 bg-farm-peat/10 dark:bg-farm-sprout/20 rounded-xl flex items-center justify-center mr-4">
                         <i class="fas fa-envelope text-farm-peat dark:text-farm-sprout text-xl"></i>
                     </div>
                     <div>
@@ -603,79 +715,85 @@
 
             <!-- Main Dashboard Grid - Full Width -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8">
-                
+
                 <!-- ============ LEFT SIDEBAR ============ -->
                 <div class="lg:col-span-4 xl:col-span-4">
                     <div class="sidebar-wrapper">
                         <div class="dashboard-card">
                             <div class="flex flex-col space-y-1">
-                                
+
                                 <!-- Dashboard Overview -->
                                 <div class="sidebar-item active" data-section="overview">
                                     <i class="fas fa-chart-pie w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Overview</span>
                                 </div>
-                                
+
                                 <!-- My Subscription -->
                                 <div class="sidebar-item" data-section="subscription">
                                     <i class="fas fa-box w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">My Subscription</span>
                                 </div>
-                                
+
                                 <!-- Delivery & Pickup -->
                                 <div class="sidebar-item" data-section="delivery">
                                     <i class="fas fa-truck w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Delivery & Pickup</span>
                                 </div>
-                                
+
                                 <!-- Pause Membership -->
                                 <div class="sidebar-item" data-section="pause">
                                     <i class="fas fa-pause-circle w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Pause Membership</span>
                                 </div>
-                                
+
                                 <!-- Order History -->
                                 <div class="sidebar-item" data-section="orders">
                                     <i class="fas fa-history w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Order History</span>
                                 </div>
-                                
+
                                 <!-- Messages -->
                                 <div class="sidebar-item" data-section="messages">
                                     <i class="fas fa-envelope w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Messages</span>
-                                    <span class="ml-auto bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2.5 py-1.5 rounded-full font-bold">2</span>
+                                    <span
+                                        class="ml-auto bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2.5 py-1.5 rounded-full font-bold">2</span>
                                 </div>
-                                
+
                                 <!-- Settings -->
                                 <div class="sidebar-item" data-section="settings">
                                     <i class="fas fa-cog w-7 text-2xl"></i>
                                     <span class="ml-4 font-semibold text-lg">Settings</span>
                                 </div>
                             </div>
-                            
+
                             <!-- User Info Card -->
                             <div class="mt-8 pt-6 border-t border-farm-stone/50 dark:border-gray-700">
                                 <div class="flex items-center">
-                                    <img src="/assest/Guide3.jpg" alt="User" class="w-16 h-16 rounded-full object-cover border-3 border-farm-peat dark:border-farm-sprout">
+                                    <img src="/assest/Guide3.jpg" alt="User"
+                                        class="w-16 h-16 rounded-full object-cover border-3 border-farm-peat dark:border-farm-sprout">
                                     <div class="ml-4">
                                         <p class="font-bold dark:text-white text-xl">Sarah Johnson</p>
-                                        <p class="text-sm text-farm-charcoal/80 dark:text-gray-400">sarah.j@example.com</p>
-                                        <p class="text-xs text-farm-peat dark:text-farm-sprout mt-1.5 font-semibold">Member since 2024 ✨</p>
+                                        <p class="text-sm text-farm-charcoal/80 dark:text-gray-400">sarah.j@example.com
+                                        </p>
+                                        <p class="text-xs text-farm-peat dark:text-farm-sprout mt-1.5 font-semibold">
+                                            Member since 2024 ✨</p>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Quick Action Buttons -->
                             <div class="mt-6 flex gap-3">
-                                <button class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                <button
+                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
                                     <i class="fas fa-headset mr-2"></i> Support
                                 </button>
-                                <button class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                <button
+                                    class="flex-1 bg-farm-peat/10 dark:bg-farm-sprout/20 text-farm-peat dark:text-farm-sprout py-3 px-4 rounded-xl font-semibold text-sm hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
                                     <i class="fas fa-gift mr-2"></i> Refer
                                 </button>
                             </div>
-                            
+
                             <!-- Logout Button -->
                             <div class="logout-btn mt-4" id="logout-btn-sidebar">
                                 <i class="fas fa-sign-out-alt mr-2"></i>
@@ -687,7 +805,7 @@
 
                 <!-- ============ RIGHT CONTENT AREA ============ -->
                 <div class="lg:col-span-8 xl:col-span-8">
-                    
+
                     <!-- ===== 1. OVERVIEW SECTION ===== -->
                     <div id="overview-section" class="dashboard-section active">
                         <div class="dashboard-card">
@@ -695,26 +813,32 @@
                                 <i class="fas fa-chart-pie text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Farm Overview
                             </h2>
-                            
+
                             <!-- Next Delivery Card -->
                             <div class="bg-farm-peat/5 dark:bg-farm-sprout/10 p-6 rounded-2xl mb-6">
                                 <div class="flex items-center justify-between flex-wrap gap-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-14 h-14 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                        <div
+                                            class="w-14 h-14 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
                                             <i class="fas fa-truck text-2xl text-farm-peat dark:text-farm-sprout"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-farm-charcoal/60 dark:text-gray-400">Next Delivery</p>
-                                            <p class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout">Thursday, June 15</p>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">Medium Share · 3 days away</p>
+                                            <p class="text-sm text-farm-charcoal/60 dark:text-gray-400">Next Delivery
+                                            </p>
+                                            <p
+                                                class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout">
+                                                Thursday, June 15</p>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">Medium
+                                                Share · 3 days away</p>
                                         </div>
                                     </div>
-                                    <button class="px-6 py-3 bg-farm-peat text-white rounded-full font-semibold hover:bg-farm-peat/80 transition">
+                                    <button
+                                        class="px-6 py-3 bg-farm-peat text-white rounded-full font-semibold hover:bg-farm-peat/80 transition">
                                         <i class="fas fa-calendar-alt mr-2"></i> View Details
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <!-- This Week's Box Preview -->
                             <h3 class="text-xl font-bold mb-4 dark:text-white">This Week's Box</h3>
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
@@ -735,21 +859,25 @@
                                     <p class="font-semibold text-sm dark:text-white">Carrots</p>
                                 </div>
                             </div>
-                            
+
                             <!-- Recent Deliveries -->
                             <h3 class="text-xl font-bold mb-4 dark:text-white">Recent Deliveries</h3>
                             <div class="space-y-3">
-                                <div class="flex items-center justify-between p-4 bg-farm-peat/5 dark:bg-farm-sprout/10 rounded-xl">
+                                <div
+                                    class="flex items-center justify-between p-4 bg-farm-peat/5 dark:bg-farm-sprout/10 rounded-xl">
                                     <div>
                                         <p class="font-semibold dark:text-white">June 8, 2026</p>
-                                        <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Box · Strawberries, lettuce, peas, carrots</p>
+                                        <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Box ·
+                                            Strawberries, lettuce, peas, carrots</p>
                                     </div>
                                     <span class="status-badge status-delivered">Delivered</span>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-farm-peat/5 dark:bg-farm-sprout/10 rounded-xl">
+                                <div
+                                    class="flex items-center justify-between p-4 bg-farm-peat/5 dark:bg-farm-sprout/10 rounded-xl">
                                     <div>
                                         <p class="font-semibold dark:text-white">June 1, 2026</p>
-                                        <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Box · Kale, radishes, herbs, zucchini</p>
+                                        <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Box · Kale,
+                                            radishes, herbs, zucchini</p>
                                     </div>
                                     <span class="status-badge status-delivered">Delivered</span>
                                 </div>
@@ -764,12 +892,16 @@
                                 <i class="fas fa-box text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 My Subscription
                             </h2>
-                            
+
                             <div class="grid md:grid-cols-2 gap-6 mb-6">
                                 <div class="bg-farm-peat/5 dark:bg-farm-sprout/10 p-6 rounded-2xl">
                                     <p class="text-sm text-farm-charcoal/60 dark:text-gray-400 mb-1">Current Plan</p>
-                                    <p class="text-3xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-2">Medium Share</p>
-                                    <p class="text-lg font-semibold dark:text-white">$45<span class="text-sm font-normal text-farm-charcoal/60 dark:text-gray-400">/week</span></p>
+                                    <p
+                                        class="text-3xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-2">
+                                        Medium Share</p>
+                                    <p class="text-lg font-semibold dark:text-white">$45<span
+                                            class="text-sm font-normal text-farm-charcoal/60 dark:text-gray-400">/week</span>
+                                    </p>
                                     <div class="mt-4 space-y-2">
                                         <div class="flex justify-between">
                                             <span class="text-sm dark:text-gray-300">Season</span>
@@ -781,28 +913,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="bg-farm-peat/5 dark:bg-farm-sprout/10 p-6 rounded-2xl">
                                     <p class="text-sm text-farm-charcoal/60 dark:text-gray-400 mb-1">Next Billing</p>
-                                    <p class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-2">June 15, 2026</p>
+                                    <p
+                                        class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout mb-2">
+                                        June 15, 2026</p>
                                     <p class="text-lg font-semibold dark:text-white">$45.00</p>
                                     <div class="mt-4">
                                         <div class="flex justify-between mb-2">
                                             <span class="text-sm dark:text-gray-300">Payment Method</span>
                                             <span class="font-semibold dark:text-white">Visa •• 4242</span>
                                         </div>
-                                        <button class="text-farm-peat dark:text-farm-sprout text-sm hover:underline">Change</button>
+                                        <button
+                                            class="text-farm-peat dark:text-farm-sprout text-sm hover:underline">Change</button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="border-t border-farm-stone/30 dark:border-gray-700 pt-6">
                                 <h3 class="text-xl font-bold mb-4 dark:text-white">Subscription Options</h3>
                                 <div class="grid md:grid-cols-2 gap-4">
-                                    <button class="px-6 py-4 bg-farm-peat text-white rounded-xl font-semibold hover:bg-farm-peat/80 transition">
+                                    <button
+                                        class="px-6 py-4 bg-farm-peat text-white rounded-xl font-semibold hover:bg-farm-peat/80 transition">
                                         <i class="fas fa-exchange-alt mr-2"></i> Change Size
                                     </button>
-                                    <button class="px-6 py-4 border-2 border-farm-peat text-farm-peat dark:text-farm-sprout dark:border-farm-sprout rounded-xl font-semibold hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
+                                    <button
+                                        class="px-6 py-4 border-2 border-farm-peat text-farm-peat dark:text-farm-sprout dark:border-farm-sprout rounded-xl font-semibold hover:bg-farm-peat hover:text-white dark:hover:bg-farm-sprout dark:hover:text-dark-bg transition">
                                         <i class="fas fa-plus-circle mr-2"></i> Add Extras
                                     </button>
                                 </div>
@@ -817,41 +954,48 @@
                                 <i class="fas fa-truck text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Delivery & Pickup
                             </h2>
-                            
+
                             <div class="grid md:grid-cols-2 gap-6 mb-6">
                                 <!-- Delivery Address -->
                                 <div class="address-card">
                                     <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-10 h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                        <div
+                                            class="w-10 h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
                                             <i class="fas fa-home text-farm-peat dark:text-farm-sprout"></i>
                                         </div>
                                         <h3 class="text-lg font-bold dark:text-white">Delivery Address</h3>
                                     </div>
                                     <p class="font-semibold dark:text-white">Sarah Johnson</p>
-                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">1234 NE Farm Street<br>Portland, OR 97212</p>
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">1234 NE Farm
+                                        Street<br>Portland, OR 97212</p>
                                     <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-2">(503) 555-1234</p>
-                                    <button class="mt-4 text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-sm">
+                                    <button
+                                        class="mt-4 text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-sm">
                                         <i class="fas fa-edit mr-1"></i> Edit Address
                                     </button>
                                 </div>
-                                
+
                                 <!-- Pickup Location -->
                                 <div class="address-card">
                                     <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-10 h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                        <div
+                                            class="w-10 h-10 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
                                             <i class="fas fa-store text-farm-peat dark:text-farm-sprout"></i>
                                         </div>
                                         <h3 class="text-lg font-bold dark:text-white">Farmstand Pickup</h3>
                                     </div>
                                     <p class="font-semibold dark:text-white">Local Farm Co-op</p>
-                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">3560 Green Valley Road<br>Willamette Valley, OR 97301</p>
-                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-2">Wed - Sat: 9AM - 5PM</p>
-                                    <button class="mt-4 text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-sm">
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-1">3560 Green Valley
+                                        Road<br>Willamette Valley, OR 97301</p>
+                                    <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mt-2">Wed - Sat: 9AM -
+                                        5PM</p>
+                                    <button
+                                        class="mt-4 text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-sm">
                                         <i class="fas fa-map-marked-alt mr-1"></i> Get Directions
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <!-- Delivery Preferences -->
                             <div class="border-t border-farm-stone/30 dark:border-gray-700 pt-6">
                                 <h3 class="text-xl font-bold mb-4 dark:text-white">Delivery Preferences</h3>
@@ -859,9 +1003,11 @@
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="font-semibold dark:text-white">Delivery Day</p>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Current: Thursday</p>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Current:
+                                                Thursday</p>
                                         </div>
-                                        <select class="bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 rounded-lg p-2 text-sm">
+                                        <select
+                                            class="bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 rounded-lg p-2 text-sm">
                                             <option>Thursday</option>
                                             <option>Friday</option>
                                             <option>Saturday (pickup)</option>
@@ -870,9 +1016,11 @@
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="font-semibold dark:text-white">Delivery Instructions</p>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Leave on porch, please</p>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Leave on porch,
+                                                please</p>
                                         </div>
-                                        <button class="text-farm-peat dark:text-farm-sprout hover:underline text-sm">Edit</button>
+                                        <button
+                                            class="text-farm-peat dark:text-farm-sprout hover:underline text-sm">Edit</button>
                                     </div>
                                 </div>
                             </div>
@@ -886,28 +1034,33 @@
                                 <i class="fas fa-pause-circle text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Pause Membership
                             </h2>
-                            
+
                             <div class="bg-farm-peat/5 dark:bg-farm-sprout/10 p-6 rounded-2xl mb-6">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
+                                    <div
+                                        class="w-12 h-12 bg-farm-peat/20 dark:bg-farm-sprout/20 rounded-full flex items-center justify-center">
                                         <i class="fas fa-info-circle text-farm-peat dark:text-farm-sprout text-xl"></i>
                                     </div>
                                     <div>
                                         <p class="font-semibold dark:text-white">Current Status</p>
-                                        <p class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout">Active</p>
+                                        <p class="text-2xl font-display font-bold text-farm-peat dark:text-farm-sprout">
+                                            Active</p>
                                     </div>
                                 </div>
                                 <p class="text-sm text-farm-charcoal/70 dark:text-gray-400 mb-4">
-                                    Next delivery: <span class="font-semibold dark:text-white">Thursday, June 15, 2026</span>
+                                    Next delivery: <span class="font-semibold dark:text-white">Thursday, June 15,
+                                        2026</span>
                                 </p>
                                 <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">
-                                    You can pause your weekly deliveries for 1-8 weeks. Great for vacations or when you're away.
+                                    You can pause your weekly deliveries for 1-8 weeks. Great for vacations or when
+                                    you're away.
                                 </p>
                             </div>
-                            
+
                             <div class="space-y-6">
                                 <div>
-                                    <label class="block text-sm font-medium mb-2 dark:text-gray-300">Pause Duration</label>
+                                    <label class="block text-sm font-medium mb-2 dark:text-gray-300">Pause
+                                        Duration</label>
                                     <select class="w-full dashboard-input" id="pause-duration">
                                         <option value="">Select duration</option>
                                         <option value="1">1 week (Jun 22 - Jun 28)</option>
@@ -916,23 +1069,28 @@
                                         <option value="4">4 weeks (Jun 22 - Jul 19)</option>
                                     </select>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-sm font-medium mb-2 dark:text-gray-300">Reason (optional)</label>
-                                    <textarea class="w-full dashboard-input" rows="3" placeholder="Let us know why you're pausing..."></textarea>
+                                    <label class="block text-sm font-medium mb-2 dark:text-gray-300">Reason
+                                        (optional)</label>
+                                    <textarea class="w-full dashboard-input" rows="3"
+                                        placeholder="Let us know why you're pausing..."></textarea>
                                 </div>
-                                
-                              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                            <button class="w-full sm:flex-1 save-btn py-3 sm:py-3 px-4 text-sm sm:text-base" id="pause-confirm">
-                                <i class="fas fa-pause-circle mr-2"></i> Confirm Pause
-                            </button>
-                            <button class="w-full sm:flex-1 px-4 sm:px-6 py-3 border-2 border-farm-stone text-farm-charcoal dark:text-gray-300 rounded-full font-semibold hover:bg-farm-stone/20 transition text-sm sm:text-base">
-                                Cancel
-                            </button>
-                        </div>
-                                
+
+                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                                    <button class="w-full sm:flex-1 save-btn py-3 sm:py-3 px-4 text-sm sm:text-base"
+                                        id="pause-confirm">
+                                        <i class="fas fa-pause-circle mr-2"></i> Confirm Pause
+                                    </button>
+                                    <button
+                                        class="w-full sm:flex-1 px-4 sm:px-6 py-3 border-2 border-farm-stone text-farm-charcoal dark:text-gray-300 rounded-full font-semibold hover:bg-farm-stone/20 transition text-sm sm:text-base">
+                                        Cancel
+                                    </button>
+                                </div>
+
                                 <p class="text-xs text-center text-farm-charcoal/60 dark:text-gray-500 mt-4">
-                                    You can resume your membership anytime from this dashboard. Paused weeks will be added to the end of your season.
+                                    You can resume your membership anytime from this dashboard. Paused weeks will be
+                                    added to the end of your season.
                                 </p>
                             </div>
                         </div>
@@ -945,14 +1103,17 @@
                                 <i class="fas fa-history text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Order History
                             </h2>
-                            
+
                             <!-- Filters -->
                             <div class="flex flex-wrap gap-3 mb-6">
-                                <button class="px-5 py-2.5 rounded-full text-sm font-bold bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg shadow-md">All</button>
-                                <button class="px-5 py-2.5 rounded-full text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">2026</button>
-                                <button class="px-5 py-2.5 rounded-full text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">2025</button>
+                                <button
+                                    class="px-5 py-2.5 rounded-full text-sm font-bold bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg shadow-md">All</button>
+                                <button
+                                    class="px-5 py-2.5 rounded-full text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">2026</button>
+                                <button
+                                    class="px-5 py-2.5 rounded-full text-sm font-medium bg-white dark:bg-dark-card border border-farm-stone dark:border-gray-700 text-farm-charcoal dark:text-gray-300 hover:bg-farm-peat/10 dark:hover:bg-farm-sprout/20 transition">2025</button>
                             </div>
-                            
+
                             <!-- Orders List -->
                             <div class="space-y-4">
                                 <!-- Order 1 -->
@@ -961,78 +1122,97 @@
                                         <div class="flex items-start gap-4">
                                             <div>
                                                 <h4 class="font-bold text-lg dark:text-white">June 8, 2026</h4>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share · Week 24</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share
+                                                    · Week 24</p>
                                                 <div class="flex items-center mt-2">
                                                     <span class="status-badge status-delivered">
                                                         <i class="fas fa-check-circle mr-1"></i> Delivered
                                                     </span>
-                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2468</span>
+                                                    <span
+                                                        class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2468</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-5 mt-4 md:mt-0">
-                                            <span class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
-                                            <button class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View Details</button>
+                                            <span
+                                                class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
+                                            <button
+                                                class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View
+                                                Details</button>
                                         </div>
                                     </div>
                                     <div class="mt-3 text-sm text-farm-charcoal/60 dark:text-gray-400">
-                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Strawberries, Lettuce, Snap Peas, Carrots, Herbs</span>
+                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Strawberries, Lettuce, Snap
+                                            Peas, Carrots, Herbs</span>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Order 2 -->
                                 <div class="order-item">
                                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                                         <div class="flex items-start gap-4">
                                             <div>
                                                 <h4 class="font-bold text-lg dark:text-white">June 1, 2026</h4>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share · Week 23</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share
+                                                    · Week 23</p>
                                                 <div class="flex items-center mt-2">
                                                     <span class="status-badge status-delivered">
                                                         <i class="fas fa-check-circle mr-1"></i> Delivered
                                                     </span>
-                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2467</span>
+                                                    <span
+                                                        class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2467</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-5 mt-4 md:mt-0">
-                                            <span class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
-                                            <button class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View Details</button>
+                                            <span
+                                                class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
+                                            <button
+                                                class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View
+                                                Details</button>
                                         </div>
                                     </div>
                                     <div class="mt-3 text-sm text-farm-charcoal/60 dark:text-gray-400">
-                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Kale, Radishes, Green Onions, Herbs, Zucchini</span>
+                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Kale, Radishes, Green
+                                            Onions, Herbs, Zucchini</span>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Order 3 -->
                                 <div class="order-item">
                                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                                         <div class="flex items-start gap-4">
                                             <div>
                                                 <h4 class="font-bold text-lg dark:text-white">May 25, 2026</h4>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share · Week 22</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Medium Share
+                                                    · Week 22</p>
                                                 <div class="flex items-center mt-2">
                                                     <span class="status-badge status-delivered">
                                                         <i class="fas fa-check-circle mr-1"></i> Delivered
                                                     </span>
-                                                    <span class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2466</span>
+                                                    <span
+                                                        class="text-xs text-farm-charcoal/60 dark:text-gray-500 ml-3">#CSA-2466</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-5 mt-4 md:mt-0">
-                                            <span class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
-                                            <button class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View Details</button>
+                                            <span
+                                                class="font-bold text-xl text-farm-peat dark:text-farm-sprout">$45</span>
+                                            <button
+                                                class="text-farm-peat dark:text-farm-sprout hover:underline text-sm font-semibold">View
+                                                Details</button>
                                         </div>
                                     </div>
                                     <div class="mt-3 text-sm text-farm-charcoal/60 dark:text-gray-400">
-                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Asparagus, Spinach, Radishes, Herbs, Eggs</span>
+                                        <span class="mr-4"><i class="fas fa-leaf mr-1"></i> Asparagus, Spinach,
+                                            Radishes, Herbs, Eggs</span>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 text-center">
-                                <button class="text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-base">
+                                <button
+                                    class="text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-base">
                                     View All 24 Orders <i class="fas fa-arrow-right ml-1"></i>
                                 </button>
                             </div>
@@ -1045,9 +1225,11 @@
                             <h2 class="text-2xl font-display font-bold mb-6 dark:text-white flex items-center">
                                 <i class="fas fa-envelope text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Messages
-                                <span class="ml-4 bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2.5 py-1.5 rounded-full font-bold">2 unread</span>
+                                <span
+                                    class="ml-4 bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg text-xs px-2.5 py-1.5 rounded-full font-bold">2
+                                    unread</span>
                             </h2>
-                            
+
                             <div class="space-y-4">
                                 <!-- Message 1 - Unread -->
                                 <div class="message-item unread">
@@ -1055,47 +1237,59 @@
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
                                                 <h4 class="font-bold text-lg dark:text-white">Farm Team</h4>
-                                                <span class="text-xs text-farm-charcoal/60 dark:text-gray-500">2 hours ago</span>
+                                                <span class="text-xs text-farm-charcoal/60 dark:text-gray-500">2 hours
+                                                    ago</span>
                                             </div>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Harvest Update</p>
-                                            <p class="text-base mt-2 dark:text-gray-300">This week's box includes first strawberries of the season! They're sweet and perfect...</p>
-                                            <span class="inline-block mt-3 text-xs bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg px-3 py-1.5 rounded-full font-semibold">New</span>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Harvest Update
+                                            </p>
+                                            <p class="text-base mt-2 dark:text-gray-300">This week's box includes first
+                                                strawberries of the season! They're sweet and perfect...</p>
+                                            <span
+                                                class="inline-block mt-3 text-xs bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg px-3 py-1.5 rounded-full font-semibold">New</span>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Message 2 - Unread -->
                                 <div class="message-item unread">
                                     <div class="flex items-start gap-4">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
                                                 <h4 class="font-bold text-lg dark:text-white">Delivery Update</h4>
-                                                <span class="text-xs text-farm-charcoal/60 dark:text-gray-500">Yesterday</span>
+                                                <span
+                                                    class="text-xs text-farm-charcoal/60 dark:text-gray-500">Yesterday</span>
                                             </div>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Schedule Change</p>
-                                            <p class="text-base mt-2 dark:text-gray-300">Your delivery for next week will arrive on Thursday between 3-5 PM as usual...</p>
-                                            <span class="inline-block mt-3 text-xs bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg px-3 py-1.5 rounded-full font-semibold">New</span>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Schedule Change
+                                            </p>
+                                            <p class="text-base mt-2 dark:text-gray-300">Your delivery for next week
+                                                will arrive on Thursday between 3-5 PM as usual...</p>
+                                            <span
+                                                class="inline-block mt-3 text-xs bg-farm-peat dark:bg-farm-sprout text-white dark:text-dark-bg px-3 py-1.5 rounded-full font-semibold">New</span>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Message 3 - Read -->
                                 <div class="message-item">
                                     <div class="flex items-start gap-4">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
                                                 <h4 class="font-bold text-lg dark:text-white">Welcome to Local Farm</h4>
-                                                <span class="text-xs text-farm-charcoal/60 dark:text-gray-500">3 days ago</span>
+                                                <span class="text-xs text-farm-charcoal/60 dark:text-gray-500">3 days
+                                                    ago</span>
                                             </div>
-                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Membership Confirmation</p>
-                                            <p class="text-base mt-2 dark:text-gray-300">Thank you for joining our farm community! We're excited to share the harvest with you...</p>
+                                            <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Membership
+                                                Confirmation</p>
+                                            <p class="text-base mt-2 dark:text-gray-300">Thank you for joining our farm
+                                                community! We're excited to share the harvest with you...</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 text-center">
-                                <button class="text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-base">
+                                <button
+                                    class="text-farm-peat dark:text-farm-sprout font-semibold hover:underline text-base">
                                     View All Messages <i class="fas fa-arrow-right ml-1"></i>
                                 </button>
                             </div>
@@ -1109,7 +1303,7 @@
                                 <i class="fas fa-cog text-farm-peat dark:text-farm-sprout mr-3 text-2xl"></i>
                                 Account Settings
                             </h2>
-                            
+
                             <div class="space-y-8">
                                 <!-- Profile Settings -->
                                 <div>
@@ -1119,20 +1313,23 @@
                                     </h3>
                                     <div class="grid md:grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Full Name</label>
+                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Full
+                                                Name</label>
                                             <input type="text" class="dashboard-input" value="Sarah Johnson">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Email Address</label>
+                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Email
+                                                Address</label>
                                             <input type="email" class="dashboard-input" value="sarah.j@example.com">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Phone Number</label>
+                                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Phone
+                                                Number</label>
                                             <input type="tel" class="dashboard-input" value="(503) 555-1234">
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Notification Settings -->
                                 <div>
                                     <h3 class="text-xl font-bold mb-4 dark:text-white flex items-center">
@@ -1143,7 +1340,8 @@
                                         <div class="flex items-center justify-between">
                                             <div>
                                                 <p class="font-semibold dark:text-white">Email Notifications</p>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Receive delivery confirmations</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Receive
+                                                    delivery confirmations</p>
                                             </div>
                                             <label class="toggle-switch">
                                                 <input type="checkbox" checked>
@@ -1153,7 +1351,8 @@
                                         <div class="flex items-center justify-between">
                                             <div>
                                                 <p class="font-semibold dark:text-white">SMS Notifications</p>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Get text alerts for delivery day</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Get text
+                                                    alerts for delivery day</p>
                                             </div>
                                             <label class="toggle-switch">
                                                 <input type="checkbox">
@@ -1163,7 +1362,8 @@
                                         <div class="flex items-center justify-between">
                                             <div>
                                                 <p class="font-semibold dark:text-white">Farm Newsletters</p>
-                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Receive weekly harvest updates</p>
+                                                <p class="text-sm text-farm-charcoal/70 dark:text-gray-400">Receive
+                                                    weekly harvest updates</p>
                                             </div>
                                             <label class="toggle-switch">
                                                 <input type="checkbox" checked>
@@ -1172,7 +1372,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Change Password -->
                                 <div>
                                     <h3 class="text-xl font-bold mb-4 dark:text-white flex items-center">
@@ -1181,17 +1381,19 @@
                                     </h3>
                                     <div class="grid md:grid-cols-2 gap-4">
                                         <div>
-                                            <input type="password" class="dashboard-input" placeholder="Current Password">
+                                            <input type="password" class="dashboard-input"
+                                                placeholder="Current Password">
                                         </div>
                                         <div>
                                             <input type="password" class="dashboard-input" placeholder="New Password">
                                         </div>
                                         <div>
-                                            <input type="password" class="dashboard-input" placeholder="Confirm New Password">
+                                            <input type="password" class="dashboard-input"
+                                                placeholder="Confirm New Password">
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="flex justify-end">
                                     <button class="save-btn px-10">
                                         <i class="fas fa-save mr-2"></i> Save Changes
@@ -1207,16 +1409,16 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // ============ THEME TOGGLE ============
             const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = themeToggle?.querySelector('.fa-moon');
-            const themeIconSun = themeToggle?.querySelector('.fa-sun');
-            
+            const themeIcon = themeToggle?.querySelector('span:first-child');
+            const themeIconSun = themeToggle?.querySelector('span:last-child');
+
             function toggleTheme() {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
-                
+
                 if (isDark) {
                     if (themeIcon) themeIcon.classList.add('hidden');
                     if (themeIconSun) themeIconSun.classList.remove('hidden');
@@ -1229,19 +1431,19 @@
                     localStorage.setItem('theme', 'light');
                 }
             }
-            
+
             if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-            
+
             if (localStorage.getItem('theme') === 'dark') {
                 document.documentElement.classList.add('dark');
                 if (themeIcon) themeIcon.classList.add('hidden');
                 if (themeIconSun) themeIconSun.classList.remove('hidden');
                 if (themeToggle) themeToggle.classList.add('active');
             }
-            
+
             // ============ RTL TOGGLE ============
             const rtlToggle = document.getElementById('rtl-toggle');
-            
+
             function toggleRTL() {
                 if (document.documentElement.dir === 'rtl') {
                     document.documentElement.dir = 'ltr';
@@ -1255,15 +1457,15 @@
                     localStorage.setItem('dir', 'rtl');
                 }
             }
-            
+
             if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
-            
+
             if (localStorage.getItem('dir') === 'rtl') {
                 document.documentElement.dir = 'rtl';
                 document.documentElement.lang = 'ar';
                 if (rtlToggle) rtlToggle.classList.add('active');
             }
-            
+
             // ============ DASHBOARD SECTION TOGGLE ============
             const sidebarItems = document.querySelectorAll('.sidebar-item');
             const sections = {
@@ -1275,29 +1477,29 @@
                 messages: document.getElementById('messages-section'),
                 settings: document.getElementById('settings-section')
             };
-            
+
             function hideAllSections() {
                 Object.values(sections).forEach(section => {
                     if (section) section.classList.add('hidden');
                 });
             }
-            
+
             function removeActiveClass() {
                 sidebarItems.forEach(item => {
                     item.classList.remove('active');
                 });
             }
-            
+
             sidebarItems.forEach(item => {
-                item.addEventListener('click', function(e) {
+                item.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const section = this.dataset.section;
-                    
+
                     removeActiveClass();
                     this.classList.add('active');
                     hideAllSections();
-                    
+
                     if (section === 'overview' && sections.overview) sections.overview.classList.remove('hidden');
                     if (section === 'subscription' && sections.subscription) sections.subscription.classList.remove('hidden');
                     if (section === 'delivery' && sections.delivery) sections.delivery.classList.remove('hidden');
@@ -1307,19 +1509,19 @@
                     if (section === 'settings' && sections.settings) sections.settings.classList.remove('hidden');
                 });
             });
-            
+
             // ============ LOGOUT HANDLING ============
             const sidebarLogout = document.getElementById('logout-btn-sidebar');
             if (sidebarLogout) {
-                sidebarLogout.addEventListener('click', function() {
+                sidebarLogout.addEventListener('click', function () {
                     window.location.href = 'login.html';
                 });
             }
-            
+
             // ============ PAUSE MEMBERSHIP ============
             const pauseConfirm = document.getElementById('pause-confirm');
             if (pauseConfirm) {
-                pauseConfirm.addEventListener('click', function() {
+                pauseConfirm.addEventListener('click', function () {
                     const duration = document.getElementById('pause-duration').value;
                     if (duration) {
                         alert(`Membership paused for ${duration} week(s)! (Demo)`);
@@ -1328,14 +1530,15 @@
                     }
                 });
             }
-            
+
             // Save buttons
             document.querySelectorAll('.save-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     alert('Changes saved successfully!');
                 });
             });
         });
     </script>
 </body>
+
 </html>
